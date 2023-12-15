@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31F4EF72B2CEB7300E45FF5 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31F4EF62B2CEB7300E45FF5 /* DefaultButton.swift */; };
+		C31F4EF92B2CEB7F00E45FF5 /* DefaultButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31F4EF82B2CEB7F00E45FF5 /* DefaultButton.xib */; };
 		C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007BD2B2CB7D7009AD543 /* AppDelegate.swift */; };
 		C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007BF2B2CB7D7009AD543 /* SceneDelegate.swift */; };
-		C3A007C22B2CB7D7009AD543 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007C12B2CB7D7009AD543 /* ViewController.swift */; };
-		C3A007C52B2CB7D7009AD543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A007C32B2CB7D7009AD543 /* Main.storyboard */; };
+		C3A007C22B2CB7D7009AD543 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007C12B2CB7D7009AD543 /* TabBarController.swift */; };
 		C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A007C62B2CB7D7009AD543 /* Assets.xcassets */; };
 		C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A007C82B2CB7D7009AD543 /* LaunchScreen.storyboard */; };
 		C3A007D52B2CB7D8009AD543 /* AccountChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007D42B2CB7D8009AD543 /* AccountChainTests.swift */; };
 		C3A007DF2B2CB7D8009AD543 /* AccountChainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007DE2B2CB7D8009AD543 /* AccountChainUITests.swift */; };
 		C3A007E12B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007E02B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift */; };
+		C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007F22B2CC133009AD543 /* HomeViewController.swift */; };
+		C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A007F32B2CC133009AD543 /* HomeViewController.xib */; };
+		C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */; };
+		C3A007FB2B2CC1E9009AD543 /* PasswordGeneratorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A007F92B2CC1E9009AD543 /* PasswordGeneratorViewController.xib */; };
+		C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */; };
+		C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31F4EF62B2CEB7300E45FF5 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		C31F4EF82B2CEB7F00E45FF5 /* DefaultButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultButton.xib; sourceTree = "<group>"; };
 		C3A007BA2B2CB7D7009AD543 /* AccountChain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountChain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A007BD2B2CB7D7009AD543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A007BF2B2CB7D7009AD543 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C3A007C12B2CB7D7009AD543 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C3A007C42B2CB7D7009AD543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C3A007C12B2CB7D7009AD543 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C3A007C62B2CB7D7009AD543 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3A007C92B2CB7D7009AD543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3A007CB2B2CB7D7009AD543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +57,12 @@
 		C3A007DA2B2CB7D8009AD543 /* AccountChainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountChainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A007DE2B2CB7D8009AD543 /* AccountChainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChainUITests.swift; sourceTree = "<group>"; };
 		C3A007E02B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChainUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C3A007F22B2CC133009AD543 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C3A007F32B2CC133009AD543 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorViewController.swift; sourceTree = "<group>"; };
+		C3A007F92B2CC1E9009AD543 /* PasswordGeneratorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordGeneratorViewController.xib; sourceTree = "<group>"; };
+		C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentcationViewController.swift; sourceTree = "<group>"; };
+		C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthentcationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +90,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C31F4EFA2B2CF37000E45FF5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C3A007B12B2CB7D7009AD543 = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +120,11 @@
 		C3A007BC2B2CB7D7009AD543 /* AccountChain */ = {
 			isa = PBXGroup;
 			children = (
-				C3A007BD2B2CB7D7009AD543 /* AppDelegate.swift */,
-				C3A007BF2B2CB7D7009AD543 /* SceneDelegate.swift */,
-				C3A007C12B2CB7D7009AD543 /* ViewController.swift */,
-				C3A007C32B2CB7D7009AD543 /* Main.storyboard */,
-				C3A007C62B2CB7D7009AD543 /* Assets.xcassets */,
-				C3A007C82B2CB7D7009AD543 /* LaunchScreen.storyboard */,
+				C31F4EFA2B2CF37000E45FF5 /* Extensions */,
+				C3A007EF2B2CBE5A009AD543 /* Resources */,
+				C3A007F62B2CC179009AD543 /* Pages */,
+				C3A007F12B2CBE8E009AD543 /* TabBar */,
+				C3A007F02B2CBE7A009AD543 /* Views */,
 				C3A007CB2B2CB7D7009AD543 /* Info.plist */,
 			);
 			path = AccountChain;
@@ -125,6 +145,151 @@
 				C3A007E02B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift */,
 			);
 			path = AccountChainUITests;
+			sourceTree = "<group>";
+		};
+		C3A007ED2B2CBE42009AD543 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				C3A008012B2CDAC5009AD543 /* Model */,
+				C3A008002B2CDA8F009AD543 /* ViewModel */,
+				C3A007EE2B2CBE52009AD543 /* Controller */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		C3A007EE2B2CBE52009AD543 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007F22B2CC133009AD543 /* HomeViewController.swift */,
+				C3A007F32B2CC133009AD543 /* HomeViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C3A007EF2B2CBE5A009AD543 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007BD2B2CB7D7009AD543 /* AppDelegate.swift */,
+				C3A007BF2B2CB7D7009AD543 /* SceneDelegate.swift */,
+				C3A007C62B2CB7D7009AD543 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C3A007F02B2CBE7A009AD543 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3A0080B2B2CE62F009AD543 /* CustomButtons */,
+				C3A007C82B2CB7D7009AD543 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C3A007F12B2CBE8E009AD543 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007C12B2CB7D7009AD543 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C3A007F62B2CC179009AD543 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007FC2B2CDA52009AD543 /* AuthPage */,
+				C3A007F72B2CC194009AD543 /* PasswordGenerator */,
+				C3A007ED2B2CBE42009AD543 /* HomePage */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		C3A007F72B2CC194009AD543 /* PasswordGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				C3A008042B2CDAE2009AD543 /* ViewModel */,
+				C3A008032B2CDADB009AD543 /* Model */,
+				C3A008022B2CDACB009AD543 /* Controller  */,
+			);
+			path = PasswordGenerator;
+			sourceTree = "<group>";
+		};
+		C3A007FC2B2CDA52009AD543 /* AuthPage */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007FF2B2CDA7F009AD543 /* ViewModel */,
+				C3A007FE2B2CDA76009AD543 /* Model */,
+				C3A007FD2B2CDA6F009AD543 /* Controller */,
+			);
+			path = AuthPage;
+			sourceTree = "<group>";
+		};
+		C3A007FD2B2CDA6F009AD543 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
+				C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C3A007FE2B2CDA76009AD543 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3A007FF2B2CDA7F009AD543 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3A008002B2CDA8F009AD543 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3A008012B2CDAC5009AD543 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3A008022B2CDACB009AD543 /* Controller  */ = {
+			isa = PBXGroup;
+			children = (
+				C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */,
+				C3A007F92B2CC1E9009AD543 /* PasswordGeneratorViewController.xib */,
+			);
+			path = "Controller ";
+			sourceTree = "<group>";
+		};
+		C3A008032B2CDADB009AD543 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3A008042B2CDAE2009AD543 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3A0080B2B2CE62F009AD543 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				C31F4EF62B2CEB7300E45FF5 /* DefaultButton.swift */,
+				C31F4EF82B2CEB7F00E45FF5 /* DefaultButton.xib */,
+			);
+			path = CustomButtons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +397,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
+				C31F4EF92B2CEB7F00E45FF5 /* DefaultButton.xib in Resources */,
+				C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */,
+				C3A007FB2B2CC1E9009AD543 /* PasswordGeneratorViewController.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
-				C3A007C52B2CB7D7009AD543 /* Main.storyboard in Resources */,
+				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +426,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A007C22B2CB7D7009AD543 /* ViewController.swift in Sources */,
+				C3A007C22B2CB7D7009AD543 /* TabBarController.swift in Sources */,
 				C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */,
+				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
+				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
+				C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */,
+				C31F4EF72B2CEB7300E45FF5 /* DefaultButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +469,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C3A007C32B2CB7D7009AD543 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3A007C42B2CB7D7009AD543 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C3A007C82B2CB7D7009AD543 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -446,7 +610,6 @@
 				INFOPLIST_FILE = AccountChain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -473,7 +636,6 @@
 				INFOPLIST_FILE = AccountChain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
