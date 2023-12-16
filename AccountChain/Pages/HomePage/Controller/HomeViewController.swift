@@ -21,8 +21,9 @@ class HomeViewController: UIViewController {
     }
     
     func configView() {
-
         tableView.layer.cornerRadius = 10
         searchView.layer.cornerRadius = 15
+        
+        setupView()
     }
 }

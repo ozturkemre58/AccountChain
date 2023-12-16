@@ -9,6 +9,7 @@ import UIKit
 
 class CardCell: UITableViewCell {
 
+    @IBOutlet weak var topView: UIView!
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var email: UILabel!
@@ -27,7 +28,8 @@ class CardCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        topView.layer.cornerRadius = 10
     }
 
     
