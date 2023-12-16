@@ -16,9 +16,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configView()
     }
     
     func configView() {
-        
+
+        tableView.layer.cornerRadius = 10
+        searchView.layer.cornerRadius = 15
     }
 }

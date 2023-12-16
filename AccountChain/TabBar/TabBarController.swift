@@ -28,8 +28,8 @@ class TabBarController: UITabBarController {
         setViewControllers([nav1, nav2], animated: true)
         tabBar.isTranslucent = false
         
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = UIColor(hex: "#60D0FF")
+        tabBar.backgroundColor = UIColor(hex: "FF8FA3")
+        tabBar.tintColor = .white
         
     }
 }

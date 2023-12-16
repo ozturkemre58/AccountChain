@@ -11,7 +11,6 @@ class PasswordGeneratorViewController: UIViewController {
 
     @IBOutlet weak var testLabel: UILabel!
     
-    @IBOutlet weak var testview: DefaultButton!
     
     
     override func viewDidLoad() {
