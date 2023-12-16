@@ -16,12 +16,12 @@ class AuthentcationViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signUpActionButton: UIButton!
     
+    @IBOutlet weak var signInActionButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       // configView()
     }
     
    
@@ -38,5 +38,23 @@ class AuthentcationViewController: UIViewController {
             
             
         }
+    }
+    
+    
+    @IBAction func signInAction(_ sender: Any) {
+        
+        Auth.auth().signIn(withEmail: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result, error) in
+            
+            if error != nil { print("EMREEEE: \(error?.localizedDescription)")} else {
+                let vc = TabBarController()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
+
+            }
+            
+            
+        }
+        
+        
     }
 }

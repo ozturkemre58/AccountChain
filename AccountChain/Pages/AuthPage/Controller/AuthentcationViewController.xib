@@ -12,7 +12,8 @@
             <connections>
                 <outlet property="emailField" destination="fsw-Aq-Tvk" id="mGm-aA-XHU"/>
                 <outlet property="passwordField" destination="Kjb-vF-zbx" id="HTJ-Yp-Idi"/>
-                <outlet property="signUpActionButton" destination="DAB-zw-Sie" id="qKT-fZ-evo"/>
+                <outlet property="signInActionButton" destination="DAB-zw-Sie" id="kxa-6A-bcF"/>
+                <outlet property="signUpActionButton" destination="FYW-mB-MCw" id="DNR-JU-w73"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,7 +47,7 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Giriş Yap"/>
                     <connections>
-                        <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="UfQ-lc-0HA"/>
+                        <action selector="signInAction:" destination="-1" eventType="touchUpInside" id="id2-yr-ffN"/>
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Email" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fsw-Aq-Tvk">
@@ -65,6 +66,17 @@
                     <attributedString key="attributedText"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYW-mB-MCw">
+                    <rect key="frame" x="66" y="485" width="261" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="FYW-mB-MCw" secondAttribute="height" multiplier="261:35" id="OaZ-61-HPg"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Kayıt Ol"/>
+                    <connections>
+                        <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="46D-fH-bWN"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,13 +85,16 @@
                 <constraint firstItem="b22-6t-ZtN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="131" id="1I6-56-Siy"/>
                 <constraint firstItem="Vp7-Ld-qVT" firstAttribute="top" secondItem="b22-6t-ZtN" secondAttribute="bottom" constant="2" id="3YJ-fJ-dcI"/>
                 <constraint firstItem="fsw-Aq-Tvk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="66" id="6Yd-5d-360"/>
+                <constraint firstItem="FYW-mB-MCw" firstAttribute="width" secondItem="FYW-mB-MCw" secondAttribute="height" multiplier="261:35" id="72Z-pV-HVj"/>
                 <constraint firstItem="DAB-zw-Sie" firstAttribute="top" secondItem="Kjb-vF-zbx" secondAttribute="bottom" constant="36" id="CCp-4t-Zuz"/>
                 <constraint firstItem="fsw-Aq-Tvk" firstAttribute="top" secondItem="Vp7-Ld-qVT" secondAttribute="bottom" constant="52" id="Lqf-F0-1sf"/>
                 <constraint firstItem="b22-6t-ZtN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="PIw-sl-tLn"/>
+                <constraint firstItem="FYW-mB-MCw" firstAttribute="top" secondItem="DAB-zw-Sie" secondAttribute="bottom" constant="8" id="PNH-LU-fzy"/>
                 <constraint firstItem="DAB-zw-Sie" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="66" id="RDO-pc-UV3"/>
                 <constraint firstItem="Kjb-vF-zbx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="66" id="VjS-au-LBF"/>
                 <constraint firstItem="Vp7-Ld-qVT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="c6a-qz-i1J"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kjb-vF-zbx" secondAttribute="trailing" constant="66" id="jqt-Uy-rGn"/>
+                <constraint firstItem="FYW-mB-MCw" firstAttribute="leading" secondItem="DAB-zw-Sie" secondAttribute="leading" id="mQa-EI-BfY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fsw-Aq-Tvk" secondAttribute="trailing" constant="66" id="p6H-9E-3ke"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b22-6t-ZtN" secondAttribute="trailing" constant="132" id="pjf-KU-nCH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DAB-zw-Sie" secondAttribute="trailing" constant="66" id="wfg-6f-7a1"/>

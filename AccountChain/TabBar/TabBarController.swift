@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
         
         configView()
     }
-
+    
     func configView() {
         let nav1 = UINavigationController(rootViewController: homeVC)
         let nav2 = UINavigationController(rootViewController: passwordGeneratorVC)
@@ -28,8 +28,8 @@ class TabBarController: UITabBarController {
         setViewControllers([nav1, nav2], animated: true)
         tabBar.isTranslucent = false
         
-        tabBar.backgroundColor = .gray
-        tabBar.tintColor = UIColor(red: 0.06, green: 0.45, blue: 0.22, alpha: 1)
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = UIColor(hex: "#60D0FF")
         
     }
 }
