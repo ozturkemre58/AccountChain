@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.applyGradient(withHexColors: ["#2EDB73","#FFFFFF"], startPoint: CGPoint(x: 1, y: 1), endPoint: CGPoint(x: 0, y: 0))
         self.testLabel.text = "Home"
     }
 
