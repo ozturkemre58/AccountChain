@@ -29,14 +29,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s2I-5K-5zk">
                                 <rect key="frame" x="244" y="3" width="58" height="25"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gfS-ei-jfU">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gfS-ei-jfU">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="UQR-yc-Yd2"/>
                                             <constraint firstAttribute="height" constant="25" id="cGe-XX-taH"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-2o-ZPc">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-2o-ZPc">
                                         <rect key="frame" x="33" y="0.0" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="afv-6B-XOg"/>
@@ -55,7 +55,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7f-YG-KtZ">
                                 <rect key="frame" x="0.0" y="0.0" width="310" height="30"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4SY-ui-Fp1">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copy_icon" translatesAutoresizingMaskIntoConstraints="NO" id="4SY-ui-Fp1">
                                         <rect key="frame" x="277" y="3" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="OMt-2p-fta"/>
@@ -89,7 +89,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D8p-vr-3G6">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copy_icon" translatesAutoresizingMaskIntoConstraints="NO" id="D8p-vr-3G6">
                                         <rect key="frame" x="277" y="3" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="3oh-nC-H2l"/>
@@ -117,14 +117,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dKv-Xl-33v">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copy_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dKv-Xl-33v">
                                         <rect key="frame" x="277" y="3" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="JZG-uQ-XOs"/>
                                             <constraint firstAttribute="height" constant="25" id="mdT-AB-p1z"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WSm-ys-vVW">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye_on_icon" translatesAutoresizingMaskIntoConstraints="NO" id="WSm-ys-vVW">
                                         <rect key="frame" x="244" y="3" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Fzu-Oe-59z"/>
@@ -152,7 +152,7 @@
                         </constraints>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" red="0.78823529411764703" green="0.094117647058823528" blue="0.29019607843137252" alpha="0.91914393538135597" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.78823529411764703" green="0.094117647058823528" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="IcU-tt-e8a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="0VT-c0-2Wo"/>
                     <constraint firstAttribute="trailing" secondItem="ijw-fI-B2r" secondAttribute="trailing" constant="20" symbolic="YES" id="4he-KP-Zfi"/>
@@ -164,7 +164,25 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="editIcon" destination="gfS-ei-jfU" id="Dc9-zg-wWj"/>
+                <outlet property="email" destination="wec-9p-yaO" id="blX-hB-Rj4"/>
+                <outlet property="emailCopyIcon" destination="p7f-YG-KtZ" id="0Hb-G7-gy5"/>
+                <outlet property="password" destination="GLc-wH-7bl" id="HXf-5k-dP2"/>
+                <outlet property="passwordCopyIcon" destination="dKv-Xl-33v" id="B6d-YZ-1Rd"/>
+                <outlet property="removeIcon" destination="bUR-2o-ZPc" id="O5A-8I-gzL"/>
+                <outlet property="showPasswordIcon" destination="WSm-ys-vVW" id="Vmk-6b-gJu"/>
+                <outlet property="title" destination="GLP-Bq-7og" id="aRu-Od-GRR"/>
+                <outlet property="username" destination="cX3-rl-ISG" id="eOz-mN-ckU"/>
+                <outlet property="usernameCopyIcon" destination="D8p-vr-3G6" id="At6-w7-7Xm"/>
+            </connections>
             <point key="canvasLocation" x="202.5" y="75.528169014084511"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="copy_icon" width="21" height="25"/>
+        <image name="edit_icon" width="25" height="25"/>
+        <image name="eye_on_icon" width="30" height="21.5"/>
+        <image name="remove_icon" width="21.5" height="25"/>
+    </resources>
 </document>
