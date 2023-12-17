@@ -10,6 +10,7 @@ import UIKit
 class TabBarController: UITabBarController {
 
     let homeVC = HomeViewController()
+    let newCardVC = NewCardViewController()
     let passwordGeneratorVC = PasswordGeneratorViewController()
     
     override func viewDidLoad() {
@@ -20,12 +21,14 @@ class TabBarController: UITabBarController {
     
     func configView() {
         let nav1 = UINavigationController(rootViewController: homeVC)
-        let nav2 = UINavigationController(rootViewController: passwordGeneratorVC)
+        let nav2 = UINavigationController(rootViewController: newCardVC)
+        let nav3 = UINavigationController(rootViewController: passwordGeneratorVC)
         
         nav1.tabBarItem = UITabBarItem(title: "Kartlarım", image: UIImage(named: "base_icon"), selectedImage: nil)
-        nav2.tabBarItem = UITabBarItem(title: "Şifre oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
+        nav2.tabBarItem = UITabBarItem(title: "Kart Oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
+        nav3.tabBarItem = UITabBarItem(title: "Şifre oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
         
-        setViewControllers([nav1, nav2], animated: true)
+        setViewControllers([nav1, nav2, nav3], animated: true)
         tabBar.isTranslucent = false
         
         tabBar.backgroundColor = UIColor(hex: "FF8FA3")

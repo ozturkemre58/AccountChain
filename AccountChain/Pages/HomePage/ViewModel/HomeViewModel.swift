@@ -1,37 +1,18 @@
 //
-//  HomeViewController.swift
+//  HomeViewModel.swift
 //  AccountChain
 //
-//  Created by Emre Öztürk on 15.12.2023.
+//  Created by Emre Öztürk on 17.12.2023.
 //
 
-import UIKit
+import Foundation
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewModel {
     
+    var cardData: [CardModel]? = []
     
-    @IBOutlet weak var searchView: UIView!
-    @IBOutlet weak var searchViewField: UITextField!
-    @IBOutlet weak var tableView: UITableView!
-    
-    let viewModel: HomeViewModel = HomeViewModel()
-    var cardData: [CardModel] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        configView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        configView()
-    }
-    
-    func configView() {
-        tableView.layer.cornerRadius = 10
-        searchView.layer.cornerRadius = 15
-        
+    func fetchData() {
         let firebaseDB = Firestore.firestore()
         
         firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
@@ -45,8 +26,6 @@ class HomeViewController: UIViewController {
                 return
             }
             
-            self.cardData.removeAll()
-            
             for document in documents {
                 
                 let data = document.data()
@@ -57,12 +36,11 @@ class HomeViewController: UIViewController {
                 let password = data["password"] as? String
                 
                 let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: password ?? "")
-                self.cardData.append(model)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData() // Veri güncellendiğinde tableView'ı güncelle
+                self.cardData?.append(model)
             }
         }
     }
 }
+
+
+

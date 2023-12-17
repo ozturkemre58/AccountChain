@@ -20,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         if currentUser != nil {
             window.rootViewController = TabBarController()
-        } else {
-            window.rootViewController = AuthentcationViewController()
-        }
+            ConstantManager.shared.dbKey = currentUser?.uid ?? ""
+        } else { window.rootViewController = AuthentcationViewController() }
         window.makeKeyAndVisible()
         self.window = window
     }

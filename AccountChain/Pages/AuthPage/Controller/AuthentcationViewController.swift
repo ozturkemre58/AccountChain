@@ -29,14 +29,10 @@ class AuthentcationViewController: UIViewController {
     
     @IBAction func signUpAction(_ sender: Any) {
         Auth.auth().createUser(withEmail: self.emailField.text ?? "", password: self.passwordField.text ?? "")  { [weak self] (result, error)  in
-            
-            if error != nil {   print("Ben aslında yoqum")} else {
-                
-                
+            if error != nil { print(error?.localizedDescription)
+            } else {
+                ConstantManager.shared.dbKey = result?.user.uid ?? ""
             }
-            
-            
-            
         }
     }
     
@@ -45,18 +41,12 @@ class AuthentcationViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result, error) in
             
-            if error != nil { print("EMREEEE: \(error?.localizedDescription)")} else {
-                print("EMREEEE:2:\(result)")
-                var x = result?.user.refreshToken
+            if error != nil { print(error?.localizedDescription)} else {
+                ConstantManager.shared.dbKey = result?.user.uid ?? ""
                 let vc = TabBarController()
                 vc.modalPresentationStyle = .fullScreen
                 self?.present(vc, animated: true)
-
             }
-            
-            
         }
-        
-        
     }
 }

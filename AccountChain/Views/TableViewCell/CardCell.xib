@@ -190,7 +190,7 @@
                 <outlet property="editIcon" destination="gfS-ei-jfU" id="Dc9-zg-wWj"/>
                 <outlet property="email" destination="wec-9p-yaO" id="blX-hB-Rj4"/>
                 <outlet property="emailCopyIcon" destination="p7f-YG-KtZ" id="0Hb-G7-gy5"/>
-                <outlet property="password" destination="GLc-wH-7bl" id="HXf-5k-dP2"/>
+                <outlet property="password" destination="GSY-Xb-AfL" id="HYR-Al-g8l"/>
                 <outlet property="passwordCopyIcon" destination="dKv-Xl-33v" id="B6d-YZ-1Rd"/>
                 <outlet property="removeIcon" destination="bUR-2o-ZPc" id="O5A-8I-gzL"/>
                 <outlet property="showPasswordIcon" destination="WSm-ys-vVW" id="Vmk-6b-gJu"/>

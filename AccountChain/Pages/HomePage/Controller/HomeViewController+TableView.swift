@@ -25,14 +25,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        cardData.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as? CardCell else {
             return UITableViewCell()
         }
-        
+        let item = cardData[indexPath.row]
+        cell.configure(viewModel: item)
         return cell
     }
 }

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
+		C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C317B6A82B2F1E140059A700 /* NewCardViewController.xib */; };
+		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
+		C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */; };
+		C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B12B2F44620059A700 /* HomeViewModel.swift */; };
+		C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B32B2F45B70059A700 /* ConstantManager.swift */; };
+		C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B52B2F48A20059A700 /* CardModel.swift */; };
 		C36DF2282B2D121100F33AEF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF2272B2D121100F33AEF /* FirebaseAnalytics */; };
 		C36DF22A2B2D121100F33AEF /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF2292B2D121100F33AEF /* FirebaseAnalyticsSwift */; };
 		C36DF22C2B2D121100F33AEF /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF22B2B2D121100F33AEF /* FirebaseAppCheck */; };
@@ -62,6 +69,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
+		C317B6A82B2F1E140059A700 /* NewCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCardViewController.xib; sourceTree = "<group>"; };
+		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
+		C317B6B12B2F44620059A700 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C317B6B32B2F45B70059A700 /* ConstantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantManager.swift; sourceTree = "<group>"; };
+		C317B6B52B2F48A20059A700 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountChain.entitlements; sourceTree = "<group>"; };
 		C3824DDE2B2CF94E0014ADF3 /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		C3824DE02B2CFA0F0014ADF3 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
@@ -129,6 +143,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C317B6A62B2F1DB70059A700 /* NewCard */ = {
+			isa = PBXGroup;
+			children = (
+				C317B6A72B2F1E140059A700 /* NewCardViewController.swift */,
+				C317B6A82B2F1E140059A700 /* NewCardViewController.xib */,
+				C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */,
+			);
+			path = NewCard;
+			sourceTree = "<group>";
+		};
+		C317B6AB2B2F39060059A700 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C317B6AC2B2F394F0059A700 /* NetworkManager.swift */,
+				C317B6B32B2F45B70059A700 /* ConstantManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C317B6B02B2F44510059A700 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C317B6B12B2F44620059A700 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C36DF2432B2D220000F33AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */,
+				C317B6AB2B2F39060059A700 /* Network */,
 				C3824DDD2B2CF8E00014ADF3 /* Extensions */,
 				C3A007EF2B2CBE5A009AD543 /* Resources */,
 				C3A007F62B2CC179009AD543 /* Pages */,
@@ -203,7 +245,9 @@
 		C3A007ED2B2CBE42009AD543 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				C317B6B02B2F44510059A700 /* ViewModel */,
 				C3A007EE2B2CBE52009AD543 /* Controller */,
+				C317B6B52B2F48A20059A700 /* CardModel.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -248,6 +292,7 @@
 		C3A007F62B2CC179009AD543 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				C317B6A62B2F1DB70059A700 /* NewCard */,
 				C3A007FC2B2CDA52009AD543 /* AuthPage */,
 				C3A007F72B2CC194009AD543 /* PasswordGenerator */,
 				C3A007ED2B2CBE42009AD543 /* HomePage */,
@@ -418,6 +463,7 @@
 				C3A007FB2B2CC1E9009AD543 /* PasswordGeneratorViewController.xib in Resources */,
 				C3C30C642B2E0C4600F18AA4 /* CardCell.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
+				C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */,
 				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
 				C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -444,8 +490,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */,
 				C3824DE12B2CFA0F0014ADF3 /* UIViewExt.swift in Sources */,
+				C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */,
 				C3824DE32B2CFA270014ADF3 /* UIButtonExt.swift in Sources */,
+				C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */,
+				C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */,
 				C3A007C22B2CB7D7009AD543 /* TabBarController.swift in Sources */,
 				C3C30C682B2E251400F18AA4 /* HomeViewController+TableView.swift in Sources */,
 				C3824DDF2B2CF94E0014ADF3 /* ColorExt.swift in Sources */,
@@ -453,8 +503,10 @@
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
 				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,
 				C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */,
+				C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */,
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
+				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
 				C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

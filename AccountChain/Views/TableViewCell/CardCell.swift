@@ -14,7 +14,7 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var password: UIView!
+    @IBOutlet weak var password: UILabel!
     
     
     @IBOutlet weak var editIcon: UIImageView!
@@ -31,7 +31,13 @@ class CardCell: UITableViewCell {
 
         topView.layer.cornerRadius = 10
     }
-
+    
+    func configure(viewModel: CardModel?) {
+        self.title.text = viewModel?.cardTitle ?? ""
+        self.email.text = viewModel?.cardEmail ?? ""
+        self.username.text = viewModel?.cardUsername ?? ""
+        self.password.text = viewModel?.cardPassword ?? ""
+    }
     
     
 }
