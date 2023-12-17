@@ -41,7 +41,7 @@
 		C3C30C642B2E0C4600F18AA4 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C30C622B2E0C4600F18AA4 /* CardCell.xib */; };
 		C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */; };
 		C3C30C682B2E251400F18AA4 /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */; };
-		C3DC398F2B2D07D000858BBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3DC398E2B2D07D000858BBD /* GoogleService-Info.plist */; };
+		C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +88,7 @@
 		C3C30C622B2E0C4600F18AA4 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
-		C3DC398E2B2D07D000858BBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +178,7 @@
 				C3A007F12B2CBE8E009AD543 /* TabBar */,
 				C3A007F02B2CBE7A009AD543 /* Views */,
 				C3A007CB2B2CB7D7009AD543 /* Info.plist */,
-				C3DC398E2B2D07D000858BBD /* GoogleService-Info.plist */,
+				C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */,
 			);
 			path = AccountChain;
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 				C3C30C642B2E0C4600F18AA4 /* CardCell.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
 				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
-				C3DC398F2B2D07D000858BBD /* GoogleService-Info.plist in Resources */,
+				C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

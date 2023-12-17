@@ -125,23 +125,23 @@
                                 <rect key="frame" x="20" y="5" width="310" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-Bq-7og">
-                                        <rect key="frame" x="0.0" y="3" width="240" height="24"/>
+                                        <rect key="frame" x="0.0" y="3" width="38" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s2I-5K-5zk">
-                                        <rect key="frame" x="244" y="3" width="58" height="25"/>
+                                        <rect key="frame" x="42" y="3" width="260" height="25"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gfS-ei-jfU">
-                                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gfS-ei-jfU">
+                                                <rect key="frame" x="260" y="0.0" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="UQR-yc-Yd2"/>
                                                     <constraint firstAttribute="height" constant="25" id="cGe-XX-taH"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-2o-ZPc">
-                                                <rect key="frame" x="33" y="0.0" width="25" height="25"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-2o-ZPc">
+                                                <rect key="frame" x="260" y="0.0" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="afv-6B-XOg"/>
                                                     <constraint firstAttribute="height" constant="25" id="h4U-JP-Fmj"/>

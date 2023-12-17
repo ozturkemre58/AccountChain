@@ -13,6 +13,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func setupView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
         
         registerCell()
     }
@@ -34,7 +35,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
-    
 }
