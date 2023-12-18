@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PasswordGeneratorViewController: UIViewController {
 
@@ -18,4 +19,11 @@ class PasswordGeneratorViewController: UIViewController {
         //self.testview.applyGradient(withHexColors: ["FFA500","#FFFFFF"], startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 1, y: 1))
     }
 
+    @IBAction func signOut(_ sender: Any) {
+        do {
+           try  Auth.auth().signOut()
+        } catch {
+            print("Sign Out Error")
+        }
+    }
 }
