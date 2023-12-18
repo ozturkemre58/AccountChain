@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="AccountChain" customModuleProvider="target">
             <connections>
+                <outlet property="searchField" destination="Qei-qU-Kla" id="rai-oj-cec"/>
                 <outlet property="searchView" destination="ega-rg-KWa" id="imW-fw-wp6"/>
-                <outlet property="searchViewField" destination="Qei-qU-Kla" id="rai-oj-cec"/>
                 <outlet property="tableView" destination="Tqe-Nr-mYs" id="KOO-MV-Es7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -54,7 +54,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-Nr-mYs">
-                    <rect key="frame" x="16" y="80" width="288" height="469"/>
+                    <rect key="frame" x="16" y="80" width="288" height="468"/>
                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

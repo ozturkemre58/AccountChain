@@ -8,11 +8,11 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var searchView: UIView!
-    @IBOutlet weak var searchViewField: UITextField!
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel: HomeViewModel = HomeViewModel()
@@ -29,8 +29,20 @@ class HomeViewController: UIViewController {
     }
     
     func configView() {
+        
+        //searchField
+        self.searchField.delegate = self
+        self.searchField.enablesReturnKeyAutomatically = true
+        self.searchField.leftViewMode = .always
+        
+        //radius
         tableView.layer.cornerRadius = 10
         searchView.layer.cornerRadius = 15
+        
+        //gestureRecognizer
+        let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
+        self.searchView.addGestureRecognizer(searchViewGesture)
+        
         
         let firebaseDB = Firestore.firestore()
         
@@ -61,8 +73,18 @@ class HomeViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
-                self.tableView.reloadData() // Veri güncellendiğinde tableView'ı güncelle
+                self.tableView.reloadData()
             }
         }
+    }
+    
+    @objc func enableSearchField() {
+        self.searchField.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }
