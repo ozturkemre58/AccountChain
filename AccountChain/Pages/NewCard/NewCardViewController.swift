@@ -15,14 +15,20 @@ class NewCardViewController: UIViewController {
     @IBOutlet weak var cardUsername: UITextField!
     @IBOutlet weak var cardPassword: UITextField!
     
+    @IBOutlet weak var createCardButton: UIButton!
     
     let viewModel: NewCardViewModel = NewCardViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configView()
     }
-
+    
+    func configView() {
+        self.createCardButton.layer.cornerRadius = 10
+    }
+    
     @IBAction func createCardAction(_ sender: Any) {
         
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": self.cardPassword.text ?? ""] as [String: Any]

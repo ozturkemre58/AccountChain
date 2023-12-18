@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class AuthentcationViewController: UIViewController {
 
-    
+    let viewModel: AuthenticationViewModel = AuthenticationViewModel()
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -28,25 +27,24 @@ class AuthentcationViewController: UIViewController {
     
     
     @IBAction func signUpAction(_ sender: Any) {
-        Auth.auth().createUser(withEmail: self.emailField.text ?? "", password: self.passwordField.text ?? "")  { [weak self] (result, error)  in
-            if error != nil { print(error?.localizedDescription)
-            } else {
-                ConstantManager.shared.dbKey = result?.user.uid ?? ""
+        viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
+            if success {
+                self?.presentTabBar()
             }
         }
     }
     
-    
     @IBAction func signInAction(_ sender: Any) {
-        
-        Auth.auth().signIn(withEmail: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result, error) in
-            
-            if error != nil { print(error?.localizedDescription)} else {
-                ConstantManager.shared.dbKey = result?.user.uid ?? ""
-                let vc = TabBarController()
-                vc.modalPresentationStyle = .fullScreen
-                self?.present(vc, animated: true)
+        viewModel.signInAction(email: self.emailField.text ?? "", password: self.passwordField.text ?? "") { [weak self] success in
+            if success {
+                self?.presentTabBar()
             }
         }
+    }
+    
+    func presentTabBar() {
+        let vc = TabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }

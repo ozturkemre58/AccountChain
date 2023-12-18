@@ -14,6 +14,8 @@
 		C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B12B2F44620059A700 /* HomeViewModel.swift */; };
 		C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B32B2F45B70059A700 /* ConstantManager.swift */; };
 		C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B52B2F48A20059A700 /* CardModel.swift */; };
+		C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A61612B30637700150E8A /* AuthenticationViewModel.swift */; };
+		C35A61642B3079C200150E8A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C35A61632B3079C200150E8A /* Colors.xcassets */; };
 		C36DF2282B2D121100F33AEF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF2272B2D121100F33AEF /* FirebaseAnalytics */; };
 		C36DF22A2B2D121100F33AEF /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF2292B2D121100F33AEF /* FirebaseAnalyticsSwift */; };
 		C36DF22C2B2D121100F33AEF /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF22B2B2D121100F33AEF /* FirebaseAppCheck */; };
@@ -76,6 +78,8 @@
 		C317B6B12B2F44620059A700 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C317B6B32B2F45B70059A700 /* ConstantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantManager.swift; sourceTree = "<group>"; };
 		C317B6B52B2F48A20059A700 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		C35A61612B30637700150E8A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		C35A61632B3079C200150E8A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountChain.entitlements; sourceTree = "<group>"; };
 		C3824DDE2B2CF94E0014ADF3 /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		C3824DE02B2CFA0F0014ADF3 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				C3A007BD2B2CB7D7009AD543 /* AppDelegate.swift */,
 				C3A007BF2B2CB7D7009AD543 /* SceneDelegate.swift */,
 				C3A007C62B2CB7D7009AD543 /* Assets.xcassets */,
+				C35A61632B3079C200150E8A /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
+				C35A61612B30637700150E8A /* AuthenticationViewModel.swift */,
 				C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */,
 			);
 			path = Controller;
@@ -458,6 +464,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35A61642B3079C200150E8A /* Colors.xcassets in Resources */,
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
 				C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */,
 				C3A007FB2B2CC1E9009AD543 /* PasswordGeneratorViewController.xib in Resources */,
@@ -492,6 +499,7 @@
 			files = (
 				C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */,
 				C3824DE12B2CFA0F0014ADF3 /* UIViewExt.swift in Sources */,
+				C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */,
 				C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */,
 				C3824DE32B2CFA270014ADF3 /* UIButtonExt.swift in Sources */,
 				C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */,
