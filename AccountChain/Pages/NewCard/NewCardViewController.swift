@@ -27,6 +27,21 @@ class NewCardViewController: UIViewController {
     
     func configView() {
         self.createCardButton.layer.cornerRadius = 10
+        
+        self.cardTitle.delegate = self
+        self.cardEmail.delegate = self
+        self.cardUsername.delegate = self
+        self.cardPassword.delegate = self
+        
+        self.cardTitle.layer.cornerRadius = 5
+        self.cardEmail.layer.cornerRadius = 5
+        self.cardUsername.layer.cornerRadius = 5
+        self.cardPassword.layer.cornerRadius = 5
+        
+        self.cardTitle.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .blue)
+        self.cardEmail.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
+        self.cardUsername.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
+        self.cardPassword.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
     }
     
     @IBAction func createCardAction(_ sender: Any) {
@@ -39,4 +54,12 @@ class NewCardViewController: UIViewController {
             }
         }
     }
+}
+
+extension NewCardViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         
+        textField.resignFirstResponder()
+            return true
+        }
 }
