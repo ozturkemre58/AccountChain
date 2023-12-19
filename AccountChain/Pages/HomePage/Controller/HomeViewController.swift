@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel: HomeViewModel = HomeViewModel()
-    var cardData: [CardModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,38 +43,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         self.searchView.addGestureRecognizer(searchViewGesture)
         
         
-        let firebaseDB = Firestore.firestore()
+        viewModel.fetchData()
         
-        firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
-            if let error = error {
-                print("Error fetching document: \(error)")
-                return
-            }
-            
-            guard let documents = documentSnapshot?.documents else {
-                print("Document data was empty.")
-                return
-            }
-            
-            self.cardData.removeAll()
-            
-            for document in documents {
-                
-                let data = document.data()
-                
-                let title = data["title"] as? String
-                let email = data["email"] as? String
-                let username = data["username"] as? String
-                let password = data["password"] as? String
-                
-                let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: password ?? "")
-                self.cardData.append(model)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
     
     @objc func enableSearchField() {
