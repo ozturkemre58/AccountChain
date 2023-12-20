@@ -39,8 +39,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as? CardCell else {
             return UITableViewCell()
         }
-        //let item = cardData[indexPath.row]
-        //cell.configure(viewModel: item)
+        let item = viewModel.fetchData()[indexPath.row]
+        cell.configure(viewModel: item)
         return cell
     }
 }

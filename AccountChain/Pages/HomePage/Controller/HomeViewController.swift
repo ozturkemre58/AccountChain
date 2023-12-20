@@ -25,6 +25,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         configView()
+        self.tableView.reloadData()
     }
     
     func configView() {

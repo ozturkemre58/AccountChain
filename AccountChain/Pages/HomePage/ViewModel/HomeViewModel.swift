@@ -23,7 +23,7 @@ class HomeViewModel {
     
     
     
-    func fetchData() {
+    func fetchData() -> [CardModel] {
         let firebaseDB = Firestore.firestore()
         
         firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
@@ -50,6 +50,7 @@ class HomeViewModel {
                 self.data.append(model)
             }
         }
+        return self.data
     }
 }
 
