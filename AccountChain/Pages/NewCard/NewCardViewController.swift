@@ -44,12 +44,20 @@ class NewCardViewController: UIViewController {
         self.cardPassword.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
     }
     
+    func clearTextFields() {
+        self.cardTitle.clearText()
+        self.cardEmail.clearText()
+        self.cardUsername.clearText()
+        self.cardPassword.clearText()
+    }
+    
     @IBAction func createCardAction(_ sender: Any) {
         
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": self.cardPassword.text ?? ""] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
+                self?.clearTextFields()
                 self?.tabBarController?.selectedIndex = 0
             }
         }
