@@ -19,7 +19,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func reloadTableView() {
-            self.tableView.reloadData()
+         self.tableView.reloadData()
     }
     
     func registerCell() {
