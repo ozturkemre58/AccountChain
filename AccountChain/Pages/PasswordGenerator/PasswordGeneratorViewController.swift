@@ -16,7 +16,7 @@ class PasswordGeneratorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        //self.testview.applyGradient(withHexColors: ["FFA500","#FFFFFF"], startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 1, y: 1))
+
     }
 
     @IBAction func signOut(_ sender: Any) {
