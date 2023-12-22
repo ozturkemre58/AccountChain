@@ -25,14 +25,14 @@ class TabBarController: UITabBarController {
         let nav3 = UINavigationController(rootViewController: passwordGeneratorVC)
         
         nav1.tabBarItem = UITabBarItem(title: "Kartlarım", image: UIImage(named: "base_icon"), selectedImage: nil)
-        nav2.tabBarItem = UITabBarItem(title: "Kart Oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
+        nav2.tabBarItem = UITabBarItem(title: "Kart Oluştur", image: UIImage(named: "plus-circle"), selectedImage: nil)
         nav3.tabBarItem = UITabBarItem(title: "Şifre oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
         
         setViewControllers([nav1, nav2, nav3], animated: true)
         tabBar.isTranslucent = false
         
-        tabBar.backgroundColor = UIColor(hex: "FF8FA3")
-        tabBar.tintColor = .white
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = UIColor(named: "tab_bar_color")
         
     }
 }

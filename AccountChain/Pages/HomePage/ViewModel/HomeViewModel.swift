@@ -10,9 +10,20 @@ import Firebase
 
 class HomeViewModel {
     
-    var cardData: [CardModel]? = []
+    var data: [CardModel] = []
+    var cellDataSource: Observable<[CardModel]> = Observable(nil)
+
+    func numberOfSections() -> Int {
+            1
+        }
+        
+    func numberOfRows(in section: Int) -> Int {
+        self.data.count
+    }
     
-    func fetchData() {
+    
+    
+    func fetchData() -> [CardModel] {
         let firebaseDB = Firestore.firestore()
         
         firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
@@ -36,9 +47,10 @@ class HomeViewModel {
                 let password = data["password"] as? String
                 
                 let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: password ?? "")
-                self.cardData?.append(model)
+                self.data.append(model)
             }
         }
+        return self.data
     }
 }
 

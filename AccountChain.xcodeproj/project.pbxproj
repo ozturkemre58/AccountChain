@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		256062B02B31835A00E67C9D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062AF2B31835A00E67C9D /* Observable.swift */; };
+		256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062B12B32D35C00E67C9D /* UITextFieldExt.swift */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
 		C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C317B6A82B2F1E140059A700 /* NewCardViewController.xib */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		256062AF2B31835A00E67C9D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		256062B12B32D35C00E67C9D /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C317B6A82B2F1E140059A700 /* NewCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCardViewController.xib; sourceTree = "<group>"; };
 		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -149,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		256062AE2B31829A00E67C9D /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				256062AF2B31835A00E67C9D /* Observable.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		C317B6A62B2F1DB70059A700 /* NewCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +202,7 @@
 				C3824DE02B2CFA0F0014ADF3 /* UIViewExt.swift */,
 				C3824DE22B2CFA270014ADF3 /* UIButtonExt.swift */,
 				C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */,
+				256062B12B32D35C00E67C9D /* UITextFieldExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -229,6 +242,7 @@
 				C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */,
 				C317B6AB2B2F39060059A700 /* Network */,
 				C3824DDD2B2CF8E00014ADF3 /* Extensions */,
+				256062AE2B31829A00E67C9D /* Observer */,
 				C3A007EF2B2CBE5A009AD543 /* Resources */,
 				C3A007F62B2CC179009AD543 /* Pages */,
 				C3A007F12B2CBE8E009AD543 /* TabBar */,
@@ -520,11 +534,13 @@
 				C3824DDF2B2CF94E0014ADF3 /* ColorExt.swift in Sources */,
 				C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */,
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
+				256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */,
 				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,
 				C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */,
 				C39D530E2B35F89300B25F2A /* PasswordGeneratorViewModel.swift in Sources */,
 				C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */,
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
+				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
 				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
 				C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */,
