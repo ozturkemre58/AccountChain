@@ -26,6 +26,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         configView()
         self.tableView.reloadData()
+        self.searchView.layer.borderWidth = 1.0
+        self.searchView.layer.borderColor = UIColor(named:"base_button_color")?.cgColor
     }
     
     func configView() {

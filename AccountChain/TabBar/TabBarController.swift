@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
         let nav2 = UINavigationController(rootViewController: newCardVC)
         let nav3 = UINavigationController(rootViewController: passwordGeneratorVC)
         
-        nav1.tabBarItem = UITabBarItem(title: "Kartlarım", image: UIImage(named: "base_icon"), selectedImage: nil)
+        nav1.tabBarItem = UITabBarItem(title: "Kartlarım", image: UIImage(named: "safe_card_icon"), selectedImage: nil)
         nav2.tabBarItem = UITabBarItem(title: "Kart Oluştur", image: UIImage(named: "plus-circle"), selectedImage: nil)
         nav3.tabBarItem = UITabBarItem(title: "Şifre oluştur", image: UIImage(named: "numpad_icon"), selectedImage: nil)
         

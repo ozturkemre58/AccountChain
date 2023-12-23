@@ -37,11 +37,6 @@ class NewCardViewController: UIViewController {
         self.cardEmail.layer.cornerRadius = 5
         self.cardUsername.layer.cornerRadius = 5
         self.cardPassword.layer.cornerRadius = 5
-        
-        self.cardTitle.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .blue)
-        self.cardEmail.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
-        self.cardUsername.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
-        self.cardPassword.addBorder(width: 1.0, color: UIColor(hex: "#FF8FA3") ?? .systemRed)
     }
     
     func clearTextFields() {
