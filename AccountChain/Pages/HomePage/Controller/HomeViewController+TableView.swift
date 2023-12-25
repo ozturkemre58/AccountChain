@@ -18,28 +18,33 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         registerCell()
     }
     
-    func reloadTableView() {
-         self.tableView.reloadData()
+    func loadData() {
+        viewModel.cardData.removeAll()
+        
+        viewModel.fetchData {
+            self.tableView.reloadData()
+        }
     }
     
     func registerCell() {
         let cardCell = UINib(nibName: CardCell.nameAsString, bundle: nil)
-        self.tableView.register(cardCell, forCellReuseIdentifier: CardCell.reuseIdentifier) 
+        self.tableView.register(cardCell, forCellReuseIdentifier: CardCell.reuseIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-            viewModel.numberOfSections()
-        }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            viewModel.numberOfRows(in: section)
-        }
+        viewModel.numberOfSections()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfRows(in: section)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as? CardCell else {
             return UITableViewCell()
         }
-        let item = viewModel.fetchData()[indexPath.row]
+        
+        let item = viewModel.cardData[indexPath.row]
         cell.configure(viewModel: item)
         return cell
     }
