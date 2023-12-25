@@ -190,6 +190,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C350F72D2B3A47E20056E148 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C317B6B52B2F48A20059A700 /* CardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C36DF2432B2D220000F33AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,9 +284,9 @@
 		C3A007ED2B2CBE42009AD543 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				C350F72D2B3A47E20056E148 /* Model */,
 				C317B6B02B2F44510059A700 /* ViewModel */,
 				C3A007EE2B2CBE52009AD543 /* Controller */,
-				C317B6B52B2F48A20059A700 /* CardModel.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";

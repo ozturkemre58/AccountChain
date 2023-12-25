@@ -24,7 +24,7 @@
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="key.horizontal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="b22-6t-ZtN">
                     <rect key="frame" x="98" y="23.5" width="125" height="118"/>
-                    <color key="tintColor" red="0.78823529410000004" green="0.094117647060000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.18823529410000001" green="0.40000000000000002" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="125" id="1Dg-2q-keT"/>
                         <constraint firstAttribute="width" constant="125" id="M48-UR-dBS"/>
@@ -51,7 +51,7 @@
                     <color key="tintColor" red="0.78823529410000004" green="0.094117647060000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Giriş Yap">
-                        <color key="baseBackgroundColor" red="0.78823529410000004" green="0.094117647060000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="baseBackgroundColor" red="0.18823529410000001" green="0.40000000000000002" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="signInAction:" destination="-1" eventType="touchUpInside" id="1Jo-gI-oo8"/>
@@ -62,7 +62,7 @@
                     <color key="tintColor" red="0.78823529410000004" green="0.094117647060000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Kayıt Ol">
-                        <color key="baseBackgroundColor" red="0.78823529410000004" green="0.094117647060000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="baseBackgroundColor" red="0.18823529410000001" green="0.40000000000000002" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="llG-W5-Heb"/>
