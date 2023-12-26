@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class PasswordGeneratorViewController: UIViewController {
-
+    
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var generateButton: UIButton!
@@ -18,7 +18,7 @@ class PasswordGeneratorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         self.configView()
     }
     
@@ -40,11 +40,19 @@ class PasswordGeneratorViewController: UIViewController {
     
     @IBAction func copyAction(_ sender: Any) {
         let pasteboard = UIPasteboard.general
-
+        
         pasteboard.string = self.passwordLabel.text
-
-               let alert = UIAlertController(title: "\(pasteboard.string ?? "")", message: "Metin kopyalandı!", preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
-               present(alert, animated: true, completion: nil)
+        
+        let alert = UIAlertController(title: "\(pasteboard.string ?? "")", message: "Metin kopyalandı!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    @IBAction func logOutAction(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let error as NSError {
+            print("Log Out Error: \(error.localizedDescription)")
+        }
+        
     }
 }
