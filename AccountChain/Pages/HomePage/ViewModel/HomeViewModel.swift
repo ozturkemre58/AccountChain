@@ -23,7 +23,7 @@ class HomeViewModel {
     
     
     
-    func fetchData(completion: @escaping () -> Void){
+    func fetchData(completion: @escaping () -> Void) {
         let firebaseDB = Firestore.firestore()
         
         firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
@@ -46,11 +46,15 @@ class HomeViewModel {
                 let username = data["username"] as? String
                 let password = data["password"] as? String
                 
-                let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: password ?? "")
+                let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""))
                 self.cardData.append(model)
             }
             completion()
         }
+    }
+    
+    func fetchPassword(key: String?) -> String {
+        return KeychainManager.shared.fetchDataFromKeychain(forKey: key ?? "") ?? ""
     }
 }
 

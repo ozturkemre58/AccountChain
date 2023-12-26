@@ -48,7 +48,11 @@ class NewCardViewController: UIViewController {
     
     @IBAction func createCardAction(_ sender: Any) {
         
-        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": self.cardPassword.text ?? ""] as [String: Any]
+        
+        let key = viewModel.generateKey()
+        KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
+        
+        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
