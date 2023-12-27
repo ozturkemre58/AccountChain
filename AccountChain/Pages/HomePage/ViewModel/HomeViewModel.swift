@@ -11,6 +11,7 @@ import Firebase
 class HomeViewModel {
     
     var cardData: [CardModel] = []
+    var cardSearchData: [CardModel] = []
     var cellDataSource: Observable<[CardModel]> = Observable(nil)
     
     func numberOfSections() -> Int {
@@ -49,6 +50,7 @@ class HomeViewModel {
                 let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""))
                 self.cardData.append(model)
             }
+            self.cardSearchData = self.cardData
             completion()
         }
     }

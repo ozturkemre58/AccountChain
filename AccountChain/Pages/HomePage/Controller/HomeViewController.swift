@@ -59,4 +59,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
+    @IBAction func searchHandler(_ sender: UITextField) {
+        if let searchText = sender.text, !searchText.isEmpty {
+            self.viewModel.cardData = self.viewModel.cardSearchData.filter { $0.cardTitle?.lowercased().contains(searchText.lowercased()) ?? false }
+        } else {
+            self.viewModel.cardData = self.viewModel.cardSearchData
+        }
+        self.tableView.reloadData()
+    }
 }
