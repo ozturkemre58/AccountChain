@@ -10,6 +10,8 @@
 		256062B02B31835A00E67C9D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062AF2B31835A00E67C9D /* Observable.swift */; };
 		256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062B12B32D35C00E67C9D /* UITextFieldExt.swift */; };
 		2569049F2B3B1B1300CF44D9 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2569049E2B3B1B1300CF44D9 /* KeychainSwift */; };
+		256904A22B3CC65100CF44D9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A12B3CC65100CF44D9 /* SnapKit */; };
+		256904A42B3CC65100CF44D9 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
 		C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C317B6A82B2F1E140059A700 /* NewCardViewController.xib */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
@@ -132,7 +134,9 @@
 				C36DF2402B2D214000F33AEF /* GoogleSignIn in Frameworks */,
 				C36DF2302B2D121100F33AEF /* FirebaseCrashlytics in Frameworks */,
 				C36DF2362B2D121100F33AEF /* FirebaseFirestore in Frameworks */,
+				256904A22B3CC65100CF44D9 /* SnapKit in Frameworks */,
 				C36DF2282B2D121100F33AEF /* FirebaseAnalytics in Frameworks */,
+				256904A42B3CC65100CF44D9 /* SnapKit-Dynamic in Frameworks */,
 				2569049F2B3B1B1300CF44D9 /* KeychainSwift in Frameworks */,
 				C36DF23C2B2D121100F33AEF /* FirebaseStorage in Frameworks */,
 				C36DF22E2B2D121100F33AEF /* FirebaseAuth in Frameworks */,
@@ -418,6 +422,8 @@
 				C36DF23F2B2D214000F33AEF /* GoogleSignIn */,
 				C36DF2412B2D214000F33AEF /* GoogleSignInSwift */,
 				2569049E2B3B1B1300CF44D9 /* KeychainSwift */,
+				256904A12B3CC65100CF44D9 /* SnapKit */,
+				256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */,
 			);
 			productName = AccountChain;
 			productReference = C3A007BA2B2CB7D7009AD543 /* AccountChain.app */;
@@ -495,6 +501,7 @@
 				C36DF2262B2D121100F33AEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C36DF23E2B2D214000F33AEF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				2569049D2B3B1B1300CF44D9 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				256904A02B3CC65100CF44D9 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = C3A007BB2B2CB7D7009AD543 /* Products */;
 			projectDirPath = "";
@@ -912,6 +919,14 @@
 				minimumVersion = 20.0.0;
 			};
 		};
+		256904A02B3CC65100CF44D9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 		C36DF2262B2D121100F33AEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -935,6 +950,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2569049D2B3B1B1300CF44D9 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		256904A12B3CC65100CF44D9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 256904A02B3CC65100CF44D9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 256904A02B3CC65100CF44D9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
 		};
 		C36DF2272B2D121100F33AEF /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
