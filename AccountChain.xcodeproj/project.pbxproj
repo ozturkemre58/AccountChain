@@ -53,7 +53,6 @@
 		C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */; };
 		C3C0F3CC2B3A149F004A9527 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */; };
 		C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C612B2E0C4600F18AA4 /* CardCell.swift */; };
-		C3C30C642B2E0C4600F18AA4 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C30C622B2E0C4600F18AA4 /* CardCell.xib */; };
 		C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */; };
 		C3C30C682B2E251400F18AA4 /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */; };
 		C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */; };
@@ -112,7 +111,6 @@
 		C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthentcationViewController.xib; sourceTree = "<group>"; };
 		C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C3C30C612B2E0C4600F18AA4 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
-		C3C30C622B2E0C4600F18AA4 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -375,7 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				C3C30C612B2E0C4600F18AA4 /* CardCell.swift */,
-				C3C30C622B2E0C4600F18AA4 /* CardCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -519,7 +516,6 @@
 				C35A61642B3079C200150E8A /* Colors.xcassets in Resources */,
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
 				C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */,
-				C3C30C642B2E0C4600F18AA4 /* CardCell.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
 				C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */,
 				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,

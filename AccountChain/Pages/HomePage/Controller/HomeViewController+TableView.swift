@@ -15,7 +15,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         self.tableView.dataSource = self
         self.tableView.separatorStyle = .none
         
-        registerCell()
     }
     
     func loadData() {
@@ -40,12 +39,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as? CardCell else {
-            return UITableViewCell()
-        }
-        
+        let cell = CardCell(style: .default, reuseIdentifier: CardCell.reuseIdentifier)
+
         let item = viewModel.cardData[indexPath.row]
         cell.configure(viewModel: item)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = CardCell(style: .default, reuseIdentifier: CardCell.reuseIdentifier)
+        tableView.reloadData()
     }
 }
