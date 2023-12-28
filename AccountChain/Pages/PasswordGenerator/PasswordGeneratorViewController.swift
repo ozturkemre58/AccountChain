@@ -7,13 +7,15 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class PasswordGeneratorViewController: UIViewController {
     
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var copyButton: UIButton!
-    @IBOutlet weak var generateButton: UIButton!
-    
+    let topView = UIView()
+    let passwordLabel = UILabel()
+    let generateButton = UIButton()
+    let copyButton = UIButton()
+
     let viewModel: PasswordGeneratorViewModel = PasswordGeneratorViewModel()
     
     override func viewDidLoad() {
@@ -23,36 +25,79 @@ class PasswordGeneratorViewController: UIViewController {
     }
     
     func configView() {
-        self.copyButton.isHidden = true
-        self.passwordLabel.text = ""
-        self.copyButton.layer.cornerRadius = 10
-        self.generateButton.layer.cornerRadius = 10
-        self.generateButton.layer.borderColor = UIColor(hex: "3066BE")?.cgColor
-        self.generateButton.layer.borderWidth = 1.0
-    }
-    
-    
-    @IBAction func generateAction(_ sender: Any) {
-        self.passwordLabel.text = self.viewModel.generatePassword()
-        self.copyButton.isHidden = false
-    }
-    
-    
-    @IBAction func copyAction(_ sender: Any) {
-        let pasteboard = UIPasteboard.general
+        //view
+        view.backgroundColor = .white
+        //topView
+        topView.backgroundColor = .white
+        topView.addBorder(width: 1.0, color: UIColor(hex: "3066BE") ?? .blue)
+        topView.layer.borderWidth = 1.0
+        topView.layer.cornerRadius = 15
         
-        pasteboard.string = self.passwordLabel.text
+        view.addSubview(topView)
+        topView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(120)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(180)
+        }
         
-        let alert = UIAlertController(title: "\(pasteboard.string ?? "")", message: "Metin kopyalandı!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    @IBAction func logOutAction(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let error as NSError {
-            print("Log Out Error: \(error.localizedDescription)")
+        //copyButton
+        copyButton.backgroundColor = .baseButton
+        copyButton.addBorder(width: 1.0, color: .systemPink)
+        copyButton.backgroundColor = .baseButton
+        copyButton.layer.cornerRadius = 20
+        copyButton.setImage(UIImage(named: "copy_icon"), for: .normal)
+        
+        topView.addSubview(copyButton)
+        copyButton.snp.makeConstraints { make in
+            make.top.equalTo(topView.safeAreaLayoutGuide).offset(45)
+            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+        }
+        copyButton.addTarget(self, action: #selector(copyToBoard), for: .touchUpInside)
+
+        //generateButton
+        generateButton.backgroundColor = .white
+        generateButton.addBorder(width: 1.0, color: .baseBorder)
+        generateButton.layer.cornerRadius = 15
+        generateButton.setTitle("Şifre Oluştur", for: .normal)
+        generateButton.setTitleColor(.baseBorder, for: .normal)
+        topView.addSubview(generateButton)
+        
+        generateButton.snp.makeConstraints { make in
+            make.top.equalTo(topView.safeAreaLayoutGuide).offset(120)
+            make.left.equalToSuperview().offset(60)
+            make.right.equalToSuperview().offset(-60)
+            make.height.equalTo(40)
+        }
+        
+        generateButton.addTarget(self, action: #selector(generateButtonTap), for: .touchUpInside)
+        //passwordLabel
+        passwordLabel.textColor = .baseButton
+        topView.addSubview(passwordLabel)
+        passwordLabel.text = "Test"
+        
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(topView.safeAreaLayoutGuide).offset(50)
+            make.left.equalToSuperview().offset(75)
+            make.width.equalTo(220)
         }
         
     }
+    
+    @objc func generateButtonTap() {
+        self.passwordLabel.text = self.viewModel.generatePassword()
+    }
+    
+    @objc func copyToBoard() {
+         let pasteboard = UIPasteboard.general
+        
+         pasteboard.string = self.passwordLabel.text
+         let alert = UIAlertController(title: "\(pasteboard.string ?? "")", message: "Metin kopyalandı!", preferredStyle: .alert)
+         alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+         present(alert, animated: true, completion: nil)
+    }
+      
+    
 }
