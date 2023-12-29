@@ -13,7 +13,7 @@ class PasswordGeneratorViewController: UIViewController {
     
     let topView = UIView()
     let passwordLabel = UILabel()
-    let generateButton = UIButton()
+    let generateButton = DefaultButton()
     let copyButton = UIButton()
 
     let viewModel: PasswordGeneratorViewModel = PasswordGeneratorViewModel()
