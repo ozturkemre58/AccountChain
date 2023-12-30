@@ -8,7 +8,14 @@
 import UIKit
 import SnapKit
 
+enum MessageType {
+    case error
+    case info
+    case success
+}
+
 class MessageManager: UIView {
+    
     static let shared: MessageManager = MessageManager()
     
     private let messageLabel: UILabel = {
@@ -17,7 +24,7 @@ class MessageManager: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.6
+        label.minimumScaleFactor = 0.7
         return label
     }()
     
@@ -46,22 +53,28 @@ class MessageManager: UIView {
         addSubview(messageLabel)
         
         iconImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(25)
+            make.top.left.bottom.equalToSuperview().inset(10)
+            make.width.equalTo(24) // İkon boyutu
         }
         
         messageLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(20)
+            make.left.equalTo(iconImageView.snp.right).offset(8)
             make.right.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-10)
+            make.centerY.equalToSuperview()
         }
     }
     
-    func show(in view: UIView, message: String, backgroundColor: UIColor) {
+    func show(in view: UIView, message: String, type: MessageType) {
         messageLabel.text = message
-        self.backgroundColor = backgroundColor
+        
+        switch type {
+        case .error:
+            setupUIForError()
+        case .info:
+            setupUIForInfo()
+        case .success:
+            setupUIForSuccess()
+        }
         
         view.addSubview(self)
         
@@ -79,6 +92,21 @@ class MessageManager: UIView {
         }) { _ in
             self.hide()
         }
+    }
+    
+    private func setupUIForError() {
+        backgroundColor = UIColor.red.withAlphaComponent(0.8)
+        iconImageView.image = UIImage(named: "plus-circle")
+    }
+    
+    private func setupUIForInfo() {
+        backgroundColor = UIColor.orange.withAlphaComponent(0.8)
+        iconImageView.image = UIImage(named: "plus-circle")
+    }
+    
+    private func setupUIForSuccess() {
+        backgroundColor = UIColor.systemGreen.withAlphaComponent(1)
+        iconImageView.image = UIImage(named: "plus-circle")
     }
     
     private func hide() {

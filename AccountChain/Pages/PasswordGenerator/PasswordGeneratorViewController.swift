@@ -88,20 +88,11 @@ class PasswordGeneratorViewController: UIViewController {
     
     @objc func generateButtonTap() {
         self.passwordLabel.text = self.viewModel.generatePassword()
-        MessageManager.shared.show(in: self.view, message: "Merhaba, bu özel bir toast mesajı!", backgroundColor: .orange)
-
     }
     
     @objc func copyToBoard() {
-        MessageManager.shared.show(in: self.view, message: "Salak Sasçma metinler hata mesajları dönebilir firebase o sebepden geresiz bbnir möetin giriyorum buraya!", backgroundColor: .orange)
-
-      //   let pasteboard = UIPasteboard.general
-      //
-      //   pasteboard.string = self.passwordLabel.text
-      //   let alert = UIAlertController(title: "\(pasteboard.string ?? "")", message: "Metin kopyalandı!", preferredStyle: .alert)
-      //   alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
-      //   present(alert, animated: true, completion: nil)
-    }
-      
-    
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = self.passwordLabel.text
+        MessageManager.shared.show(in: self.view, message: "Şifre kopyalandı!", type: .success)
+    }    
 }
