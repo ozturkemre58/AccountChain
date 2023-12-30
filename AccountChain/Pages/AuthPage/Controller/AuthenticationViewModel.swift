@@ -17,6 +17,7 @@ class AuthenticationViewModel {
         Auth.auth().createUser(withEmail: email ?? "", password: password ?? "") { (result, error) in
             if error != nil {
                 print("Sign Up Error: \(String(describing: error?.localizedDescription))")
+                MessageManager.shared.show(message: error?.localizedDescription ?? "", type: .error)
                 completion(false)
             } else {
                 ConstantManager.shared.dbKey = result?.user.uid ?? ""
@@ -29,6 +30,7 @@ class AuthenticationViewModel {
         Auth.auth().signIn(withEmail: email ?? "", password: password ?? "") { (result, error) in
             if error != nil {
                 print("Sign In Error: \(String(describing: error?.localizedDescription))")
+                MessageManager.shared.show(message: error?.localizedDescription ?? "", type: .error)
                 completion(false)
             } else {
                 ConstantManager.shared.dbKey = result?.user.uid ?? ""

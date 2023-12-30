@@ -93,6 +93,6 @@ class PasswordGeneratorViewController: UIViewController {
     @objc func copyToBoard() {
         let pasteboard = UIPasteboard.general
         pasteboard.string = self.passwordLabel.text
-        MessageManager.shared.show(in: self.view, message: "Şifre kopyalandı!", type: .success)
-    }    
+        MessageManager.shared.show(message: "Şifre kopyalandı!", type: .success)
+    }
 }

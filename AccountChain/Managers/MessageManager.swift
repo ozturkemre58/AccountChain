@@ -64,7 +64,7 @@ class MessageManager: UIView {
         }
     }
     
-    func show(in view: UIView, message: String, type: MessageType) {
+    func show(message: String, type: MessageType) {
         messageLabel.text = message
         
         switch type {
@@ -76,7 +76,11 @@ class MessageManager: UIView {
             setupUIForSuccess()
         }
         
-        view.addSubview(self)
+        guard let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {
+            return
+        }
+        
+        keyWindow.addSubview(self)
         
         self.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -95,12 +99,12 @@ class MessageManager: UIView {
     }
     
     private func setupUIForError() {
-        backgroundColor = UIColor.red.withAlphaComponent(0.8)
+        backgroundColor = UIColor.red.withAlphaComponent(1)
         iconImageView.image = UIImage(named: "plus-circle")
     }
     
     private func setupUIForInfo() {
-        backgroundColor = UIColor.orange.withAlphaComponent(0.8)
+        backgroundColor = UIColor.orange.withAlphaComponent(1)
         iconImageView.image = UIImage(named: "plus-circle")
     }
     
