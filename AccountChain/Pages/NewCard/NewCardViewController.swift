@@ -7,22 +7,63 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class NewCardViewController: UIViewController {
     
-    @IBOutlet weak var cardTitle: UITextField!
-    @IBOutlet weak var cardEmail: UITextField!
-    @IBOutlet weak var cardUsername: UITextField!
-    @IBOutlet weak var cardPassword: UITextField!
+    var cardTitle = UITextField()
+    var cardEmail = UITextField()
+    var cardUsername = UITextField()
+    var cardPassword =  UITextField()
     
-    @IBOutlet weak var createCardButton: UIButton!
+    var createCardButton = UIButton()
     
     let viewModel: NewCardViewModel = NewCardViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        prepareView()
         configView()
+    }
+    
+    func prepareView() {
+        view.backgroundColor = .white
+        //cardTitle
+        view.addSubview(cardTitle)
+        cardTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(40)
+        }
+        
+        //cardEmail
+        view.addSubview(cardEmail)
+        cardEmail.snp.makeConstraints { make in
+            make.top.equalTo(cardTitle.snp.bottom).offset(25)
+            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(40)
+        }
+        
+        //cardUsername
+        view.addSubview(cardUsername)
+        cardUsername.snp.makeConstraints { make in
+            make.top.equalTo(cardEmail.snp.bottom).offset(25)
+            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(40)
+        }
+        
+        //cardPassword
+        view.addSubview(cardPassword)
+        cardPassword.snp.makeConstraints { make in
+            make.top.equalTo(cardUsername.snp.bottom).offset(25)
+            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(40)
+        }
     }
     
     func configView() {
@@ -37,6 +78,11 @@ class NewCardViewController: UIViewController {
         self.cardEmail.layer.cornerRadius = 5
         self.cardUsername.layer.cornerRadius = 5
         self.cardPassword.layer.cornerRadius = 5
+        
+        self.cardTitle.addBorder(width: 1, color: .baseBorder)
+        self.cardEmail.addBorder(width: 1, color: .baseBorder)
+        self.cardUsername.addBorder(width: 1, color: .baseBorder)
+        self.cardPassword.addBorder(width: 1, color: .baseBorder)
     }
     
     func clearTextFields() {

@@ -13,7 +13,6 @@
 		256904A22B3CC65100CF44D9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A12B3CC65100CF44D9 /* SnapKit */; };
 		256904A42B3CC65100CF44D9 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
-		C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C317B6A82B2F1E140059A700 /* NewCardViewController.xib */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
 		C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */; };
 		C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B12B2F44620059A700 /* HomeViewModel.swift */; };
@@ -97,7 +96,6 @@
 		256062AF2B31835A00E67C9D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		256062B12B32D35C00E67C9D /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
-		C317B6A82B2F1E140059A700 /* NewCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCardViewController.xib; sourceTree = "<group>"; };
 		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
 		C317B6B12B2F44620059A700 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				C317B6A72B2F1E140059A700 /* NewCardViewController.swift */,
-				C317B6A82B2F1E140059A700 /* NewCardViewController.xib */,
 				C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */,
 			);
 			path = NewCard;
@@ -571,7 +568,6 @@
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
 				C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
-				C317B6AA2B2F1E140059A700 /* NewCardViewController.xib in Resources */,
 				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
 				C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */,
 			);
