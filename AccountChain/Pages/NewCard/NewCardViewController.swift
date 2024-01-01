@@ -15,8 +15,7 @@ class NewCardViewController: UIViewController {
     var cardEmail = UITextField()
     var cardUsername = UITextField()
     var cardPassword =  UITextField()
-    
-    var createCardButton = UIButton()
+    var createCardButton = DefaultButton()
     
     let viewModel: NewCardViewModel = NewCardViewModel()
     
@@ -64,25 +63,51 @@ class NewCardViewController: UIViewController {
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(40)
         }
+        
+        //createCardButton
+        view.addSubview(createCardButton)
+        createCardButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cardPassword.snp.bottom).offset(35)
+            make.width.equalTo(120)
+            make.height.equalTo(40)
+        }
     }
     
     func configView() {
+        //cardCreateButton
         self.createCardButton.layer.cornerRadius = 10
+        self.createCardButton.setTitle("Oluştur", for: .normal)
+        self.createCardButton.setTitleColor(.white, for: .normal)
+        self.createCardButton.addBorder(width: 1, color: .baseBorder)
         
+        //cardTitle
         self.cardTitle.delegate = self
-        self.cardEmail.delegate = self
-        self.cardUsername.delegate = self
-        self.cardPassword.delegate = self
-        
         self.cardTitle.layer.cornerRadius = 5
-        self.cardEmail.layer.cornerRadius = 5
-        self.cardUsername.layer.cornerRadius = 5
-        self.cardPassword.layer.cornerRadius = 5
-        
         self.cardTitle.addBorder(width: 1, color: .baseBorder)
+        cardTitle.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        cardTitle.leftViewMode = .always
+        
+        //cardEmail
+        self.cardEmail.delegate = self
+        self.cardEmail.layer.cornerRadius = 5
         self.cardEmail.addBorder(width: 1, color: .baseBorder)
+        cardEmail.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        cardEmail.leftViewMode = .always
+        
+        //cardUsername
+        self.cardUsername.delegate = self
+        self.cardUsername.layer.cornerRadius = 5
         self.cardUsername.addBorder(width: 1, color: .baseBorder)
+        cardUsername.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        cardUsername.leftViewMode = .always
+        
+        //cardPassword
+        self.cardPassword.delegate = self
+        self.cardPassword.layer.cornerRadius = 5
         self.cardPassword.addBorder(width: 1, color: .baseBorder)
+        cardPassword.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        cardPassword.leftViewMode = .always
     }
     
     func clearTextFields() {
@@ -111,8 +136,8 @@ class NewCardViewController: UIViewController {
 
 extension NewCardViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         
+        
         textField.resignFirstResponder()
-            return true
-        }
+        return true
+    }
 }
