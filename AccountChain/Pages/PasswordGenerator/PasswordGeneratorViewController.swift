@@ -26,10 +26,10 @@ class PasswordGeneratorViewController: UIViewController {
     
     func configView() {
         //view
-        view.backgroundColor = .white
+        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         //topView
-        topView.backgroundColor = .white
-        topView.addBorder(width: 1.0, color: UIColor(hex: "3066BE") ?? .blue)
+        topView.backgroundColor = .baseBorder
+        topView.addBorder(width: 1.0, color: .baseBorder)
         topView.layer.borderWidth = 1.0
         topView.layer.cornerRadius = 15
         
@@ -43,7 +43,7 @@ class PasswordGeneratorViewController: UIViewController {
         
         //copyButton
         copyButton.backgroundColor = .baseButton
-        copyButton.addBorder(width: 1.0, color: .systemPink)
+        copyButton.addBorder(width: 1.0, color: .buttonBorder)
         copyButton.backgroundColor = .baseButton
         copyButton.layer.cornerRadius = 20
         copyButton.setImage(UIImage(named: "copy_icon"), for: .normal)
@@ -59,7 +59,7 @@ class PasswordGeneratorViewController: UIViewController {
 
         //generateButton
         generateButton.backgroundColor = .white
-        generateButton.addBorder(width: 1.0, color: .baseBorder)
+        generateButton.addBorder(width: 1.0, color: .white)
         generateButton.layer.cornerRadius = 15
         generateButton.setTitle("Şifre Oluştur", for: .normal)
         generateButton.setTitleColor(.baseBorder, for: .normal)
@@ -74,7 +74,7 @@ class PasswordGeneratorViewController: UIViewController {
         
         generateButton.addTarget(self, action: #selector(generateButtonTap), for: .touchUpInside)
         //passwordLabel
-        passwordLabel.textColor = .baseButton
+        passwordLabel.textColor = .white
         topView.addSubview(passwordLabel)
         passwordLabel.text = "Test"
         

@@ -109,7 +109,7 @@ class MessageManager: UIView {
     }
     
     private func setupUIForSuccess() {
-        backgroundColor = UIColor.systemGreen.withAlphaComponent(1)
+        backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.darkGray : .baseBorder
         iconImageView.image = UIImage(named: "plus-circle")
     }
     

@@ -27,7 +27,7 @@ class NewCardViewController: UIViewController {
     }
     
     func prepareView() {
-        view.backgroundColor = .white
+        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         //cardTitle
         view.addSubview(cardTitle)
         cardTitle.snp.makeConstraints { make in
@@ -80,6 +80,7 @@ class NewCardViewController: UIViewController {
         self.createCardButton.setTitle("Oluştur", for: .normal)
         self.createCardButton.setTitleColor(.white, for: .normal)
         self.createCardButton.addBorder(width: 1, color: .baseBorder)
+        self.createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
         
         //cardTitle
         self.cardTitle.delegate = self
@@ -87,6 +88,7 @@ class NewCardViewController: UIViewController {
         self.cardTitle.addBorder(width: 1, color: .baseBorder)
         cardTitle.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         cardTitle.leftViewMode = .always
+        cardTitle.placeholder = "Başlık"
         
         //cardEmail
         self.cardEmail.delegate = self
@@ -94,6 +96,7 @@ class NewCardViewController: UIViewController {
         self.cardEmail.addBorder(width: 1, color: .baseBorder)
         cardEmail.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         cardEmail.leftViewMode = .always
+        cardEmail.placeholder = "Email"
         
         //cardUsername
         self.cardUsername.delegate = self
@@ -101,6 +104,7 @@ class NewCardViewController: UIViewController {
         self.cardUsername.addBorder(width: 1, color: .baseBorder)
         cardUsername.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         cardUsername.leftViewMode = .always
+        cardUsername.placeholder = "Kullanıcı Adı"
         
         //cardPassword
         self.cardPassword.delegate = self
@@ -108,6 +112,8 @@ class NewCardViewController: UIViewController {
         self.cardPassword.addBorder(width: 1, color: .baseBorder)
         cardPassword.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         cardPassword.leftViewMode = .always
+        cardPassword.placeholder = "Şifre"
+
     }
     
     func clearTextFields() {
@@ -117,12 +123,9 @@ class NewCardViewController: UIViewController {
         self.cardPassword.clearText()
     }
     
-    @IBAction func createCardAction(_ sender: Any) {
-        
-        
+    @objc func createCardAction() {
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
-        
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in

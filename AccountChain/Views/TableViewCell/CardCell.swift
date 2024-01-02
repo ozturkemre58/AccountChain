@@ -38,9 +38,11 @@ class CardCell: UITableViewCell {
     }
     
     func configView() {
+        
+        contentView.backgroundColor = .clear
         //topView
         topView.backgroundColor = .baseBorder
-        topView.addBorder(width: 1.0, color: UIColor(hex: "3066BE") ?? .blue)
+       //( topView.addBorder(width: 1.0, color: UIColor(hex: "3066BE") ?? .blue)
         topView.layer.borderWidth = 1.0
         topView.layer.cornerRadius = 10
         
@@ -50,7 +52,7 @@ class CardCell: UITableViewCell {
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).offset(-4)
             make.left.equalToSuperview().offset(0)
             make.right.equalToSuperview().offset(0)
-            make.height.equalTo(160)
+            make.height.equalTo(170)
         }
         
         

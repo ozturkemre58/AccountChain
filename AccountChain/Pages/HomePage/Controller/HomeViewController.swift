@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         searchView.layer.cornerRadius = 15
         
         //border
-        self.searchView.layer.borderWidth = 1.0
+        self.searchView.layer.borderWidth = 2.0
         self.searchView.layer.borderColor = UIColor(named:"base_button_color")?.cgColor
         
         //gestureRecognizer
