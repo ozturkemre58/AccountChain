@@ -60,6 +60,24 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func showDeleteMenu(at indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Sil", message: "Bu öğeyi silmek istediğinizden emin misiniz?", preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Sil", style: .destructive) { action in
+             self.viewModel.deleteItemAtIndexPath(indexPath) { success in
+                 if success { 
+                     self.loadData()
+                 }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func searchHandler(_ sender: UITextField) {
         if let searchText = sender.text, !searchText.isEmpty {
@@ -69,4 +87,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
         self.tableView.reloadData()
     }
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            let touchPoint = gesture.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                showDeleteMenu(at: indexPath)
+            }
+        }
+    }
+
 }

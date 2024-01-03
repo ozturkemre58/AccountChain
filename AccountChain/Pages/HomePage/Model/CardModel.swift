@@ -8,6 +8,7 @@
 import Foundation
 
 struct CardModel {
+    var cardId: String?
     var cardTitle: String?
     var cardEmail: String?
     var cardUsername: String?

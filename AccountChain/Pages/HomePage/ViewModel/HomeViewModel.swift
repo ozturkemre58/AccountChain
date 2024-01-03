@@ -42,12 +42,13 @@ class HomeViewModel {
                 
                 let data = document.data()
                 
+                let id = document.documentID
                 let title = data["title"] as? String
                 let email = data["email"] as? String
                 let username = data["username"] as? String
                 let password = data["password"] as? String
                 
-                let model = CardModel(cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""))
+                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""))
                 self.cardData.append(model)
             }
             self.cardSearchData = self.cardData
@@ -55,6 +56,36 @@ class HomeViewModel {
         }
     }
     
+    func removeCard(documentID: String, completion: @escaping (_ success: Bool) -> Void) {
+        let firebaseDB = Firestore.firestore()
+        let documentReference = firebaseDB.collection(ConstantManager.shared.dbKey).document(documentID)
+        
+        documentReference.delete { error in
+            if let error = error {
+                print("Error deleting document: \(error)")
+                MessageManager.shared.show(message: "\(error.localizedDescription)", type: .error)
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
+    func deleteItemAtIndexPath(_ indexPath: IndexPath, completion: @escaping (Bool) -> Void) {
+        let documentIDToDelete = self.cardData[indexPath.row].cardId ?? ""
+        
+        self.removeCard(documentID: documentIDToDelete) { success in
+            if success {
+                self.cardData.removeAll()
+                self.cardSearchData.removeAll()
+                completion(true)
+            } else {
+                MessageManager.shared.show(message: "Kart Silinemedi", type: .error)
+                completion(false)
+            }
+        }
+    }
+
     func fetchPassword(key: String?) -> String {
         return KeychainManager.shared.fetchDataFromKeychain(forKey: key ?? "") ?? ""
     }

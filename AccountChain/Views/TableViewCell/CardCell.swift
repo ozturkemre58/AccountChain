@@ -26,6 +26,8 @@ class CardCell: UITableViewCell {
     var passwordCopyButton = UIButton()
     var showPasswordButton = UIButton()
     
+    var cardId: String?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -206,5 +208,6 @@ class CardCell: UITableViewCell {
          self.email.text = viewModel?.cardEmail ?? ""
          self.username.text = viewModel?.cardUsername ?? ""
          self.password.text = viewModel?.cardPassword ?? ""
+         self.cardId = viewModel?.cardId
     }
 }

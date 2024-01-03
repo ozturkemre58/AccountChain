@@ -15,6 +15,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         self.tableView.dataSource = self
         self.tableView.separatorStyle = .none
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        tableView.addGestureRecognizer(longPressGesture)
     }
     
     func loadData() {
