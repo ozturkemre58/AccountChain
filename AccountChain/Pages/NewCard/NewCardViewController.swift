@@ -81,6 +81,7 @@ class NewCardViewController: UIViewController {
         self.createCardButton.setTitleColor(.white, for: .normal)
         self.createCardButton.addBorder(width: 1, color: .baseBorder)
         self.createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
+        self.createCardButton.isEnabled = false
         
         //cardTitle
         self.cardTitle.delegate = self
@@ -97,6 +98,7 @@ class NewCardViewController: UIViewController {
         cardEmail.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         cardEmail.leftViewMode = .always
         cardEmail.placeholder = "Email"
+        cardEmail.keyboardType = .emailAddress
         
         //cardUsername
         self.cardUsername.delegate = self
@@ -110,10 +112,12 @@ class NewCardViewController: UIViewController {
         self.cardPassword.delegate = self
         self.cardPassword.layer.cornerRadius = 5
         self.cardPassword.addBorder(width: 1, color: .baseBorder)
-        cardPassword.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        cardPassword.leftView = UIView(frame: CGRect(x: 0 , y: 0, width: 10, height: 40))
         cardPassword.leftViewMode = .always
         cardPassword.placeholder = "Şifre"
-
+        cardPassword.isSecureTextEntry = true
+        cardPassword.textContentType = .password
+        cardPassword.textContentType = .oneTimeCode
     }
     
     func clearTextFields() {
@@ -121,6 +125,13 @@ class NewCardViewController: UIViewController {
         self.cardEmail.clearText()
         self.cardUsername.clearText()
         self.cardPassword.clearText()
+    }
+    
+    func isTextFieldValid() -> Bool {
+        return !(self.cardTitle.text?.isEmpty ?? true) &&
+               !(self.cardEmail.text?.isEmpty ?? true) &&
+               !(self.cardUsername.text?.isEmpty ?? true) &&
+               !(self.cardPassword.text?.isEmpty ?? true)
     }
     
     @objc func createCardAction() {
@@ -142,5 +153,12 @@ extension NewCardViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.cardTitle || textField == self.cardEmail || textField == self.cardUsername || textField == self.cardPassword {
+            self.createCardButton.isEnabled =  self.isTextFieldValid()
+        }
+        return true   
     }
 }
