@@ -39,7 +39,6 @@
 		C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A007F32B2CC133009AD543 /* HomeViewController.xib */; };
 		C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */; };
 		C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */; };
-		C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */; };
 		C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A79D602B4043F200CA0D05 /* MessageManager.swift */; };
 		C3C0F3CC2B3A149F004A9527 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */; };
 		C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C612B2E0C4600F18AA4 /* CardCell.swift */; };
@@ -125,7 +124,6 @@
 		C3A007F32B2CC133009AD543 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorViewController.swift; sourceTree = "<group>"; };
 		C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentcationViewController.swift; sourceTree = "<group>"; };
-		C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthentcationViewController.xib; sourceTree = "<group>"; };
 		C3A79D602B4043F200CA0D05 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C3C30C612B2E0C4600F18AA4 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -398,7 +396,6 @@
 			children = (
 				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
 				C35A61612B30637700150E8A /* AuthenticationViewModel.swift */,
-				C3A008082B2CDB44009AD543 /* AuthentcationViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -566,7 +563,6 @@
 			files = (
 				C35A61642B3079C200150E8A /* Colors.xcassets in Resources */,
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
-				C3A0080A2B2CDB44009AD543 /* AuthentcationViewController.xib in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
 				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
 				C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */,
