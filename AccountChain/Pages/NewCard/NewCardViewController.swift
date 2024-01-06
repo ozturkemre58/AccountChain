@@ -135,6 +135,11 @@ class NewCardViewController: UIViewController {
     }
     
     @objc func createCardAction() {
+        guard self.isTextFieldValid() else {
+            MessageManager.shared.show(message: "Boş alanları doldurunuz!", type: .info)
+            return
+        }
+        
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key] as [String: Any]
