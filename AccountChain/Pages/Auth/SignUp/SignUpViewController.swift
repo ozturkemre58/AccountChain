@@ -131,6 +131,7 @@ class SignUpViewController: UIViewController {
         phoneField.leftViewMode = .always
         phoneField.layer.cornerRadius = 5
         phoneField.keyboardType = .phonePad
+        phoneField.delegate = self
         
         //emailFieldInfo
         emailInfo.text = "Email"
@@ -142,6 +143,7 @@ class SignUpViewController: UIViewController {
         emailField.leftViewMode = .always
         emailField.layer.cornerRadius = 5
         emailField.keyboardType = .emailAddress
+        emailField.delegate = self
         
         //usernameInfo
         usernameInfo.text = "Username"
@@ -152,6 +154,7 @@ class SignUpViewController: UIViewController {
         usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         usernameField.leftViewMode = .always
         usernameField.layer.cornerRadius = 5
+        usernameField.delegate = self
         
         //passwordInfo
         passwordInfo.text = "Password"
@@ -162,6 +165,7 @@ class SignUpViewController: UIViewController {
         passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         passwordField.leftViewMode = .always
         passwordField.layer.cornerRadius = 5
+        passwordField.delegate = self
         
         //signInLabel
         signInLabel.textColor = .whiteBlack
@@ -180,4 +184,12 @@ class SignUpViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
 }

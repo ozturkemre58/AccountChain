@@ -121,6 +121,7 @@ class AuthentcationViewController: UIViewController {
         emailField.leftViewMode = .always
         emailField.placeholder = "Email"
         emailField.keyboardType = .emailAddress
+        emailField.delegate = self
         
         //passwordField
         passwordField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
@@ -129,6 +130,7 @@ class AuthentcationViewController: UIViewController {
         passwordField.leftViewMode = .always
         passwordField.placeholder = "Password"
         passwordField.layer.cornerRadius = 15
+        passwordField.delegate = self
         
         //signInButton
         signInActionButton.layer.cornerRadius = 15
@@ -187,5 +189,13 @@ class AuthentcationViewController: UIViewController {
         let vc = SignUpViewController()
         vc.modalPresentationStyle = .pageSheet
         self.present(vc, animated: true)
+    }
+}
+
+extension AuthentcationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }
