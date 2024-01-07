@@ -34,12 +34,26 @@ class AuthentcationViewController: UIViewController {
     func prepareView() {
         view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         
+        view.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(75)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(150)
+            make.width.equalTo(150)
+        }
+        
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.55)
             make.left.right.equalToSuperview()
             make.centerY.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        view.addSubview(welcomeLabel)
+        welcomeLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(bottomView.snp.top).offset(-10)
+            make.centerX.equalToSuperview()
         }
         
         bottomView.addSubview(emailField)
@@ -94,14 +108,16 @@ class AuthentcationViewController: UIViewController {
         self.bottomView.layer.cornerRadius = 35
         bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-
+        //seperatorView
         seperatorView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         
+        //imageView
+        imageView.image = UIImage(named: "welcome_key_icon")
         //emailField
         emailField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         emailField.addBorder(width: 1, color: .lightGray)
         emailField.layer.cornerRadius = 15
-        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         emailField.leftViewMode = .always
         emailField.placeholder = "Email"
         emailField.keyboardType = .emailAddress
@@ -109,7 +125,7 @@ class AuthentcationViewController: UIViewController {
         //passwordField
         passwordField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         passwordField.addBorder(width: 1, color: .lightGray)
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         passwordField.leftViewMode = .always
         passwordField.placeholder = "Password"
         passwordField.layer.cornerRadius = 15
@@ -123,16 +139,30 @@ class AuthentcationViewController: UIViewController {
 
         //labels
         resetPasswordLabel.text = "Forgot Password"
-        registerActionLabel.text = "Don't have an Account ? Sign in"
+        
+        //registerLabel
+        registerActionLabel.text = "Don't have an Account ? Sign Up"
+        let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
+        
+        let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signUpRange)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signUpRange)
+        
+        registerActionLabel.attributedText = attributedString
+
+        //welcomeLabel
+        welcomeLabel.text = "Log in to get started."
+        welcomeLabel.font = UIFont.systemFont(ofSize: 16)
+        welcomeLabel.textColor = .gray
     }
     
-    @objc func signUpAction() {
-        viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
-            if success {
-                self?.presentTabBar()
-            }
-        }
-    }
+   // @objc func signUpAction() {
+   //     viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
+   //         if success {
+   //             self?.presentTabBar()
+   //         }
+   //     }
+   // }
     
     @objc func signInAction() {
         viewModel.signInAction(email: self.emailField.text ?? "", password: self.passwordField.text ?? "") { [weak self] success in
