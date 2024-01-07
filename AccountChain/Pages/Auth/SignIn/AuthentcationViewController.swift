@@ -141,7 +141,7 @@ class AuthentcationViewController: UIViewController {
         resetPasswordLabel.text = "Forgot Password"
         
         //registerLabel
-        registerActionLabel.text = "Don't have an Account ? Sign Up"
+        registerActionLabel.text = "Don't have an Account? Sign Up"
         let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
         let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
         attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signUpRange)
