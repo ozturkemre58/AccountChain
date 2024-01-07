@@ -10,6 +10,8 @@ import SnapKit
 
 class AuthentcationViewController: UIViewController {
     
+    var imageView = UIImageView()
+    var welcomeLabel = UILabel()
     var bottomView = UIView()
     var emailField = UITextField()
     var passwordField = UITextField()
@@ -117,6 +119,8 @@ class AuthentcationViewController: UIViewController {
         signInActionButton.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         signInActionButton.setTitleColor(.blackWhite, for: .normal)
         signInActionButton.setTitle("Sign In", for: .normal)
+        signInActionButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
+
         //labels
         resetPasswordLabel.text = "Forgot Password"
         registerActionLabel.text = "Don't have an Account ? Sign in"
