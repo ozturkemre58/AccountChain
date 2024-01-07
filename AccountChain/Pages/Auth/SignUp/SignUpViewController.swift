@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     var emailInfo = UILabel()
     var usernameInfo = UILabel()
     var passwordInfo = UILabel()
-    
+    var signInLabel = UILabel()
     
     let viewModel: SignUpViewModel = SignUpViewModel()
     
@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
     func prepareView() {
         
         view.backgroundColor = .base
-   
+        
         view.addSubview(welcomeLabel)
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
@@ -102,10 +102,16 @@ class SignUpViewController: UIViewController {
             make.right.equalToSuperview().offset(-20)
             make.height.equalToSuperview().multipliedBy(0.075)
         }
+        
+        view.addSubview(signInLabel)
+        signInLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-15)
+        }
     }
     
     func configView() {
-                
+        
         //welcomeLabel
         welcomeLabel.text = "Welcome"
         welcomeLabel.font = .boldSystemFont(ofSize: 26)
@@ -156,6 +162,22 @@ class SignUpViewController: UIViewController {
         passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         passwordField.leftViewMode = .always
         passwordField.layer.cornerRadius = 5
+        
+        //signInLabel
+        signInLabel.textColor = .whiteBlack
+        signInLabel.text = "Already Have An Account? Sign In"
+        let attributedString = NSMutableAttributedString(string: signInLabel.text!)
+        let signInRange = (signInLabel.text! as NSString).range(of: "Sign In")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signInRange)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signInRange)
+        signInLabel.attributedText = attributedString
+        signInLabel.isUserInteractionEnabled = true
+        var dismissGesture = UITapGestureRecognizer(target: self, action: #selector(closePage))
+        signInLabel.addGestureRecognizer(dismissGesture)
+    }
+    
+    @objc func closePage() {
+        self.dismiss(animated: true)
     }
     
 }
