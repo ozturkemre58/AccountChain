@@ -143,12 +143,13 @@ class AuthentcationViewController: UIViewController {
         //registerLabel
         registerActionLabel.text = "Don't have an Account ? Sign Up"
         let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
-        
         let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
         attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signUpRange)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signUpRange)
-        
         registerActionLabel.attributedText = attributedString
+        registerActionLabel.isUserInteractionEnabled = true
+        var registerGesture = UITapGestureRecognizer(target: self, action: #selector(signUpGesture))
+        registerActionLabel.addGestureRecognizer(registerGesture)
 
         //welcomeLabel
         welcomeLabel.text = "Log in to get started."
@@ -172,9 +173,19 @@ class AuthentcationViewController: UIViewController {
         }
     }
     
+    @objc func signUpGesture() {
+        presentSignUp()
+    }
+    
     func presentTabBar() {
         let vc = TabBarController()
         vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    func presentSignUp() {
+        let vc = SignUpViewController()
+        vc.modalPresentationStyle = .pageSheet
         self.present(vc, animated: true)
     }
 }

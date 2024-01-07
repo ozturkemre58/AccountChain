@@ -72,6 +72,8 @@
 		C3C36E7A2B3ED06B0078395F /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C3C36E792B3ED06B0078395F /* FirebaseRemoteConfigSwift */; };
 		C3C36E7C2B3ED06B0078395F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C3C36E7B2B3ED06B0078395F /* FirebaseStorage */; };
 		C3C36E7E2B3ED06B0078395F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = C3C36E7D2B3ED06B0078395F /* FirebaseStorageCombine-Community */; };
+		C3F021A02B4B197600037352 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0219F2B4B197600037352 /* SignUpViewController.swift */; };
+		C3F021A22B4B1E5100037352 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F021A12B4B1E5100037352 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C3F0219F2B4B197600037352 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C3F021A12B4B1E5100037352 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				C317B6A62B2F1DB70059A700 /* NewCard */,
-				C3A007FC2B2CDA52009AD543 /* AuthPage */,
+				C3A007FC2B2CDA52009AD543 /* Auth */,
 				C3A007F72B2CC194009AD543 /* PasswordGenerator */,
 				C3A007ED2B2CBE42009AD543 /* HomePage */,
 			);
@@ -383,21 +387,13 @@
 			path = PasswordGenerator;
 			sourceTree = "<group>";
 		};
-		C3A007FC2B2CDA52009AD543 /* AuthPage */ = {
+		C3A007FC2B2CDA52009AD543 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				C3A007FD2B2CDA6F009AD543 /* Controller */,
+				C3F0219E2B4B195D00037352 /* SignUp */,
+				C3F0219D2B4B193A00037352 /* SignIn */,
 			);
-			path = AuthPage;
-			sourceTree = "<group>";
-		};
-		C3A007FD2B2CDA6F009AD543 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
-				C35A61612B30637700150E8A /* AuthenticationViewModel.swift */,
-			);
-			path = Controller;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		C3A0080B2B2CE62F009AD543 /* TableViewCell */ = {
@@ -415,6 +411,24 @@
 				C3A79D602B4043F200CA0D05 /* MessageManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		C3F0219D2B4B193A00037352 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
+				C35A61612B30637700150E8A /* AuthenticationViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		C3F0219E2B4B195D00037352 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C3F0219F2B4B197600037352 /* SignUpViewController.swift */,
+				C3F021A12B4B1E5100037352 /* SignUpViewModel.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -603,6 +617,7 @@
 				C3C30C682B2E251400F18AA4 /* HomeViewController+TableView.swift in Sources */,
 				C3824DDF2B2CF94E0014ADF3 /* ColorExt.swift in Sources */,
 				C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */,
+				C3F021A22B4B1E5100037352 /* SignUpViewModel.swift in Sources */,
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
 				256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */,
 				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,
@@ -614,6 +629,7 @@
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
 				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
+				C3F021A02B4B197600037352 /* SignUpViewController.swift in Sources */,
 				C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
