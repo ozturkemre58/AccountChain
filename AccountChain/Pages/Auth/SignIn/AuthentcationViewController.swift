@@ -16,7 +16,7 @@ class AuthentcationViewController: UIViewController {
     var emailField = UITextField()
     var passwordField = UITextField()
     var signUpActionButton = UIButton()
-    var signInActionButton = UIButton()
+    var signInActionButton = DefaultButton()
     var seperatorView = UIView()
     var resetPasswordLabel = UILabel()
     var registerActionLabel = UILabel()
@@ -131,26 +131,32 @@ class AuthentcationViewController: UIViewController {
         passwordField.placeholder = "Password"
         passwordField.layer.cornerRadius = 15
         passwordField.delegate = self
-        
         //signInButton
         signInActionButton.layer.cornerRadius = 15
-        signInActionButton.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
-        signInActionButton.setTitleColor(.blackWhite, for: .normal)
         signInActionButton.setTitle("Sign In", for: .normal)
         signInActionButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
+        let darkTheme = traitCollection.userInterfaceStyle == .dark ? true : false
+        if darkTheme {
+            signInActionButton.darkTheme = true
+        } else {
+            signInActionButton.lightTheme = true
+        }
 
         //labels
         resetPasswordLabel.text = "Forgot Password"
+        resetPasswordLabel.textColor = .whiteBlack
+
         
         //registerLabel
         registerActionLabel.text = "Don't have an Account? Sign Up"
+        registerActionLabel.textColor = .whiteBlack
         let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
         let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
         attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signUpRange)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signUpRange)
         registerActionLabel.attributedText = attributedString
         registerActionLabel.isUserInteractionEnabled = true
-        var registerGesture = UITapGestureRecognizer(target: self, action: #selector(signUpGesture))
+        let registerGesture = UITapGestureRecognizer(target: self, action: #selector(signUpGesture))
         registerActionLabel.addGestureRecognizer(registerGesture)
 
         //welcomeLabel
@@ -158,14 +164,6 @@ class AuthentcationViewController: UIViewController {
         welcomeLabel.font = UIFont.systemFont(ofSize: 16)
         welcomeLabel.textColor = .gray
     }
-    
-   // @objc func signUpAction() {
-   //     viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
-   //         if success {
-   //             self?.presentTabBar()
-   //         }
-   //     }
-   // }
     
     @objc func signInAction() {
         viewModel.signInAction(email: self.emailField.text ?? "", password: self.passwordField.text ?? "") { [weak self] success in
