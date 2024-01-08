@@ -10,6 +10,18 @@ import UIKit
 
 class DefaultButton: UIButton {
     
+    private var isLightTheme = false {
+        didSet {
+            self.configureTouchUpInside()
+        }
+    }
+    
+    private var isDarkTheme = false {
+        didSet {
+            self.configureTouchUpInside()
+        }
+    }
+    
     override var isEnabled: Bool {
         didSet {
             self.alpha = isEnabled ? 1 : 0.7
@@ -43,12 +55,22 @@ class DefaultButton: UIButton {
     
     
     private func configureTouchUpInside() {
-        self.backgroundColor = .baseButton
-        self.setTitleColor(.white, for: .normal)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+          if self.isLightTheme {
+              self.backgroundColor = .whiteBlack
+              self.setTitleColor(.base, for: .normal)
+          } else if self.isDarkTheme {
+              self.backgroundColor = .black
+              self.setTitleColor(.white, for: .normal)
+          } else {
+              self.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+            self.setTitleColor(.blue, for: .normal)
+          }
+        }
     }
     
     private func configureTouchDownButtonStyle() {
-        self.backgroundColor = .white
+        self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.6)
         self.setTitleColor(.baseButton, for: .normal)
     }
     
@@ -68,4 +90,27 @@ class DefaultButton: UIButton {
     @objc func touchDragExit() {
         configureTouchUpInside()
     }
+}
+
+extension DefaultButton {
+
+    var lightTheme: Bool {
+    set {
+      self.isLightTheme = newValue
+    }
+    
+    get {
+      return self.isLightTheme
+    }
+  }
+  
+  var darkTheme: Bool {
+    set {
+      self.isDarkTheme = newValue
+    }
+    
+    get {
+      return self.isDarkTheme
+    }
+  }
 }
