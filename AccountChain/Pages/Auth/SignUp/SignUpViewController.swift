@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     var usernameInfo = UILabel()
     var passwordInfo = UILabel()
     var signInLabel = UILabel()
+    var createAccountButton = DefaultButton()
     
     let viewModel: SignUpViewModel = SignUpViewModel()
     
@@ -103,10 +104,18 @@ class SignUpViewController: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.075)
         }
         
+        view.addSubview(createAccountButton)
+        createAccountButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordField.snp.bottom).offset(30)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalToSuperview().multipliedBy(0.075)
+        }
+        
         view.addSubview(signInLabel)
         signInLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-15)
+            make.bottom.equalToSuperview().offset(-30)
         }
     }
     
@@ -115,15 +124,15 @@ class SignUpViewController: UIViewController {
         //welcomeLabel
         welcomeLabel.text = "Welcome"
         welcomeLabel.font = .boldSystemFont(ofSize: 26)
-        welcomeLabel.textColor = .whiteBlack
+        welcomeLabel.textColor = .white
         
         //infoLabel
         infoLabel.text = "Enter Your Details To Sign Up"
-        infoLabel.textColor = .whiteBlack
+        infoLabel.textColor = .white
         
         //phoneInfoLabel
         phoneNumberInfo.text = "Phone Number"
-        phoneNumberInfo.textColor = .whiteBlack
+        phoneNumberInfo.textColor = .white
         //phoneField
         phoneField.backgroundColor = .whiteBlack
         phoneField.placeholder = "Enter Your Phone Number"
@@ -135,7 +144,7 @@ class SignUpViewController: UIViewController {
         
         //emailFieldInfo
         emailInfo.text = "Email"
-        emailInfo.textColor = .whiteBlack
+        emailInfo.textColor = .white
         //emailField
         emailField.backgroundColor = .whiteBlack
         emailField.placeholder = "Enter Your Email"
@@ -147,7 +156,7 @@ class SignUpViewController: UIViewController {
         
         //usernameInfo
         usernameInfo.text = "Username"
-        usernameInfo.textColor = .whiteBlack
+        usernameInfo.textColor = .white
         //usernameField
         usernameField.backgroundColor = .whiteBlack
         usernameField.placeholder = "Enter Your Username"
@@ -158,7 +167,7 @@ class SignUpViewController: UIViewController {
         
         //passwordInfo
         passwordInfo.text = "Password"
-        passwordInfo.textColor = .whiteBlack
+        passwordInfo.textColor = .white
         //passwordField
         passwordField.backgroundColor = .whiteBlack
         passwordField.placeholder = "Enter Your Password"
@@ -167,6 +176,16 @@ class SignUpViewController: UIViewController {
         passwordField.layer.cornerRadius = 5
         passwordField.delegate = self
         
+        //createAccountButton
+        createAccountButton.setTitle("Create Account", for: .normal)
+        createAccountButton.layer.cornerRadius = 5
+        createAccountButton.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
+        let darkTheme = traitCollection.userInterfaceStyle == .dark ? true : false
+        if darkTheme {
+            createAccountButton.darkTheme = true
+        } else {
+            createAccountButton.lightTheme = true
+        }
         //signInLabel
         signInLabel.textColor = .whiteBlack
         signInLabel.text = "Already Have An Account? Sign In"
@@ -176,12 +195,26 @@ class SignUpViewController: UIViewController {
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signInRange)
         signInLabel.attributedText = attributedString
         signInLabel.isUserInteractionEnabled = true
-        var dismissGesture = UITapGestureRecognizer(target: self, action: #selector(closePage))
+        let dismissGesture = UITapGestureRecognizer(target: self, action: #selector(closePage))
         signInLabel.addGestureRecognizer(dismissGesture)
     }
     
     @objc func closePage() {
         self.dismiss(animated: true)
+    }
+    
+    @objc func signUpAction() {
+        viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
+            if success {
+                self?.presentTabBar()
+            }
+        }
+    }
+    
+    func presentTabBar() {
+        let vc = TabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
 }
