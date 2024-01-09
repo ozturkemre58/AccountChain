@@ -17,6 +17,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         tableView.addGestureRecognizer(longPressGesture)
+        registerCell()
     }
     
     func loadData() {
@@ -28,8 +29,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func registerCell() {
-        let cardCell = UINib(nibName: CardCell.nameAsString, bundle: nil)
-        self.tableView.register(cardCell, forCellReuseIdentifier: CardCell.reuseIdentifier)
+        self.tableView.register(CardCell.self, forCellReuseIdentifier: CardCell.reuseIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,7 +41,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CardCell(style: .default, reuseIdentifier: CardCell.reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as! CardCell
 
         let item = viewModel.cardData[indexPath.row]
         cell.configure(viewModel: item)
@@ -49,7 +49,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = CardCell(style: .default, reuseIdentifier: CardCell.reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as! CardCell
         tableView.reloadData()
     }
 }
