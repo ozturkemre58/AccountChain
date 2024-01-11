@@ -201,13 +201,29 @@ class CardCell: UITableViewCell {
             make.width.equalTo(36)
             make.height.equalTo(36)
         }
+        
+        
     }
     
     func configure(viewModel: CardModel?) {
          self.title.text = viewModel?.cardTitle ?? ""
          self.email.text = viewModel?.cardEmail ?? ""
          self.username.text = viewModel?.cardUsername ?? ""
-         self.password.text = viewModel?.cardPassword ?? ""
-         self.cardId = viewModel?.cardId
+        //maskedText
+        let maskPattern = "****"
+        let originalText = viewModel?.cardPassword ?? ""
+
+        var maskedText = ""
+        for _ in originalText {
+            maskedText += maskPattern
+        }
+        let attributedString = NSMutableAttributedString(string: maskedText)
+        for (index, character) in originalText.enumerated() {
+            let range = NSRange(location: index * maskPattern.count, length: 1)
+            attributedString.replaceCharacters(in: range, with: String(character))
+        }
+
+        self.password.attributedText = attributedString
+        self.cardId = viewModel?.cardId
     }
 }
