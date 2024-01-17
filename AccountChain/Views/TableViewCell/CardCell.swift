@@ -54,7 +54,7 @@ class CardCell: UITableViewCell {
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).offset(-4)
             make.left.equalToSuperview().offset(0)
             make.right.equalToSuperview().offset(0)
-            make.height.equalTo(170)
+            make.height.equalTo(60)
         }
         
         
@@ -63,7 +63,7 @@ class CardCell: UITableViewCell {
         topView.addSubview(headerView)
         
         headerView.snp.makeConstraints { make in
-            make.top.equalTo(topView.safeAreaLayoutGuide).offset(5)
+            make.centerY.equalTo(topView)
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
             make.height.equalTo(30)
@@ -77,132 +77,10 @@ class CardCell: UITableViewCell {
         headerView.addSubview(title)
         
         title.snp.makeConstraints { make in
-            make.top.equalTo(headerView.safeAreaLayoutGuide).offset(3)
+            make.centerY.equalTo(headerView)
             make.left.equalToSuperview()
             make.height.equalTo(24)
         }
-        
-        //detailView
-        detailView.backgroundColor = .baseBorder
-        topView.addSubview(detailView)
-        
-        detailView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(2)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(120)
-        }
-        
-        //emailView
-        emailView.backgroundColor = .clear
-        detailView.addSubview(emailView)
-        
-        emailView.snp.makeConstraints { make in
-            make.top.equalTo(detailView.snp.top)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(40)
-        }
-        
-        //emailLabel
-        email.textColor = .white
-        emailView.addSubview(email)
-        
-        email.snp.makeConstraints { make in
-            make.top.equalTo(emailView.snp.top).offset(3)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(24)
-        }
-        
-        //emailCopyButton
-        emailCopyButton.setImage(UIImage(named: "copy_icon"), for: .normal)
-        emailCopyButton.addBorder(width: 1.0, color: .white)
-        emailCopyButton.backgroundColor = .baseButton
-        emailCopyButton.layer.cornerRadius = 18
-        emailView.addSubview(emailCopyButton)
-        
-        emailCopyButton.snp.makeConstraints { make in
-            make.top.centerX
-            make.right.equalToSuperview().offset(-5)
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
-
-        
-        //usernameView
-        usernameView.backgroundColor = .clear
-        detailView.addSubview(usernameView)
-        
-        usernameView.snp.makeConstraints { make in
-            make.top.equalTo(emailView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(40)
-        }
-        
-        //usernameLabel
-        username.textColor = .white
-        usernameView.addSubview(username)
-        
-        username.snp.makeConstraints { make in
-            make.top.centerX
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(24)
-        }
-        
-        //usernameCopyButton
-        usernameCopyButton.setImage(UIImage(named: "copy_icon"), for: .normal)
-        usernameCopyButton.addBorder(width: 1.0, color: .white)
-        usernameCopyButton.backgroundColor = .baseButton
-        usernameCopyButton.layer.cornerRadius = 18
-        usernameView.addSubview(usernameCopyButton)
-        
-        usernameCopyButton.snp.makeConstraints { make in
-            make.top.centerX
-            make.right.equalToSuperview().offset(-5)
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
-        
-        //passwordView
-        passwordView.backgroundColor = .clear
-        detailView.addSubview(passwordView)
-        
-        passwordView.snp.makeConstraints { make in
-            make.top.equalTo(usernameView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(40)
-        }
-        
-        //passwordLabel
-        password.textColor = .white
-        passwordView.addSubview(password)
-        
-        password.snp.makeConstraints { make in
-            make.top.centerX
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(24)
-        }
-        
-        //passwordCopyButton
-        passwordCopyButton.setImage(UIImage(named: "copy_icon"), for: .normal)
-        passwordCopyButton.addBorder(width: 1.0, color: .white)
-        passwordCopyButton.backgroundColor = .baseButton
-        passwordCopyButton.layer.cornerRadius = 18
-        passwordView.addSubview(passwordCopyButton)
-        
-        passwordCopyButton.snp.makeConstraints { make in
-            make.top.centerX
-            make.right.equalToSuperview().offset(-5)
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
-        
-        
     }
     
     func configure(viewModel: CardModel?) {
