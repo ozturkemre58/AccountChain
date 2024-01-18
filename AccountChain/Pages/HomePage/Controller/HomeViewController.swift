@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showDeleteMenu(at indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Sil", message: "Bu öğeyi silmek istediğinizden emin misiniz?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Bu öğeyi silmek istediğinizden emin misiniz?", message: nil, preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction(title: "Sil", style: .destructive) { action in
              self.viewModel.deleteItemAtIndexPath(indexPath) { success in

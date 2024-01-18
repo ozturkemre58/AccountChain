@@ -12,6 +12,7 @@
 		2569049F2B3B1B1300CF44D9 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2569049E2B3B1B1300CF44D9 /* KeychainSwift */; };
 		256904A22B3CC65100CF44D9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A12B3CC65100CF44D9 /* SnapKit */; };
 		256904A42B3CC65100CF44D9 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */; };
+		2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258185192B586D58009ABEE1 /* CardDetailViewController.swift */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
 		C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */; };
@@ -97,6 +98,7 @@
 /* Begin PBXFileReference section */
 		256062AF2B31835A00E67C9D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		256062B12B32D35C00E67C9D /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
+		258185192B586D58009ABEE1 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
@@ -201,6 +203,14 @@
 				256062AF2B31835A00E67C9D /* Observable.swift */,
 			);
 			path = Observer;
+			sourceTree = "<group>";
+		};
+		258185182B586D2D009ABEE1 /* CardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				258185192B586D58009ABEE1 /* CardDetailViewController.swift */,
+			);
+			path = CardDetail;
 			sourceTree = "<group>";
 		};
 		C317B6A62B2F1DB70059A700 /* NewCard */ = {
@@ -373,6 +383,7 @@
 		C3A007F62B2CC179009AD543 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				258185182B586D2D009ABEE1 /* CardDetail */,
 				C317B6A62B2F1DB70059A700 /* NewCard */,
 				C3A007FC2B2CDA52009AD543 /* Auth */,
 				C3A007F72B2CC194009AD543 /* PasswordGenerator */,
@@ -631,6 +642,7 @@
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
 				C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */,
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
+				2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
 				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
 				C3F021A02B4B197600037352 /* SignUpViewController.swift in Sources */,
