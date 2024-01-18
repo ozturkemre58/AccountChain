@@ -134,15 +134,25 @@ class NewCardViewController: UIViewController {
                !(self.cardPassword.text?.isEmpty ?? true)
     }
     
+    func currentDate() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+
+        let formattedDate = dateFormatter.string(from: currentDate)
+        return formattedDate
+    }
+    
     @objc func createCardAction() {
         guard self.isTextFieldValid() else {
             MessageManager.shared.show(message: "Boş alanları doldurunuz!", type: .info)
             return
         }
         
+        
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
-        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key] as [String: Any]
+        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key,  "date": self.currentDate()] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
