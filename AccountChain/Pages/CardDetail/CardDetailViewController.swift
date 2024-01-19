@@ -134,10 +134,9 @@ class CardDetailViewController: UIViewController {
         
         emailView.addSubview(emailField)
         emailField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(3)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         emailField.text = "emailimdemailim@gmail.com"
@@ -145,6 +144,36 @@ class CardDetailViewController: UIViewController {
         
         emailView.addBorder(width: 1, color: .orange)
         emailView.layer.cornerRadius = 10
+        
+        //username
+        detailTopView.addSubview(usernameView)
+        usernameView.snp.makeConstraints { make in
+            make.top.equalTo(emailView.snp.bottom).offset(15)
+            make.right.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.height.equalToSuperview().multipliedBy(0.175)
+        }
+        
+        usernameView.addSubview(usernameLabel)
+        usernameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(7.5)
+            make.left.equalToSuperview().offset(15)
+        }
+        usernameLabel.text = "email"
+        
+        usernameView.addSubview(usernameField)
+        usernameField.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        
+        usernameField.text = "errrrrdinç."
+        usernameField.font = .boldSystemFont(ofSize: 20)
+        
+        usernameView.addBorder(width: 1, color: .orange)
+        usernameView.layer.cornerRadius = 10
+        
         
         //date
         detailTopView.addSubview(dateView)
