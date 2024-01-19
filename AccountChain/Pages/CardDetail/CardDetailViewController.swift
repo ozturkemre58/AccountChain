@@ -46,7 +46,7 @@ class CardDetailViewController: UIViewController {
     }
     
     func prepareView() {
-        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.gray : UIColor.red
+        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
         
         view.addSubview(topView)
         topView.snp.makeConstraints { make in
@@ -72,7 +72,7 @@ class CardDetailViewController: UIViewController {
             make.left.equalToSuperview().offset(10)
         }
         
-        backButton.backgroundColor = .red
+        backButton.backgroundColor = .base
         backButton.layer.cornerRadius = 7.5
         
         headView.addSubview(removeCardButton)
@@ -83,7 +83,7 @@ class CardDetailViewController: UIViewController {
             make.right.equalToSuperview().offset(-10)
         }
         
-        removeCardButton.backgroundColor = .red
+        removeCardButton.backgroundColor = .base
         removeCardButton.layer.cornerRadius = 7.5
         
         headView.addSubview(titleLabel)
@@ -113,7 +113,7 @@ class CardDetailViewController: UIViewController {
             make.left.equalToSuperview().offset(20)
             make.height.equalToSuperview().multipliedBy(0.75)
         }
-        detailTopView.backgroundColor = .lightGray
+        detailTopView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .base : .lightGray
         detailTopView.layer.cornerRadius = 10
         
         //emailView
@@ -139,9 +139,7 @@ class CardDetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-10)
         }
         
-        emailField.text = "emailimdemailim@gmail.com"
         emailField.font = .boldSystemFont(ofSize: 20)
-        
         emailView.addBorder(width: 1, color: .orange)
         emailView.layer.cornerRadius = 10
         
@@ -168,12 +166,36 @@ class CardDetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-10)
         }
         
-        usernameField.text = "errrrrdinç."
         usernameField.font = .boldSystemFont(ofSize: 20)
-        
         usernameView.addBorder(width: 1, color: .orange)
         usernameView.layer.cornerRadius = 10
         
+        //Password
+        detailTopView.addSubview(passwordView)
+        passwordView.snp.makeConstraints { make in
+            make.top.equalTo(usernameView.snp.bottom).offset(15)
+            make.right.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.height.equalToSuperview().multipliedBy(0.175)
+        }
+        
+        passwordView.addSubview(passwordLabel)
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(7.5)
+            make.left.equalToSuperview().offset(15)
+        }
+        passwordLabel.text = "password"
+        
+        passwordView.addSubview(passwordField)
+        passwordField.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        
+        passwordField.font = .boldSystemFont(ofSize: 20)
+        passwordView.addBorder(width: 1, color: .orange)
+        passwordView.layer.cornerRadius = 10
         
         //date
         detailTopView.addSubview(dateView)
@@ -185,7 +207,7 @@ class CardDetailViewController: UIViewController {
         }
     
         dateView.layer.cornerRadius = 10
-        dateView.backgroundColor = .red
+        dateView.backgroundColor = .yellow
         
         dateView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
