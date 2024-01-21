@@ -16,7 +16,7 @@ class CardDetailViewController: UIViewController {
     
     var backButton = DefaultButton()
     var titleLabel = UILabel()
-    var removeCardButton = DefaultButton()
+    var removeCardImage = UIImageView()
     
     var bodyView = UIView()
    
@@ -64,7 +64,7 @@ class CardDetailViewController: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.15)
         }
                 
-        headView.addSubview(backButton)
+       /* headView.addSubview(backButton)
         backButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.width.equalTo(headView.snp.height).multipliedBy(0.50)
@@ -74,28 +74,30 @@ class CardDetailViewController: UIViewController {
         
         backButton.backgroundColor = .base
         backButton.layer.cornerRadius = 7.5
-        
-        headView.addSubview(removeCardButton)
-        removeCardButton.snp.makeConstraints { make in
+        */
+        headView.addSubview(removeCardImage)
+        removeCardImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.width.equalTo(headView.snp.height).multipliedBy(0.50)
-            make.height.equalTo(headView.snp.height).multipliedBy(0.50)
+            make.width.equalTo(25)
+            make.height.equalTo(25)
             make.right.equalToSuperview().offset(-10)
         }
         
-        removeCardButton.backgroundColor = .base
-        removeCardButton.layer.cornerRadius = 7.5
+        removeCardImage.backgroundColor = .clear
+        
+        removeCardImage.image = UIImage(named: "remove_icon")
         
         headView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(backButton.snp.right).offset(10)
-            make.right.equalTo(removeCardButton.snp.left).offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.right.equalTo(removeCardImage.snp.left).offset(-10)
         }
         
         titleLabel.text = "Hepsiburada"
         titleLabel.font = .boldSystemFont(ofSize: 24)
         titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.textColor = .base
         
         topView.addSubview(bodyView)
         bodyView.snp.makeConstraints { make in
@@ -109,8 +111,8 @@ class CardDetailViewController: UIViewController {
         bodyView.addSubview(detailTopView)
         detailTopView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.75)
         }
         detailTopView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .base : .lightGray
@@ -203,11 +205,12 @@ class CardDetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.equalTo(backButton.snp.height)
+            make.height.equalTo(headView.snp.height).multipliedBy(0.50)
         }
     
         dateView.layer.cornerRadius = 10
-        dateView.backgroundColor = .yellow
+        dateView.backgroundColor = .clear
+        dateView.addBorder(width: 1, color: .lightGray)
         
         dateView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
