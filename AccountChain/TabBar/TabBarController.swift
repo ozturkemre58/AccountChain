@@ -11,7 +11,7 @@ class TabBarController: UITabBarController {
 
     let homeVC = HomeViewController()
     let newCardVC = NewCardViewController()
-    let passwordGeneratorVC = CardDetailViewController()
+    let passwordGeneratorVC = PasswordGeneratorViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
