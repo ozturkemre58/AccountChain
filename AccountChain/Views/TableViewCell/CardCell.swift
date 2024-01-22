@@ -85,9 +85,6 @@ class CardCell: UITableViewCell {
     
     func configure(viewModel: CardModel?) {
         self.title.text = viewModel?.cardTitle ?? ""
-        self.email.text = viewModel?.cardEmail ?? ""
-        self.username.text = viewModel?.cardUsername ?? ""
-        self.password.text = viewModel?.cardPassword ?? ""
         self.cardId = viewModel?.cardId
     }
 }
