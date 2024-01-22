@@ -38,6 +38,8 @@ class CardDetailViewController: UIViewController {
     var dateView = UIView()
     var dateLabel = UILabel()
     
+    var updateInfoButton = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,9 +112,9 @@ class CardDetailViewController: UIViewController {
         
         bodyView.addSubview(detailTopView)
         detailTopView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+            make.right.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(10)
             make.height.equalToSuperview().multipliedBy(0.75)
         }
         detailTopView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .base : .lightGray
@@ -199,13 +201,25 @@ class CardDetailViewController: UIViewController {
         passwordView.addBorder(width: 1, color: .orange)
         passwordView.layer.cornerRadius = 10
         
+        detailTopView.addSubview(updateInfoButton)
+        updateInfoButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordView.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.height.equalToSuperview().multipliedBy(0.175)
+        }
+        
+        updateInfoButton.backgroundColor = .orange
+        updateInfoButton.setTitle("Update", for: .normal)
+        updateInfoButton.layer.cornerRadius = 10
+        
         //date
         detailTopView.addSubview(dateView)
         dateView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.equalTo(headView.snp.height).multipliedBy(0.50)
+            make.height.equalToSuperview().multipliedBy(0.1)
         }
     
         dateView.layer.cornerRadius = 10
