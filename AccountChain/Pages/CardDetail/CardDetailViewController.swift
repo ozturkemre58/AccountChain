@@ -41,10 +41,24 @@ class CardDetailViewController: UIViewController {
     var updateInfoButton = UIButton()
     
     
+    var viewModel: CardDetailViewModel
+    
+    
+    init(viewModel: CardDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareView()
+        configView()
     }
     
     func prepareView() {
@@ -242,5 +256,13 @@ class CardDetailViewController: UIViewController {
         descriptionLabel.textColor = .lightGray
         dateLabel.font = .systemFont(ofSize: 16)
         dateLabel.text = "11.10.2024"
+    }
+    
+    func configView() {
+        var item: CardModel = self.viewModel.card
+        self.titleLabel.text = item.cardTitle
+        self.emailField.text = item.cardEmail
+        self.usernameField.text = item.cardUsername
+        self.passwordField.text = item.cardPassword
     }
 }
