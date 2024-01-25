@@ -19,6 +19,7 @@
 		C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B12B2F44620059A700 /* HomeViewModel.swift */; };
 		C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B32B2F45B70059A700 /* ConstantManager.swift */; };
 		C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B52B2F48A20059A700 /* CardModel.swift */; };
+		C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */; };
 		C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A61612B30637700150E8A /* AuthenticationViewModel.swift */; };
 		C35A61642B3079C200150E8A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C35A61632B3079C200150E8A /* Colors.xcassets */; };
 		C36DF2402B2D214000F33AEF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF23F2B2D214000F33AEF /* GoogleSignIn */; };
@@ -105,6 +106,7 @@
 		C317B6B12B2F44620059A700 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C317B6B32B2F45B70059A700 /* ConstantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantManager.swift; sourceTree = "<group>"; };
 		C317B6B52B2F48A20059A700 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewModel.swift; sourceTree = "<group>"; };
 		C35A61612B30637700150E8A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		C35A61632B3079C200150E8A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountChain.entitlements; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				258185192B586D58009ABEE1 /* CardDetailViewController.swift */,
+				C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */,
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
 				C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */,
+				C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */,
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
 				2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,

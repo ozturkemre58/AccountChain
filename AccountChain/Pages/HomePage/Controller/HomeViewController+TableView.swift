@@ -49,7 +49,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as! CardCell
-        tableView.reloadData()
+        let card = self.viewModel.cardData[indexPath.row]
+        self.openDetail(card: card)
     }
 }

@@ -96,5 +96,15 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func openDetail(card: CardModel) {
+        let cardDetailViewModel = CardDetailViewModel(card: card)
+        let cardDetailVC = CardDetailViewController(viewModel: cardDetailViewModel)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(cardDetailVC, animated: true)
+        }
+        
+    }
 
 }
