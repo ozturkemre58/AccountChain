@@ -88,12 +88,6 @@ class PasswordGeneratorViewController: UIViewController {
     
     @objc func generateButtonTap() {
         self.passwordLabel.text = self.viewModel.generatePassword()
-        do {
-            try Auth.auth().signOut()
-            
-        } catch let error {
-            print("Çıkış işlemi başarısız. Hata: \(error.localizedDescription)")
-        }
     }
     
     @objc func copyToBoard() {
