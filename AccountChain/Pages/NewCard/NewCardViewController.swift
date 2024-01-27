@@ -72,6 +72,26 @@ class NewCardViewController: UIViewController {
             make.width.equalTo(120)
             make.height.equalTo(40)
         }
+        
+        //createPassword
+        let createPasswordButton = UIButton(type: .system)
+        createPasswordButton.tintColor = .base
+        createPasswordButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+        createPasswordButton.addTarget(self, action: #selector(createPasswordButtonTapped), for: .touchUpInside)
+
+        let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonContainerView.addSubview(createPasswordButton)
+
+        createPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createPasswordButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
+            createPasswordButton.trailingAnchor.constraint(equalTo: buttonContainerView.trailingAnchor, constant: -8),
+            createPasswordButton.topAnchor.constraint(equalTo: buttonContainerView.topAnchor, constant: 8),
+            createPasswordButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
+        ])
+
+        cardPassword.rightView = buttonContainerView
+        cardPassword.rightViewMode = .always
     }
     
     func configView() {
@@ -141,6 +161,10 @@ class NewCardViewController: UIViewController {
 
         let formattedDate = dateFormatter.string(from: currentDate)
         return formattedDate
+    }
+    
+    @objc func createPasswordButtonTapped() {
+            print("button tapped")
     }
     
     @objc func createCardAction() {
