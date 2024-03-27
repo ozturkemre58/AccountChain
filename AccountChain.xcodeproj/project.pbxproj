@@ -13,6 +13,8 @@
 		256904A22B3CC65100CF44D9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A12B3CC65100CF44D9 /* SnapKit */; };
 		256904A42B3CC65100CF44D9 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 256904A32B3CC65100CF44D9 /* SnapKit-Dynamic */; };
 		2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258185192B586D58009ABEE1 /* CardDetailViewController.swift */; };
+		25C2E7712BB3EFAB005BEE47 /* UIFontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C2E7702BB3EFAB005BEE47 /* UIFontExt.swift */; };
+		25C2E7732BB3FEF4005BEE47 /* VCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C2E7722BB3FEF4005BEE47 /* VCPreview.swift */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
 		C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */; };
@@ -100,6 +102,8 @@
 		256062AF2B31835A00E67C9D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		256062B12B32D35C00E67C9D /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		258185192B586D58009ABEE1 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		25C2E7702BB3EFAB005BEE47 /* UIFontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExt.swift; sourceTree = "<group>"; };
+		25C2E7722BB3FEF4005BEE47 /* VCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
 		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				C3824DE22B2CFA270014ADF3 /* UIButtonExt.swift */,
 				C3C30C652B2E238900F18AA4 /* NSObjectExt.swift */,
 				256062B12B32D35C00E67C9D /* UITextFieldExt.swift */,
+				25C2E7702BB3EFAB005BEE47 /* UIFontExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				C3A007F02B2CBE7A009AD543 /* Views */,
 				C3A007CB2B2CB7D7009AD543 /* Info.plist */,
 				C3C30C692B2E32EC00F18AA4 /* GoogleService-Info.plist */,
+				25C2E7722BB3FEF4005BEE47 /* VCPreview.swift */,
 			);
 			path = AccountChain;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */,
 				C3F021A42B4B533A00037352 /* DefaultTextField.swift in Sources */,
 				C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */,
+				25C2E7732BB3FEF4005BEE47 /* VCPreview.swift in Sources */,
 				C3824DE32B2CFA270014ADF3 /* UIButtonExt.swift in Sources */,
 				C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */,
 				C3C0F3CC2B3A149F004A9527 /* KeychainManager.swift in Sources */,
@@ -636,6 +643,7 @@
 				C3824DDF2B2CF94E0014ADF3 /* ColorExt.swift in Sources */,
 				C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */,
 				C3F021A22B4B1E5100037352 /* SignUpViewModel.swift in Sources */,
+				25C2E7712BB3EFAB005BEE47 /* UIFontExt.swift in Sources */,
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
 				256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */,
 				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,

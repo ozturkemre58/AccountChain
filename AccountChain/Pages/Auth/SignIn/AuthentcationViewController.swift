@@ -10,19 +10,24 @@ import SnapKit
 
 class AuthentcationViewController: UIViewController {
     
-    var imageView = UIImageView()
+    var infoView = UIView()
     var welcomeLabel = UILabel()
-    var bottomView = UIView()
+    var infoLabel = UILabel()
+    
+    var customInputView = UIView()
+    var emailLabel = UILabel()
     var emailField = UITextField()
+    var passwordLabel = UILabel()
     var passwordField = UITextField()
-    var signUpActionButton = UIButton()
-    var signInActionButton = DefaultButton()
-    var seperatorView = UIView()
+    
+    var actionView = UIView()
+    var signInWithAppleButton = UIButton()
+    var signInActionButton = UIButton()
     var resetPasswordLabel = UILabel()
     var registerActionLabel = UILabel()
     
     let viewModel: AuthenticationViewModel = AuthenticationViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,137 +37,185 @@ class AuthentcationViewController: UIViewController {
     
    
     func prepareView() {
-        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+        view.backgroundColor = .white
         
-        view.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(75)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(150)
-            make.width.equalTo(150)
+        //infoView
+        view.addSubview(infoView)
+        infoView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.20)
         }
-        
-        view.addSubview(bottomView)
-        bottomView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.55)
-            make.left.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
-        view.addSubview(welcomeLabel)
+
+        infoView.addSubview(welcomeLabel)
         welcomeLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(bottomView.snp.top).offset(-10)
-            make.centerX.equalToSuperview()
+            make.centerY.equalTo(infoView)
+            make.centerX.equalTo(infoView)
         }
         
-        bottomView.addSubview(emailField)
+        infoView.addSubview(infoLabel)
+        infoLabel.snp.makeConstraints { make in
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(5)
+            make.centerX.equalTo(infoView)
+        }
+       
+        
+        //inputView
+        view.addSubview(customInputView)
+        customInputView.snp.makeConstraints { make in
+            make.top.equalTo(infoView.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.25)
+        }
+        
+        customInputView.addSubview(emailLabel)
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(customInputView.snp.top)
+            make.left.equalTo(customInputView).offset(20)
+            make.height.equalTo(customInputView).multipliedBy(0.10)
+        }
+        
+        
+        //emailField
+        customInputView.addSubview(emailField)
         emailField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.top.equalTo(emailLabel.snp.bottom).offset(10)
+            make.left.equalTo(customInputView).offset(20)
+            make.right.equalTo(customInputView).offset(-20)
+            make.height.equalTo(customInputView).multipliedBy(0.25)
+        }
+       
+        
+        //passwordLabel
+        customInputView.addSubview(passwordLabel)
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailField.snp.bottom).offset(20)
+            make.left.equalTo(customInputView).offset(20)
+            make.height.equalTo(customInputView).multipliedBy(0.10)
         }
         
-        bottomView.addSubview(passwordField)
+        //passwordField
+        customInputView.addSubview(passwordField)
         passwordField.snp.makeConstraints { make in
-            make.top.equalTo(emailField.snp.bottom).offset(10)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(10)
+            make.left.equalTo(customInputView).offset(20)
+            make.right.equalTo(customInputView).offset(-20)
+            make.height.equalTo(customInputView).multipliedBy(0.25)
+        }
+       
+        //actionView
+        view.addSubview(actionView)
+        actionView.snp.makeConstraints { make in
+            make.top.equalTo(customInputView.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.25) 
         }
         
-        bottomView.addSubview(signInActionButton)
+        //signInButton
+        actionView.addSubview(signInActionButton)
         signInActionButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordField.snp.bottom).offset(40)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.top.equalTo(actionView.snp.top).offset(20)
+            make.left.equalTo(customInputView).offset(20)
+            make.right.equalTo(customInputView).offset(-20)
+            make.height.equalTo(customInputView).multipliedBy(0.25)
         }
-        
-        bottomView.addSubview(seperatorView)
-        seperatorView.snp.makeConstraints { make in
+    
+    
+        //signInWithApple
+        actionView.addSubview(signInWithAppleButton)
+        signInWithAppleButton.snp.makeConstraints { make in
             make.top.equalTo(signInActionButton.snp.bottom).offset(15)
-            make.left.equalToSuperview().offset(100)
-            make.right.equalToSuperview().offset(-100)
-            make.height.equalTo(2)
-            
+            make.left.equalTo(customInputView).offset(20)
+            make.right.equalTo(customInputView).offset(-20)
+            make.height.equalTo(customInputView).multipliedBy(0.25)
         }
+
         
-        bottomView.addSubview(resetPasswordLabel)
-        resetPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(seperatorView.snp.bottom).offset(15)
-            make.centerX.equalToSuperview()
-        }
-        
-        bottomView.addSubview(registerActionLabel)
+        //register action
+        view.addSubview(registerActionLabel)
         registerActionLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-30)
+            make.top.equalTo(actionView.snp.bottom).offset(-10)
             make.centerX.equalToSuperview()
         }
     }
     
     func configView() {
-        //bottomView
-        self.bottomView.backgroundColor = .base
-        self.bottomView.layer.cornerRadius = 35
-        bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        //seperatorView
-        seperatorView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+        //infoView
+        welcomeLabel.text = "Sign In"
+        welcomeLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
         
-        //imageView
-        imageView.image = UIImage(named: "welcome_key_icon")
+        //emailLabel
+        emailLabel.text = "Email"
+        emailLabel.font = UIFont.customFont(font: .helvetica, type: .regular, size: 16)
+        
         //emailField
-        emailField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
-        emailField.addBorder(width: 1, color: .lightGray)
-        emailField.layer.cornerRadius = 15
-        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+        emailField.placeholder = "Enter your email"
+        emailField.borderStyle = .roundedRect
+        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         emailField.leftViewMode = .always
-        emailField.placeholder = "Email"
         emailField.keyboardType = .emailAddress
         emailField.delegate = self
         
+        //passwordLabel
+        passwordLabel.text = "Password"
+        passwordLabel.font = UIFont.customFont(font: .helvetica, type: .regular, size: 16)
+        
         //passwordField
-        passwordField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
-        passwordField.addBorder(width: 1, color: .lightGray)
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
-        passwordField.leftViewMode = .always
-        passwordField.placeholder = "Password"
-        passwordField.layer.cornerRadius = 15
-        passwordField.delegate = self
+        passwordField.placeholder = "Enter your password"
+        passwordField.borderStyle = .roundedRect
+        passwordField.isSecureTextEntry = true
+        passwordField.rightViewMode = .always
+        let createPasswordButton = UIButton(type: .system)
+        createPasswordButton.tintColor = .systemGray4
+        createPasswordButton.setImage(UIImage(named: "eye_on_icon"), for: .normal)
+        createPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchUpInside)
+        let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonContainerView.addSubview(createPasswordButton)
+
+        createPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createPasswordButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
+            createPasswordButton.trailingAnchor.constraint(equalTo: buttonContainerView.trailingAnchor, constant: -8),
+            createPasswordButton.topAnchor.constraint(equalTo: buttonContainerView.topAnchor, constant: 8),
+            createPasswordButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
+        ])
+        passwordField.rightView = buttonContainerView
+        
         //signInButton
-        signInActionButton.layer.cornerRadius = 15
         signInActionButton.setTitle("Sign In", for: .normal)
-        signInActionButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
-        let darkTheme = traitCollection.userInterfaceStyle == .dark ? true : false
-        if darkTheme {
-            signInActionButton.darkTheme = true
-        } else {
-            signInActionButton.lightTheme = true
-        }
+        signInActionButton.layer.cornerRadius = 5
+        signInActionButton.backgroundColor = .systemGray
+        
+        //signInWithApple
+        signInWithAppleButton.setImage(UIImage(named: "appleLogo"), for: .normal)
+        signInWithAppleButton.setTitle("Continue with Apple", for: .normal)
+        signInWithAppleButton.setTitleColor(.black, for: .normal)
+        signInWithAppleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 
-        //labels
-        resetPasswordLabel.text = "Forgot Password"
-        resetPasswordLabel.textColor = .whiteBlack
+        signInWithAppleButton.backgroundColor = .white
+        signInWithAppleButton.layer.cornerRadius = 5
+        signInWithAppleButton.layer.borderWidth = 1
+        signInWithAppleButton.layer.borderColor = UIColor.systemGray4.cgColor
 
+        let imageInset: CGFloat = 30
+        signInWithAppleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -imageInset, bottom: 0, right: 0)
         
         //registerLabel
         registerActionLabel.text = "Don't have an Account? Sign Up"
-        registerActionLabel.textColor = .whiteBlack
+        registerActionLabel.textColor = .systemGray4
         let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
         let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
-        attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signUpRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: signUpRange)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signUpRange)
         registerActionLabel.attributedText = attributedString
         registerActionLabel.isUserInteractionEnabled = true
         let registerGesture = UITapGestureRecognizer(target: self, action: #selector(signUpGesture))
         registerActionLabel.addGestureRecognizer(registerGesture)
 
-        //welcomeLabel
-        welcomeLabel.text = "Log in to get started."
-        welcomeLabel.font = UIFont.systemFont(ofSize: 16)
-        welcomeLabel.textColor = .gray
     }
     
     @objc func signInAction() {
@@ -171,6 +224,12 @@ class AuthentcationViewController: UIViewController {
                 self?.presentTabBar()
             }
         }
+    }
+    
+    @objc func showPassword() {
+        if self.passwordField.isSecureTextEntry {
+            self.passwordField.isSecureTextEntry = false
+        } else { self.passwordField.isSecureTextEntry = true }
     }
     
     @objc func signUpGesture() {

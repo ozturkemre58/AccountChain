@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftUI
 
 class SignUpViewController: UIViewController {
     
@@ -224,5 +225,11 @@ extension SignUpViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+}
+
+struct ViewController: PreviewProvider {
+    static var previews: some View {
+        VCPreview { SignUpViewController() }
     }
 }
