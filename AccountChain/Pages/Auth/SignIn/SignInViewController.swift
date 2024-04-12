@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import SwiftUI
 
-class AuthentcationViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     var infoView = UIView()
     var welcomeLabel = UILabel()
@@ -26,7 +27,7 @@ class AuthentcationViewController: UIViewController {
     var resetPasswordLabel = UILabel()
     var registerActionLabel = UILabel()
     
-    let viewModel: AuthenticationViewModel = AuthenticationViewModel()
+    let viewModel: SignInViewModel = SignInViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,7 +210,7 @@ class AuthentcationViewController: UIViewController {
         registerActionLabel.textColor = .systemGray4
         let attributedString = NSMutableAttributedString(string: registerActionLabel.text!)
         let signUpRange = (registerActionLabel.text! as NSString).range(of: "Sign Up")
-        attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: signUpRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: signUpRange)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signUpRange)
         registerActionLabel.attributedText = attributedString
         registerActionLabel.isUserInteractionEnabled = true
@@ -249,10 +250,12 @@ class AuthentcationViewController: UIViewController {
     }
 }
 
-extension AuthentcationViewController: UITextFieldDelegate {
+extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         return true
     }
 }
+
+

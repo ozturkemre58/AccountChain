@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if currentUser != nil {
             window.rootViewController = TabBarController()
             ConstantManager.shared.dbKey = currentUser?.uid ?? ""
-        } else { window.rootViewController = AuthentcationViewController() }
+        } else { window.rootViewController = SignInViewController() }
         window.makeKeyAndVisible()
         self.window = window
     }

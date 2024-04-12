@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class AuthenticationViewModel {
+class SignInViewModel {
     
     func signInAction(email: String?, password: String?, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email ?? "", password: password ?? "") { (result, error) in

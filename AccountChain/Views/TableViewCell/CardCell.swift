@@ -10,21 +10,11 @@ import SnapKit
 class CardCell: UITableViewCell {
     
     var topView = UIView()
+    var rightImageView = UIImageView()
     var headerView = UIView()
-    var detailView = UIView()
-    var emailView = UIView()
-    var usernameView = UIView()
-    var passwordView = UIView()
-    
+    var iconView = UIImageView()
     var title = UILabel()
     var email = UILabel()
-    var username = UILabel()
-    var password = UILabel()
-    
-    var emailCopyButton = UIButton()
-    var usernameCopyButton = UIButton()
-    var passwordCopyButton = UIButton()
-    var showPasswordButton = UIButton()
     
     var cardId: String?
     
@@ -42,49 +32,83 @@ class CardCell: UITableViewCell {
     func configView() {
         
         contentView.backgroundColor = .clear
-        //topView
-        topView.backgroundColor = .baseBorder
-       //( topView.addBorder(width: 1.0, color: UIColor(hex: "3066BE") ?? .blue)
-        topView.layer.borderWidth = 1.0
-        topView.layer.cornerRadius = 10
+        
+        topView.addBorder(width: 1, color: .systemGray3)
+        topView.layer.cornerRadius = 5
         
         contentView.addSubview(topView)
         topView.snp.makeConstraints { make in
             make.top.equalTo(contentView.safeAreaLayoutGuide).offset(4)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).offset(-4)
-            make.left.equalToSuperview().offset(0)
-            make.right.equalToSuperview().offset(0)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(60)
         }
+
         
+        topView.addSubview(iconView)
+        iconView.snp.makeConstraints { make in
+            make.top.equalTo(topView.snp.top).offset(10)
+            make.bottom.equalTo(topView.snp.bottom).offset(-10)
+            make.left.equalTo(topView.snp.left).offset(10)
+  
+        }
+        iconView.contentMode = .scaleAspectFit
         
+        topView.addSubview(rightImageView)
+        rightImageView.snp.makeConstraints { make in
+            make.top.equalTo(topView.snp.top).offset(20)
+            make.bottom.equalTo(topView.snp.bottom).offset(-20)
+            make.right.equalTo(topView.snp.right).offset(-20)
+            make.height.equalTo(20)
+            make.width.equalTo(20)
+        }
+        rightImageView.contentMode = .scaleAspectFit
+        rightImageView.image = UIImage(named: "right_arrow")
         //headerView
-        headerView.backgroundColor = .clear
         topView.addSubview(headerView)
         
         headerView.snp.makeConstraints { make in
-            make.centerY.equalTo(topView)
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
-            make.height.equalTo(30)
+            make.top.equalTo(topView.snp.top).offset(10)
+            make.bottom.equalTo(topView.snp.bottom).offset(-10)
+            make.left.equalTo(iconView.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-20)
+            
         }
         
         //titleLabel
-        title.textColor = .white
-        title.font = UIFont.boldSystemFont(ofSize: 20)
+        title.textColor = .black
+        title.font = UIFont.boldSystemFont(ofSize: 18)
 
         title.text = "Title"
         headerView.addSubview(title)
         
         title.snp.makeConstraints { make in
-            make.centerY.equalTo(headerView)
+            make.top.equalTo(headerView.snp.top)
             make.left.equalToSuperview()
-            make.height.equalTo(24)
+            make.height.equalTo(18)
         }
+        
+        //emailLabel
+        email.textColor = .systemGray3
+        email.font = UIFont.customFont(font: .helvetica, type: .regular, size: 12)
+        
+        headerView.addSubview(email)
+        email.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(5)
+            make.left.equalToSuperview()
+            make.height.equalTo(12)
+        }
+        
+
     }
     
     func configure(viewModel: CardModel?) {
         self.title.text = viewModel?.cardTitle ?? ""
+        self.email.text = viewModel?.cardEmail ?? ""
         self.cardId = viewModel?.cardId
+        var iconName = viewModel?.iconName ?? "linkedin_icon"
+        self.iconView.image =  UIImage(named: "\(iconName)")
     }
 }
+

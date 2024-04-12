@@ -11,10 +11,10 @@ import SwiftUI
 
 class SignUpViewController: UIViewController {
     
-    var emailField = DefaultTextField()
-    var usernameField = DefaultTextField()
-    var passwordField = DefaultTextField()
-    var phoneField = DefaultTextField()
+    var emailField = UITextField()
+    var usernameField = UITextField()
+    var passwordField = UITextField()
+    var phoneField = UITextField()
     var welcomeLabel = UILabel()
     var infoLabel = UILabel()
     var phoneNumberInfo = UILabel()
@@ -22,7 +22,9 @@ class SignUpViewController: UIViewController {
     var usernameInfo = UILabel()
     var passwordInfo = UILabel()
     var signInLabel = UILabel()
-    var createAccountButton = DefaultButton()
+    var createAccountButton = UIButton()
+    var signInWithAppleButton = UIButton()
+
     
     let viewModel: SignUpViewModel = SignUpViewModel()
     
@@ -35,18 +37,18 @@ class SignUpViewController: UIViewController {
     
     func prepareView() {
         
-        view.backgroundColor = .base
+        view.backgroundColor = .white
         
         view.addSubview(welcomeLabel)
         welcomeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(25)
-            make.left.equalToSuperview().offset(15)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
         }
         
         view.addSubview(infoLabel)
         infoLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
-            make.left.equalToSuperview().offset(15)
         }
         
         view.addSubview(phoneNumberInfo)
@@ -113,6 +115,14 @@ class SignUpViewController: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.075)
         }
         
+        view.addSubview(signInWithAppleButton)
+        signInWithAppleButton.snp.makeConstraints { make in
+            make.top.equalTo(createAccountButton.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalToSuperview().multipliedBy(0.075)
+        }
+        signInWithAppleButton.backgroundColor = .red
         view.addSubview(signInLabel)
         signInLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -123,76 +133,107 @@ class SignUpViewController: UIViewController {
     func configView() {
         
         //welcomeLabel
-        welcomeLabel.text = "Welcome"
+        welcomeLabel.text = "Sign Up"
         welcomeLabel.font = .boldSystemFont(ofSize: 26)
-        welcomeLabel.textColor = .white
+        welcomeLabel.textColor = .systemBlue
         
         //infoLabel
         infoLabel.text = "Enter Your Details To Sign Up"
-        infoLabel.textColor = .white
+        infoLabel.textColor = .gray
         
         //phoneInfoLabel
         phoneNumberInfo.text = "Phone Number"
-        phoneNumberInfo.textColor = .white
         //phoneField
-        phoneField.backgroundColor = .whiteBlack
+        phoneField.backgroundColor = .white
         phoneField.placeholder = "Enter Your Phone Number"
-        phoneField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+        phoneField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         phoneField.leftViewMode = .always
         phoneField.layer.cornerRadius = 5
         phoneField.keyboardType = .phonePad
+        phoneField.borderStyle = .roundedRect
         phoneField.delegate = self
         
         //emailFieldInfo
         emailInfo.text = "Email"
-        emailInfo.textColor = .white
+        
         //emailField
-        emailField.backgroundColor = .whiteBlack
         emailField.placeholder = "Enter Your Email"
-        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+       
+        // emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
         emailField.leftViewMode = .always
         emailField.layer.cornerRadius = 5
+        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         emailField.keyboardType = .emailAddress
+        emailField.borderStyle = .roundedRect
         emailField.delegate = self
         
         //usernameInfo
         usernameInfo.text = "Username"
-        usernameInfo.textColor = .white
+
         //usernameField
         usernameField.backgroundColor = .whiteBlack
         usernameField.placeholder = "Enter Your Username"
-        usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+        usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         usernameField.leftViewMode = .always
+        usernameField.borderStyle = .roundedRect
         usernameField.layer.cornerRadius = 5
         usernameField.delegate = self
         
         //passwordInfo
         passwordInfo.text = "Password"
-        passwordInfo.textColor = .white
         //passwordField
         passwordField.backgroundColor = .whiteBlack
         passwordField.placeholder = "Enter Your Password"
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         passwordField.leftViewMode = .always
         passwordField.layer.cornerRadius = 5
+        passwordField.borderStyle = .roundedRect
         passwordField.delegate = self
         
+        passwordField.isSecureTextEntry = true
+        passwordField.rightViewMode = .always
+        let createPasswordButton = UIButton(type: .system)
+        createPasswordButton.tintColor = .systemGray4
+        createPasswordButton.setImage(UIImage(named: "eye_on_icon"), for: .normal)
+        createPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchUpInside)
+        let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonContainerView.addSubview(createPasswordButton)
+
+        createPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createPasswordButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
+            createPasswordButton.trailingAnchor.constraint(equalTo: buttonContainerView.trailingAnchor, constant: -8),
+            createPasswordButton.topAnchor.constraint(equalTo: buttonContainerView.topAnchor, constant: 8),
+            createPasswordButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
+        ])
+        passwordField.rightView = buttonContainerView
+        
+        
         //createAccountButton
-        createAccountButton.setTitle("Create Account", for: .normal)
+        createAccountButton.setTitle("Sign Up", for: .normal)
         createAccountButton.layer.cornerRadius = 5
         createAccountButton.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
-        let darkTheme = traitCollection.userInterfaceStyle == .dark ? true : false
-        if darkTheme {
-            createAccountButton.darkTheme = true
-        } else {
-            createAccountButton.lightTheme = true
-        }
+        createAccountButton.backgroundColor = .systemBlue
+        
+        //signInApple
+        signInWithAppleButton.setImage(UIImage(named: "appleLogo"), for: .normal)
+        signInWithAppleButton.setTitle("Continue with Apple", for: .normal)
+        signInWithAppleButton.setTitleColor(.black, for: .normal)
+        signInWithAppleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+
+        signInWithAppleButton.backgroundColor = .white
+        signInWithAppleButton.layer.cornerRadius = 5
+        signInWithAppleButton.layer.borderWidth = 1
+        signInWithAppleButton.layer.borderColor = UIColor.systemGray4.cgColor
+
+        let imageInset: CGFloat = 30
+        signInWithAppleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -imageInset, bottom: 0, right: 0)
         //signInLabel
-        signInLabel.textColor = .whiteBlack
+        signInLabel.textColor = .gray
         signInLabel.text = "Already Have An Account? Sign In"
         let attributedString = NSMutableAttributedString(string: signInLabel.text!)
         let signInRange = (signInLabel.text! as NSString).range(of: "Sign In")
-        attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: signInRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: signInRange)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: signInRange)
         signInLabel.attributedText = attributedString
         signInLabel.isUserInteractionEnabled = true
@@ -210,6 +251,13 @@ class SignUpViewController: UIViewController {
                 self?.presentTabBar()
             }
         }
+    }
+    
+
+    @objc func showPassword() {
+        if self.passwordField.isSecureTextEntry {
+            self.passwordField.isSecureTextEntry = false
+        } else { self.passwordField.isSecureTextEntry = true }
     }
     
     func presentTabBar() {

@@ -7,19 +7,20 @@
 
 import UIKit
 import Firebase
+import SwiftUI
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
-    
-    
-    @IBOutlet weak var searchView: UIView!
-    @IBOutlet weak var searchField: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    var headerView = UIView()
+    var headerLabel = UILabel()
+    var searchView = UIView()
+    var searchField = UITextField()
+    var tableView = UITableView()
     
     let viewModel: HomeViewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        prepareView()
         configView()
     }
     
@@ -27,25 +28,109 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         loadData()
     }
     
+    func prepareView() {
+        view.backgroundColor = .white
+
+        view.addSubview(headerView)
+        headerView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.1)
+        }
+
+        headerView.addSubview(headerLabel)
+        headerLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(headerView.snp.bottom).offset(-15)
+            make.left.equalTo(headerView.snp.left).offset(20)
+        }
+        
+        view.addSubview(searchView)
+        searchView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom)
+            make.left.equalToSuperview().offset(23)
+            make.right.equalToSuperview().offset(-23)
+            make.height.equalToSuperview().multipliedBy(0.05)
+        }
+        searchView.backgroundColor = UIColor(hex: "EAEAEA")
+        searchView.layer.cornerRadius = 5
+        
+        searchView.addSubview(searchField)
+        searchField.snp.makeConstraints { make in
+            make.top.equalTo(searchView.snp.top)
+            make.left.equalTo(searchView.snp.left)
+            make.right.equalTo(searchView.snp.right)
+            make.bottom.equalTo(searchView.snp.bottom)
+        }
+
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchView.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview()
+        }
+        tableView.showsVerticalScrollIndicator = false
+    }
+    
     func configView() {
+        //headerLabel
+        headerLabel.text = "Kartlarım"
+        headerLabel.textColor = .systemBlue
+        headerLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
+
         
         //searchField
         self.searchField.delegate = self
         self.searchField.enablesReturnKeyAutomatically = true
         self.searchField.leftViewMode = .always
-        
-        //radius
-        tableView.layer.cornerRadius = 10
-        searchView.layer.cornerRadius = 15
-        
-        //border
-        self.searchView.layer.borderWidth = 2.0
-        self.searchView.layer.borderColor = UIColor(named:"base_button_color")?.cgColor
-        
+        self.searchField.rightViewMode = .always
+        searchField.placeholder = "Kart Ara"
+
+        //searchfieldLeftView
+        let searchImageView = UIImageView()
+        searchImageView.tintColor = .systemGray4
+        searchImageView.image = UIImage(named: "search_gray_icon")
+
+        let imageViewContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        imageViewContainerView.addSubview(searchImageView)
+
+        searchImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            searchImageView.leadingAnchor.constraint(equalTo: imageViewContainerView.leadingAnchor, constant: 4),
+            searchImageView.trailingAnchor.constraint(equalTo: imageViewContainerView.trailingAnchor, constant: -4),
+            searchImageView.topAnchor.constraint(equalTo: imageViewContainerView.topAnchor, constant: 4),
+            searchImageView.bottomAnchor.constraint(equalTo: imageViewContainerView.bottomAnchor, constant: -4)
+        ])
+        searchField.leftView = imageViewContainerView
+
+        //searchFieldRightView
+        let microphoneButton = UIButton(type: .system)
+        microphoneButton.tintColor = .systemGray2
+        microphoneButton.setImage(UIImage(named: "microphone_icon"), for: .normal)
+       // microphoneButton.addTarget(self, action: #selector(microphoneTapped), for: .touchUpInside)
+
+        let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonContainerView.addSubview(microphoneButton)
+
+        microphoneButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            microphoneButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
+            microphoneButton.trailingAnchor.constraint(equalTo: buttonContainerView.trailingAnchor, constant: -8),
+            microphoneButton.topAnchor.constraint(equalTo: buttonContainerView.topAnchor, constant: 8),
+            microphoneButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
+        ])
+        searchField.rightView = buttonContainerView
+
         //gestureRecognizer
         let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
         self.searchView.addGestureRecognizer(searchViewGesture)
         
+
+        //tableView
+        tableView.layer.cornerRadius = 5
+
+      
         setupView()
         loadData()
     }

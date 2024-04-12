@@ -87,9 +87,19 @@ class PasswordGeneratorViewController: UIViewController {
     }
     
     @objc func generateButtonTap() {
+        signOut()
         self.passwordLabel.text = self.viewModel.generatePassword()
     }
-    
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            // Kullanıcı başarıyla çıkış yaptı, burada gerekli ek işlemleri yapabilirsiniz
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+
     @objc func copyToBoard() {
         let pasteboard = UIPasteboard.general
         pasteboard.string = self.passwordLabel.text

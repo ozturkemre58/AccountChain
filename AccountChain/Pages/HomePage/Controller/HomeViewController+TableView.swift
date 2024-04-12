@@ -42,7 +42,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseIdentifier, for: indexPath) as! CardCell
-
+        cell.selectionStyle = .none
         let item = viewModel.cardData[indexPath.row]
         cell.configure(viewModel: item)
         return cell

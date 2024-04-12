@@ -14,7 +14,7 @@ class CardDetailViewController: UIViewController {
     
     var headView = UIView()
     
-    var backButton = DefaultButton()
+    var backButton = UIButton()
     var titleLabel = UILabel()
     var removeCardImage = UIImageView()
     
@@ -57,12 +57,23 @@ class CardDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         prepareView()
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     func prepareView() {
-        view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+        view.backgroundColor = .white
         
         view.addSubview(topView)
         topView.snp.makeConstraints { make in
@@ -80,7 +91,7 @@ class CardDetailViewController: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.15)
         }
                 
-       /* headView.addSubview(backButton)
+       headView.addSubview(backButton)
         backButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.width.equalTo(headView.snp.height).multipliedBy(0.50)
@@ -88,9 +99,9 @@ class CardDetailViewController: UIViewController {
             make.left.equalToSuperview().offset(10)
         }
         
-        backButton.backgroundColor = .base
         backButton.layer.cornerRadius = 7.5
-        */
+        backButton.setImage(UIImage(named: "left_arrow"), for: .normal)
+        
         headView.addSubview(removeCardImage)
         removeCardImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -106,14 +117,12 @@ class CardDetailViewController: UIViewController {
         headView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(10)
-            make.right.equalTo(removeCardImage.snp.left).offset(-10)
+            make.centerX.equalToSuperview()
         }
         
-        titleLabel.text = "Hepsiburada"
-        titleLabel.font = .boldSystemFont(ofSize: 24)
+        titleLabel.font = .boldSystemFont(ofSize: 20)
         titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.textColor = .base
+        titleLabel.textColor = .systemBlue
         
         topView.addSubview(bodyView)
         bodyView.snp.makeConstraints { make in
@@ -129,133 +138,102 @@ class CardDetailViewController: UIViewController {
             make.top.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(10)
-            make.height.equalToSuperview().multipliedBy(0.75)
+            make.bottom.equalToSuperview().offset(-10)
         }
-        detailTopView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .base : .lightGray
         detailTopView.layer.cornerRadius = 10
-        
-        //emailView
-        detailTopView.addSubview(emailView)
-        emailView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(10)
-            make.height.equalToSuperview().multipliedBy(0.175)
-        }
-        
-        emailView.addSubview(emailLabel)
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(7.5)
-            make.left.equalToSuperview().offset(15)
-        }
-        emailLabel.text = "email"
-        
-        emailView.addSubview(emailField)
-        emailField.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
-        }
-        
-        emailField.font = .boldSystemFont(ofSize: 20)
-        emailView.addBorder(width: 1, color: .orange)
-        emailView.layer.cornerRadius = 10
-        
-        //username
-        detailTopView.addSubview(usernameView)
-        usernameView.snp.makeConstraints { make in
-            make.top.equalTo(emailView.snp.bottom).offset(15)
-            make.right.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(10)
-            make.height.equalToSuperview().multipliedBy(0.175)
-        }
-        
-        usernameView.addSubview(usernameLabel)
+
+        detailTopView.addSubview(usernameLabel)
         usernameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(7.5)
-            make.left.equalToSuperview().offset(15)
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
-        usernameLabel.text = "email"
+        usernameLabel.text = "User Name"
+        usernameLabel.font = UIFont.customFont(font: .helvetica, type: .regular, size: 16)
+        usernameLabel.textColor = UIColor(hex: "545454")
         
-        usernameView.addSubview(usernameField)
+        detailTopView.addSubview(usernameField)
         usernameField.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalTo(usernameLabel.snp.bottom).offset(10)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(50)
         }
         
-        usernameField.font = .boldSystemFont(ofSize: 20)
-        usernameView.addBorder(width: 1, color: .orange)
-        usernameView.layer.cornerRadius = 10
-        
-        //Password
-        detailTopView.addSubview(passwordView)
-        passwordView.snp.makeConstraints { make in
-            make.top.equalTo(usernameView.snp.bottom).offset(15)
-            make.right.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(10)
-            make.height.equalToSuperview().multipliedBy(0.175)
+        usernameField.borderStyle = .roundedRect
+        usernameField.leftViewMode = .always
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: usernameField.frame.height))
+        usernameField.leftView = paddingView
+
+        detailTopView.addSubview(emailLabel)
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(usernameField.snp.bottom).offset(20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
         
-        passwordView.addSubview(passwordLabel)
+        emailLabel.text = "Email"
+        emailLabel.font = UIFont.customFont(font: .helvetica, type: .regular, size: 16)
+        emailLabel.textColor = UIColor(hex: "545454")
+        
+        detailTopView.addSubview(emailField)
+        
+        emailField.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(10)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(50)
+        }
+       
+        emailField.borderStyle = .roundedRect
+        emailField.leftViewMode = .always
+        let emailPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: emailField.frame.height))
+        emailField.leftView = emailPaddingView
+        
+        detailTopView.addSubview(passwordLabel)
         passwordLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(7.5)
-            make.left.equalToSuperview().offset(15)
+            make.top.equalTo(emailField.snp.bottom).offset(20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
-        passwordLabel.text = "password"
         
-        passwordView.addSubview(passwordField)
+        passwordLabel.text = "Password"
+        passwordLabel.font = UIFont.customFont(font: .helvetica, type: .regular, size: 16)
+        passwordLabel.textColor = UIColor(hex: "545454")
+        
+        detailTopView.addSubview(passwordField)
+        
         passwordField.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(10)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(50)
         }
+       
+        passwordField.isSecureTextEntry = true
+        passwordField.borderStyle = .roundedRect
+        passwordField.leftViewMode = .always
+        passwordField.rightViewMode = .always
+        let passwordFieldPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: passwordField.frame.height))
+        emailField.leftView = passwordFieldPaddingView
         
-        passwordField.font = .boldSystemFont(ofSize: 20)
-        passwordView.addBorder(width: 1, color: .orange)
-        passwordView.layer.cornerRadius = 10
-        
-        detailTopView.addSubview(updateInfoButton)
-        updateInfoButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordView.snp.bottom).offset(15)
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.height.equalToSuperview().multipliedBy(0.175)
-        }
-        
-        updateInfoButton.backgroundColor = .orange
-        updateInfoButton.setTitle("Update", for: .normal)
-        updateInfoButton.layer.cornerRadius = 10
-        
-        //date
-        detailTopView.addSubview(dateView)
-        dateView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
-            make.height.equalToSuperview().multipliedBy(0.1)
-        }
-    
-        dateView.layer.cornerRadius = 10
-        dateView.backgroundColor = .clear
-        dateView.addBorder(width: 1, color: .lightGray)
-        
-        dateView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-3)
-            make.centerX.equalToSuperview()
-        }
-        
-        dateView.addSubview(descriptionLabel)
-        descriptionLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(dateLabel.snp.top).offset(-3)
-            make.centerX.equalToSuperview()
-        }
-        descriptionLabel.font = .systemFont(ofSize: 12)
-        descriptionLabel.text = "Change Date"
-        descriptionLabel.textColor = .lightGray
-        dateLabel.font = .systemFont(ofSize: 16)
-        dateLabel.text = "11.10.2024"
+        passwordField.isSecureTextEntry = true
+        passwordField.rightViewMode = .always
+        let showPasswordButton = UIButton(type: .system)
+        showPasswordButton.tintColor = .systemGray4
+        showPasswordButton.setImage(UIImage(named: "eye_on_icon"), for: .normal)
+        showPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchUpInside)
+        let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonContainerView.addSubview(showPasswordButton)
+
+        showPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            showPasswordButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
+            showPasswordButton.trailingAnchor.constraint(equalTo: buttonContainerView.trailingAnchor, constant: -8),
+            showPasswordButton.topAnchor.constraint(equalTo: buttonContainerView.topAnchor, constant: 8),
+            showPasswordButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
+        ])
+        passwordField.rightView = buttonContainerView
     }
     
     func configView() {
@@ -264,5 +242,15 @@ class CardDetailViewController: UIViewController {
         self.emailField.text = item.cardEmail
         self.usernameField.text = item.cardUsername
         self.passwordField.text = item.cardPassword
+    }
+    
+    @objc func showPassword() {
+        if self.passwordField.isSecureTextEntry {
+            self.passwordField.isSecureTextEntry = false
+        } else { self.passwordField.isSecureTextEntry = true }
+    }
+    
+    @objc func backAction() {
+        //backAction
     }
 }

@@ -22,7 +22,7 @@
 		C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B32B2F45B70059A700 /* ConstantManager.swift */; };
 		C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6B52B2F48A20059A700 /* CardModel.swift */; };
 		C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */; };
-		C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A61612B30637700150E8A /* AuthenticationViewModel.swift */; };
+		C35A61622B30637700150E8A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A61612B30637700150E8A /* SignInViewModel.swift */; };
 		C35A61642B3079C200150E8A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C35A61632B3079C200150E8A /* Colors.xcassets */; };
 		C36DF2402B2D214000F33AEF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF23F2B2D214000F33AEF /* GoogleSignIn */; };
 		C36DF2422B2D214000F33AEF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C36DF2412B2D214000F33AEF /* GoogleSignInSwift */; };
@@ -40,9 +40,8 @@
 		C3A007DF2B2CB7D8009AD543 /* AccountChainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007DE2B2CB7D8009AD543 /* AccountChainUITests.swift */; };
 		C3A007E12B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007E02B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift */; };
 		C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007F22B2CC133009AD543 /* HomeViewController.swift */; };
-		C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A007F32B2CC133009AD543 /* HomeViewController.xib */; };
 		C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */; };
-		C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */; };
+		C3A008092B2CDB44009AD543 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A008072B2CDB44009AD543 /* SignInViewController.swift */; };
 		C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A79D602B4043F200CA0D05 /* MessageManager.swift */; };
 		C3C0F3CC2B3A149F004A9527 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */; };
 		C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C30C612B2E0C4600F18AA4 /* CardCell.swift */; };
@@ -111,7 +110,7 @@
 		C317B6B32B2F45B70059A700 /* ConstantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantManager.swift; sourceTree = "<group>"; };
 		C317B6B52B2F48A20059A700 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewModel.swift; sourceTree = "<group>"; };
-		C35A61612B30637700150E8A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		C35A61612B30637700150E8A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C35A61632B3079C200150E8A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C36DF23D2B2D1E3D00F33AEF /* AccountChain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountChain.entitlements; sourceTree = "<group>"; };
 		C375C6E22B3EF065007F344B /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -132,9 +131,8 @@
 		C3A007DE2B2CB7D8009AD543 /* AccountChainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChainUITests.swift; sourceTree = "<group>"; };
 		C3A007E02B2CB7D8009AD543 /* AccountChainUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChainUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C3A007F22B2CC133009AD543 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		C3A007F32B2CC133009AD543 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		C3A007F82B2CC1E9009AD543 /* PasswordGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorViewController.swift; sourceTree = "<group>"; };
-		C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentcationViewController.swift; sourceTree = "<group>"; };
+		C3A008072B2CDB44009AD543 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C3A79D602B4043F200CA0D05 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C3C30C612B2E0C4600F18AA4 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				C3A007F22B2CC133009AD543 /* HomeViewController.swift */,
-				C3A007F32B2CC133009AD543 /* HomeViewController.xib */,
 				C3C30C672B2E251400F18AA4 /* HomeViewController+TableView.swift */,
 			);
 			path = Controller;
@@ -439,8 +436,8 @@
 		C3F0219D2B4B193A00037352 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				C3A008072B2CDB44009AD543 /* AuthentcationViewController.swift */,
-				C35A61612B30637700150E8A /* AuthenticationViewModel.swift */,
+				C3A008072B2CDB44009AD543 /* SignInViewController.swift */,
+				C35A61612B30637700150E8A /* SignInViewModel.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -601,7 +598,6 @@
 				C35A61642B3079C200150E8A /* Colors.xcassets in Resources */,
 				C3A007CA2B2CB7D7009AD543 /* LaunchScreen.storyboard in Resources */,
 				C3A007C72B2CB7D7009AD543 /* Assets.xcassets in Resources */,
-				C3A007F52B2CC133009AD543 /* HomeViewController.xib in Resources */,
 				C3C30C6A2B2E32EC00F18AA4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,7 +625,7 @@
 			files = (
 				C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */,
 				C3824DE12B2CFA0F0014ADF3 /* UIViewExt.swift in Sources */,
-				C35A61622B30637700150E8A /* AuthenticationViewModel.swift in Sources */,
+				C35A61622B30637700150E8A /* SignInViewModel.swift in Sources */,
 				C3F021A42B4B533A00037352 /* DefaultTextField.swift in Sources */,
 				C317B6B42B2F45B70059A700 /* ConstantManager.swift in Sources */,
 				25C2E7732BB3FEF4005BEE47 /* VCPreview.swift in Sources */,
@@ -655,7 +651,7 @@
 				C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */,
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
 				2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */,
-				C3A008092B2CDB44009AD543 /* AuthentcationViewController.swift in Sources */,
+				C3A008092B2CDB44009AD543 /* SignInViewController.swift in Sources */,
 				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
 				C3F021A02B4B197600037352 /* SignUpViewController.swift in Sources */,
 				C3A007F42B2CC133009AD543 /* HomeViewController.swift in Sources */,
