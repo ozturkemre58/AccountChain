@@ -109,7 +109,6 @@ class HomeViewModel {
             
             self?.speechRecognizer.startSpeechToText(completion: { [weak self] text in
                 if let text = text, !text.isEmpty {
-                    print("EMREEEEE |\(text)")
                     self?.delegate?.searchWithVoice(searchText: text)
                 }
                 
