@@ -30,11 +30,8 @@ class TabBarController: UITabBarController {
         
         setViewControllers([nav1, nav2, nav3], animated: true)
         tabBar.isTranslucent = false
-        
-        let backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
-    
-        tabBar.backgroundColor = backgroundColor
-        tabBar.tintColor = .tabBar
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .systemBlue
        // tabBar.tintColor = UIColor(named: "tab_bar_color")
         
     }

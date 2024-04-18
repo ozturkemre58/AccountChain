@@ -42,7 +42,7 @@ class DefaultButton: UIButton {
     
     private func commonInit() {
         
-        self.backgroundColor = .baseButton
+        self.backgroundColor = .white
         self.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
         
         self.addTarget(self, action: #selector(touchDown), for: .touchDown)
@@ -57,13 +57,13 @@ class DefaultButton: UIButton {
     private func configureTouchUpInside() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
           if self.isLightTheme {
-              self.backgroundColor = .whiteBlack
-              self.setTitleColor(.base, for: .normal)
+              self.backgroundColor = .white
+              self.setTitleColor(.systemBlue, for: .normal)
           } else if self.isDarkTheme {
               self.backgroundColor = .black
               self.setTitleColor(.white, for: .normal)
           } else {
-              self.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+              self.backgroundColor = .white
             self.setTitleColor(.blue, for: .normal)
           }
         }
@@ -71,7 +71,7 @@ class DefaultButton: UIButton {
     
     private func configureTouchDownButtonStyle() {
         self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.6)
-        self.setTitleColor(.baseButton, for: .normal)
+        self.setTitleColor(.systemBlue, for: .normal)
     }
     
     

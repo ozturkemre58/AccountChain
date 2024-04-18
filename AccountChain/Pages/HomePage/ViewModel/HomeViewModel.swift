@@ -48,7 +48,7 @@ class HomeViewModel {
                 let username = data["username"] as? String
                 let password = data["password"] as? String
                 
-                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""))
+                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""), keychainKey: password ?? "")
                 self.cardData.append(model)
             }
             self.cardSearchData = self.cardData
@@ -73,7 +73,7 @@ class HomeViewModel {
     
     func deleteItemAtIndexPath(_ indexPath: IndexPath, completion: @escaping (Bool) -> Void) {
         let documentIDToDelete = self.cardData[indexPath.row].cardId ?? ""
-        
+        KeychainManager.shared.removeDataInKeychain(forKey: self.cardData[indexPath.row].cardPassword ?? "")
         self.removeCard(documentID: documentIDToDelete) { success in
             if success {
                 self.cardData.removeAll()

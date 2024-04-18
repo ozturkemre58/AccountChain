@@ -100,7 +100,7 @@ class CardCell: UITableViewCell {
             make.height.equalTo(12)
         }
         
-
+        rightImageView.isHidden = true
     }
     
     func configure(viewModel: CardModel?) {

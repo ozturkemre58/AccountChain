@@ -14,4 +14,5 @@ struct CardModel {
     var cardUsername: String?
     var cardPassword: String?
     var iconName: String?
+    var keychainKey: String?
 }

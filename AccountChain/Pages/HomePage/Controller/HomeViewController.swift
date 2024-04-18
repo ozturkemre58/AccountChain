@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     var searchView = UIView()
     var searchField = UITextField()
     var tableView = UITableView()
+    var createCartButton = UIButton()
     
     let viewModel: HomeViewModel = HomeViewModel()
     
@@ -22,6 +23,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         prepareView()
         configView()
+        let navigationController = UINavigationController(rootViewController: self)
+        UIApplication.shared.windows.first?.rootViewController = navigationController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,7 +34,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     func prepareView() {
         view.backgroundColor = .white
-
+        
         view.addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
@@ -38,7 +42,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             make.right.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.1)
         }
-
+        
         headerView.addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
             make.bottom.equalTo(headerView.snp.bottom).offset(-15)
@@ -62,7 +66,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(searchView.snp.right)
             make.bottom.equalTo(searchView.snp.bottom)
         }
-
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchView.snp.bottom).offset(15)
@@ -71,6 +75,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             make.bottom.equalToSuperview()
         }
         tableView.showsVerticalScrollIndicator = false
+        
+        view.addSubview(createCartButton)
+        createCartButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-40)
+            make.right.equalToSuperview().offset(-40)
+            make.width.equalTo(68)
+            make.height.equalTo(68)
+        }
     }
     
     func configView() {
@@ -78,7 +90,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         headerLabel.text = "Kartlarım"
         headerLabel.textColor = .systemBlue
         headerLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
-
+        
         
         //searchField
         self.searchField.delegate = self
@@ -86,15 +98,15 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         self.searchField.leftViewMode = .always
         self.searchField.rightViewMode = .always
         searchField.placeholder = "Kart Ara"
-
+        
         //searchfieldLeftView
         let searchImageView = UIImageView()
         searchImageView.tintColor = .systemGray4
         searchImageView.image = UIImage(named: "search_gray_icon")
-
+        
         let imageViewContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         imageViewContainerView.addSubview(searchImageView)
-
+        
         searchImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             searchImageView.leadingAnchor.constraint(equalTo: imageViewContainerView.leadingAnchor, constant: 4),
@@ -103,16 +115,16 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             searchImageView.bottomAnchor.constraint(equalTo: imageViewContainerView.bottomAnchor, constant: -4)
         ])
         searchField.leftView = imageViewContainerView
-
+        
         //searchFieldRightView
         let microphoneButton = UIButton(type: .system)
         microphoneButton.tintColor = .systemGray2
         microphoneButton.setImage(UIImage(named: "microphone_icon"), for: .normal)
-       // microphoneButton.addTarget(self, action: #selector(microphoneTapped), for: .touchUpInside)
-
+        // microphoneButton.addTarget(self, action: #selector(microphoneTapped), for: .touchUpInside)
+        
         let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         buttonContainerView.addSubview(microphoneButton)
-
+        
         microphoneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             microphoneButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
@@ -121,16 +133,37 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             microphoneButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
         ])
         searchField.rightView = buttonContainerView
-
+        
         //gestureRecognizer
         let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
         self.searchView.addGestureRecognizer(searchViewGesture)
         
-
+        
         //tableView
         tableView.layer.cornerRadius = 5
-
-      
+        
+        //CreateCartButton
+        createCartButton.layer.cornerRadius = 34
+        createCartButton.backgroundColor = .systemBlue
+        createCartButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+        
+        
+        if let originalImage = UIImage(named: "plus-circle") {
+            let newSize = CGSize(width: 44, height: 44)
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+            originalImage.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            if let resizedImage = resizedImage {
+                let tintedImage = resizedImage.withRenderingMode(.alwaysTemplate)
+                createCartButton.setImage(tintedImage, for: .normal)
+                createCartButton.tintColor = UIColor.white
+            }
+        }
+        createCartButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
+        createCartButton.clipsToBounds = true
+        
         setupView()
         loadData()
     }
@@ -149,10 +182,10 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Bu öğeyi silmek istediğinizden emin misiniz?", message: nil, preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction(title: "Sil", style: .destructive) { action in
-             self.viewModel.deleteItemAtIndexPath(indexPath) { success in
-                 if success { 
-                     self.loadData()
-                 }
+            self.viewModel.deleteItemAtIndexPath(indexPath) { success in
+                if success {
+                    self.loadData()
+                }
             }
         }
         
@@ -179,6 +212,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 showDeleteMenu(at: indexPath)
             }
+        }
+    }
+    
+    @objc func createCartAction() {
+        let createCartVC = NewCardViewController()
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(createCartVC, animated: true)
         }
     }
     

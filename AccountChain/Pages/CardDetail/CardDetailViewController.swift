@@ -13,7 +13,7 @@ class CardDetailViewController: UIViewController {
     var topView = UIView()
     
     var headView = UIView()
-    
+    var removeCartLabel = UILabel()
     var backButton = UIButton()
     var titleLabel = UILabel()
     var removeCardImage = UIImageView()
@@ -33,17 +33,15 @@ class CardDetailViewController: UIViewController {
     
     var passwordView = UIView()
     var passwordField = UITextField()
+    var confirmPasswordField = UITextField()
     var passwordLabel = UILabel()
-    
-    var dateView = UIView()
-    var dateLabel = UILabel()
-    
     var updateInfoButton = UIButton()
     
     
     var viewModel: CardDetailViewModel
-    
-    
+    var cartId: String = ""
+    var cartPassword: String?
+
     init(viewModel: CardDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -60,6 +58,7 @@ class CardDetailViewController: UIViewController {
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         prepareView()
         configView()
+        addGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,17 +101,16 @@ class CardDetailViewController: UIViewController {
         backButton.layer.cornerRadius = 7.5
         backButton.setImage(UIImage(named: "left_arrow"), for: .normal)
         
-        headView.addSubview(removeCardImage)
-        removeCardImage.snp.makeConstraints { make in
+        headView.addSubview(removeCartLabel)
+        removeCartLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.width.equalTo(25)
-            make.height.equalTo(25)
             make.right.equalToSuperview().offset(-10)
         }
         
-        removeCardImage.backgroundColor = .clear
-        
-        removeCardImage.image = UIImage(named: "remove_icon")
+        removeCartLabel.textColor = .red
+        removeCartLabel.text = "Delete"
+        removeCartLabel.font = UIFont.customFont(font: .helvetica, type: .medium, size: 14)
+        removeCartLabel.isUserInteractionEnabled = true
         
         headView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
@@ -217,7 +215,6 @@ class CardDetailViewController: UIViewController {
         let passwordFieldPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: passwordField.frame.height))
         emailField.leftView = passwordFieldPaddingView
         
-        passwordField.isSecureTextEntry = true
         passwordField.rightViewMode = .always
         let showPasswordButton = UIButton(type: .system)
         showPasswordButton.tintColor = .systemGray4
@@ -234,14 +231,60 @@ class CardDetailViewController: UIViewController {
             showPasswordButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
         ])
         passwordField.rightView = buttonContainerView
+        
+        detailTopView.addSubview(confirmPasswordField)
+        confirmPasswordField.snp.makeConstraints { make in
+            make.top.equalTo(passwordField.snp.bottom).offset(10)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(50)
+        }
+
+        confirmPasswordField.borderStyle = .roundedRect
+        confirmPasswordField.placeholder = "Confirm Password"
+        confirmPasswordField.delegate = self
+        confirmPasswordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        confirmPasswordField.text = ""
+        confirmPasswordField.isEnabled = true
+        confirmPasswordField.isUserInteractionEnabled = true
+
+        detailTopView.addSubview(updateInfoButton)
+        updateInfoButton.snp.makeConstraints { make in
+            make.top.equalTo(confirmPasswordField.snp.bottom).offset(25)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+        updateInfoButton.layer.cornerRadius = 5
+        updateInfoButton.backgroundColor = .systemBlue
+        updateInfoButton.setTitle("Update", for: .normal)
+        updateInfoButton.addTarget(self, action: #selector(updateCart), for: .touchUpInside)
     }
     
     func configView() {
-        var item: CardModel = self.viewModel.card
+        updateInfoButton.isEnabled = false
+        updateInfoButton.backgroundColor = .systemGray4
+        emailField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        usernameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        let item: CardModel = self.viewModel.card
         self.titleLabel.text = item.cardTitle
         self.emailField.text = item.cardEmail
         self.usernameField.text = item.cardUsername
         self.passwordField.text = item.cardPassword
+        self.cartId = item.cardId ?? ""
+    }
+    
+    func currentDate() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+
+        let formattedDate = dateFormatter.string(from: currentDate)
+        return formattedDate
     }
     
     @objc func showPassword() {
@@ -250,7 +293,78 @@ class CardDetailViewController: UIViewController {
         } else { self.passwordField.isSecureTextEntry = true }
     }
     
-    @objc func backAction() {
-        //backAction
+    @objc func updateCart() {
+        let emailText = emailField.text ?? ""
+        let usernameText = usernameField.text ?? ""
+        let passwordText = passwordField.text ?? ""
+        let confirmPasswordText = confirmPasswordField.text ?? ""
+        
+        guard !emailText.isEmpty, !usernameText.isEmpty, !passwordText.isEmpty, !confirmPasswordText.isEmpty else {
+            
+            return
+        }
+        
+        guard passwordText == confirmPasswordText else {
+            return
+        }
+        let data = ["email": emailText, "username": usernameText, "date": currentDate()]
+        viewModel.updateKeychainData(data: self.cartPassword ?? "")
+        viewModel.sendUpdateCard(cartId: self.cartId, updatedData: data) { [weak self] success in
+            if success {
+                print("Update successful")
+            } else {
+                print("Update failed")
+            }
+        }
     }
+    
+    func addGestures() {
+        let removeGesture = UITapGestureRecognizer(target: self, action: #selector(removeCart))
+        self.removeCartLabel.addGestureRecognizer(removeGesture)
+    }
+    
+    func dismissAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func removeCart() {
+        self.viewModel.removeCard() { success in
+            if success {
+                self.dismissAction()
+            }
+        }
+    }
+    
+    @objc func backAction() {
+        dismissAction()
+    }
+    
+}
+
+extension CardDetailViewController: UITextFieldDelegate {
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField == confirmPasswordField {
+            cartPassword = textField.text
+        }
+        
+        let textFields: [UITextField] = [emailField, usernameField, passwordField, confirmPasswordField]
+        
+        let isAnyEmpty = textFields.contains { $0.text?.isEmpty ?? true }
+        if isAnyEmpty {
+            updateInfoButton.isEnabled = false
+            updateInfoButton.backgroundColor = .systemGray4
+            return
+        }
+        
+        if passwordField.text != confirmPasswordField.text {
+            updateInfoButton.isEnabled = false
+            updateInfoButton.backgroundColor = .systemGray4
+            return
+        }
+        
+        updateInfoButton.isEnabled = true
+        updateInfoButton.backgroundColor = .systemBlue
+    }
+
+
 }

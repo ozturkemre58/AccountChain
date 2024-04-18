@@ -189,7 +189,8 @@ class SignInViewController: UIViewController {
         //signInButton
         signInActionButton.setTitle("Sign In", for: .normal)
         signInActionButton.layer.cornerRadius = 5
-        signInActionButton.backgroundColor = .systemGray
+        signInActionButton.backgroundColor = .systemBlue
+        signInActionButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
         
         //signInWithApple
         signInWithAppleButton.setImage(UIImage(named: "appleLogo"), for: .normal)
@@ -222,7 +223,7 @@ class SignInViewController: UIViewController {
     @objc func signInAction() {
         viewModel.signInAction(email: self.emailField.text ?? "", password: self.passwordField.text ?? "") { [weak self] success in
             if success {
-                self?.presentTabBar()
+                self?.presentHome()
             }
         }
     }
@@ -237,8 +238,8 @@ class SignInViewController: UIViewController {
         presentSignUp()
     }
     
-    func presentTabBar() {
-        let vc = TabBarController()
+    func presentHome() {
+        let vc = HomeViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

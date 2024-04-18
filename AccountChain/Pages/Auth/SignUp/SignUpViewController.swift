@@ -171,7 +171,7 @@ class SignUpViewController: UIViewController {
         usernameInfo.text = "Username"
 
         //usernameField
-        usernameField.backgroundColor = .whiteBlack
+        usernameField.backgroundColor = .white
         usernameField.placeholder = "Enter Your Username"
         usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         usernameField.leftViewMode = .always
@@ -182,7 +182,7 @@ class SignUpViewController: UIViewController {
         //passwordInfo
         passwordInfo.text = "Password"
         //passwordField
-        passwordField.backgroundColor = .whiteBlack
+        passwordField.backgroundColor = .white
         passwordField.placeholder = "Enter Your Password"
         passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
         passwordField.leftViewMode = .always

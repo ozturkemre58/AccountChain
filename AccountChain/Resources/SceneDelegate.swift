@@ -16,10 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        if UITraitCollection.current.userInterfaceStyle == .dark {
+            window?.overrideUserInterfaceStyle = .light
+        }
+        
         let currentUser = Auth.auth().currentUser
         let window = UIWindow(windowScene: windowScene)
         if currentUser != nil {
-            window.rootViewController = TabBarController()
+            window.rootViewController = HomeViewController()
             ConstantManager.shared.dbKey = currentUser?.uid ?? ""
         } else { window.rootViewController = SignInViewController() }
         window.makeKeyAndVisible()

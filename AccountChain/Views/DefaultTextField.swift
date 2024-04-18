@@ -29,7 +29,7 @@ class DefaultTextField: UITextField {
 
     private func configureAppearance() {
         borderStyle = .none
-        backgroundColor = .whiteBlack
+        backgroundColor = .white
     }
 
     private func applyCornerRadius() {

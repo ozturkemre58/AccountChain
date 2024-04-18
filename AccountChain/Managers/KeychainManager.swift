@@ -22,4 +22,14 @@ class KeychainManager {
         let keychain = KeychainSwift()
         return keychain.get(key)
     }
+    
+    func updateDataInKeychain(data: String, forKey key: String) {
+        let keychain = KeychainSwift()
+        keychain.set(data, forKey: key)
+    }
+    
+    func removeDataInKeychain(forKey key: String) {
+        let keychain = KeychainSwift()
+        keychain.delete(key)
+    }
 }
