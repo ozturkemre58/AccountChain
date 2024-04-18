@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Sesli mesaj göndermek için mikrofona erişim gereklidir.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Ses tanıma özelliğini kullanarak konuşmayı metne dönüştürmek için mikrofona erişim gereklidir.</string>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>

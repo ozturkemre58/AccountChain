@@ -8,11 +8,22 @@
 import Foundation
 import Firebase
 
+protocol HomeViewModelDelegate: AnyObject {
+    func searchWithVoice(searchText: String)
+}
+
 class HomeViewModel {
     
     var cardData: [CardModel] = []
     var cardSearchData: [CardModel] = []
     var cellDataSource: Observable<[CardModel]> = Observable(nil)
+    weak var delegate: HomeViewModelDelegate?
+    
+    private lazy var speechRecognizer: ESpeechRecognizer = {
+        let recognizer = ESpeechRecognizer()
+        return recognizer
+    }()
+    
     
     func numberOfSections() -> Int {
         1
@@ -85,9 +96,27 @@ class HomeViewModel {
             }
         }
     }
-
+    
     func fetchPassword(key: String?) -> String {
         return KeychainManager.shared.fetchDataFromKeychain(forKey: key ?? "") ?? ""
+    }
+    
+    func startVoiceSearch() {
+        self.speechRecognizer.requestAuthorization(completion: { [weak self] authorized in
+            if !authorized {
+                return
+            }
+            
+            self?.speechRecognizer.startSpeechToText(completion: { [weak self] text in
+                if let text = text, !text.isEmpty {
+                    print("EMREEEEE |\(text)")
+                    self?.delegate?.searchWithVoice(searchText: text)
+                }
+                
+                self?.speechRecognizer.stopSpeechToText()
+
+            })
+        })
     }
 }
 

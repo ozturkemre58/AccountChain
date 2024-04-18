@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import SwiftUI
 
-class HomeViewController: UIViewController, UITextFieldDelegate {
+class HomeViewController: UIViewController, HomeViewModelDelegate {
     var headerView = UIView()
     var headerLabel = UILabel()
     var searchView = UIView()
@@ -124,7 +124,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         
         let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         buttonContainerView.addSubview(microphoneButton)
-        
+        microphoneButton.addTarget(self, action: #selector(startSearch), for: .touchUpInside)
         microphoneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             microphoneButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
@@ -138,7 +138,10 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
         self.searchView.addGestureRecognizer(searchViewGesture)
         
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+           view.addGestureRecognizer(tapGesture)
+       
+       
         //tableView
         tableView.layer.cornerRadius = 5
         
@@ -164,14 +167,31 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         createCartButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
         createCartButton.clipsToBounds = true
         
+        
+        viewModel.delegate = self
         setupView()
         loadData()
+    }
+    
+    func searchWithVoice(searchText: String) {
+        DispatchQueue.main.async {
+            self.searchField.text = searchText
+            _ = self.textField(self.searchField, shouldChangeCharactersIn: NSRange(location: 0, length: self.searchField.text?.count ?? 0), replacementString: searchText)
+        }
     }
     
     @objc func enableSearchField() {
         self.searchField.becomeFirstResponder()
     }
     
+    @objc func startSearch() {
+        self.viewModel.startVoiceSearch()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
@@ -233,4 +253,21 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         
     }
 
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
+            return true
+        }
+        if textField == searchField {
+            if searchText.isEmpty {
+                viewModel.cardData = viewModel.cardSearchData
+            } else {
+                viewModel.cardData = viewModel.cardSearchData.filter { $0.cardTitle?.lowercased().contains(searchText.lowercased()) ?? false }
+            }
+            tableView.reloadData()
+        }
+        return true
+    }
 }
