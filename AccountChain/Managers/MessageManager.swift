@@ -100,17 +100,17 @@ class MessageManager: UIView {
     
     private func setupUIForError() {
         backgroundColor = UIColor.red.withAlphaComponent(1)
-        iconImageView.image = UIImage(named: "plus-circle")
+        iconImageView.image = UIImage(named: "")
     }
     
     private func setupUIForInfo() {
         backgroundColor = UIColor.orange.withAlphaComponent(1)
-        iconImageView.image = UIImage(named: "plus-circle")
+        iconImageView.image = UIImage(named: "")
     }
     
     private func setupUIForSuccess() {
         backgroundColor = .systemBlue
-        iconImageView.image = UIImage(named: "plus-circle")
+        iconImageView.image = UIImage(named: "")
     }
     
     private func hide() {

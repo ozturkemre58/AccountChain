@@ -51,6 +51,8 @@ class CardCell: UITableViewCell {
             make.top.equalTo(topView.snp.top).offset(10)
             make.bottom.equalTo(topView.snp.bottom).offset(-10)
             make.left.equalTo(topView.snp.left).offset(10)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
   
         }
         iconView.contentMode = .scaleAspectFit
@@ -107,8 +109,9 @@ class CardCell: UITableViewCell {
         self.title.text = viewModel?.cardTitle ?? ""
         self.email.text = viewModel?.cardEmail ?? ""
         self.cardId = viewModel?.cardId
-        var iconName = viewModel?.iconName ?? "linkedin_icon"
-        self.iconView.image =  UIImage(named: "\(iconName)")
+        var icon = viewModel?.selectedIcon ?? "card"
+        print("EMREEEE\(icon)")
+        self.iconView.image =  UIImage(named: "\(icon)")
     }
 }
 

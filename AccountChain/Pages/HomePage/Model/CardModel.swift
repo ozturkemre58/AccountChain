@@ -13,6 +13,6 @@ struct CardModel {
     var cardEmail: String?
     var cardUsername: String?
     var cardPassword: String?
-    var iconName: String?
     var keychainKey: String?
+    var selectedIcon: String?
 }

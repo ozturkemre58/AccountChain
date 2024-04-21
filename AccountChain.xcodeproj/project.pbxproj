@@ -14,6 +14,9 @@
 		25C2E7712BB3EFAB005BEE47 /* UIFontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C2E7702BB3EFAB005BEE47 /* UIFontExt.swift */; };
 		25C2E7732BB3FEF4005BEE47 /* VCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C2E7722BB3FEF4005BEE47 /* VCPreview.swift */; };
 		25C615082BC8CAD10028EE26 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25C615072BC8CAD10028EE26 /* SnapKit */; };
+		25C9C2182BD48D9500EE472F /* IconListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C9C2172BD48D9500EE472F /* IconListViewController.swift */; };
+		25C9C21B2BD4968100EE472F /* IconListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C9C21A2BD4968100EE472F /* IconListViewModel.swift */; };
+		25E0BB822BD1B9CB001A68E3 /* ESpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E0BB812BD1B9CB001A68E3 /* ESpeechRecognizer.swift */; };
 		C317B6A92B2F1E140059A700 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6A72B2F1E140059A700 /* NewCardViewController.swift */; };
 		C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AC2B2F394F0059A700 /* NetworkManager.swift */; };
 		C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */; };
@@ -102,6 +105,9 @@
 		258185192B586D58009ABEE1 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		25C2E7702BB3EFAB005BEE47 /* UIFontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExt.swift; sourceTree = "<group>"; };
 		25C2E7722BB3FEF4005BEE47 /* VCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
+		25C9C2172BD48D9500EE472F /* IconListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconListViewController.swift; sourceTree = "<group>"; };
+		25C9C21A2BD4968100EE472F /* IconListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconListViewModel.swift; sourceTree = "<group>"; };
+		25E0BB812BD1B9CB001A68E3 /* ESpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESpeechRecognizer.swift; sourceTree = "<group>"; };
 		C317B6A72B2F1E140059A700 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C317B6AC2B2F394F0059A700 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C317B6AE2B2F3A630059A700 /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
@@ -214,6 +220,15 @@
 				C32604932B5F3B1000EF54CF /* CardDetailViewModel.swift */,
 			);
 			path = CardDetail;
+			sourceTree = "<group>";
+		};
+		25C9C2192BD4964900EE472F /* IconPick */ = {
+			isa = PBXGroup;
+			children = (
+				25C9C2172BD48D9500EE472F /* IconListViewController.swift */,
+				25C9C21A2BD4968100EE472F /* IconListViewModel.swift */,
+			);
+			path = IconPick;
 			sourceTree = "<group>";
 		};
 		C317B6A62B2F1DB70059A700 /* NewCard */ = {
@@ -390,6 +405,7 @@
 				258185182B586D2D009ABEE1 /* CardDetail */,
 				C317B6A62B2F1DB70059A700 /* NewCard */,
 				C3A007FC2B2CDA52009AD543 /* Auth */,
+				25C9C2192BD4964900EE472F /* IconPick */,
 				C3A007F72B2CC194009AD543 /* PasswordGenerator */,
 				C3A007ED2B2CBE42009AD543 /* HomePage */,
 			);
@@ -427,6 +443,7 @@
 			children = (
 				C3C0F3CB2B3A149F004A9527 /* KeychainManager.swift */,
 				C3A79D602B4043F200CA0D05 /* MessageManager.swift */,
+				25E0BB812BD1B9CB001A68E3 /* ESpeechRecognizer.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -635,6 +652,7 @@
 				C3C30C682B2E251400F18AA4 /* HomeViewController+TableView.swift in Sources */,
 				C3824DDF2B2CF94E0014ADF3 /* ColorExt.swift in Sources */,
 				C3A007BE2B2CB7D7009AD543 /* AppDelegate.swift in Sources */,
+				25C9C21B2BD4968100EE472F /* IconListViewModel.swift in Sources */,
 				C3F021A22B4B1E5100037352 /* SignUpViewModel.swift in Sources */,
 				25C2E7712BB3EFAB005BEE47 /* UIFontExt.swift in Sources */,
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
@@ -643,7 +661,9 @@
 				C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */,
 				C39D530E2B35F89300B25F2A /* PasswordGeneratorViewModel.swift in Sources */,
 				C317B6AD2B2F394F0059A700 /* NetworkManager.swift in Sources */,
+				25E0BB822BD1B9CB001A68E3 /* ESpeechRecognizer.swift in Sources */,
 				C3A007C02B2CB7D7009AD543 /* SceneDelegate.swift in Sources */,
+				25C9C2182BD48D9500EE472F /* IconListViewController.swift in Sources */,
 				C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */,
 				C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */,
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
@@ -825,7 +845,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AccountChain/AccountChain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 67Z58QAU33;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountChain/Info.plist;
@@ -854,7 +874,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AccountChain/AccountChain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 67Z58QAU33;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountChain/Info.plist;

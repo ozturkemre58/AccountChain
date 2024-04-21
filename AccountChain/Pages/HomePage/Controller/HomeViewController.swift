@@ -87,7 +87,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     
     func configView() {
         //headerLabel
-        headerLabel.text = "Kartlarım"
+        headerLabel.text = "My Carts"
         headerLabel.textColor = .systemBlue
         headerLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
         
@@ -97,7 +97,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         self.searchField.enablesReturnKeyAutomatically = true
         self.searchField.leftViewMode = .always
         self.searchField.rightViewMode = .always
-        searchField.placeholder = "Kart Ara"
+        searchField.placeholder = "Search Cart"
         
         //searchfieldLeftView
         let searchImageView = UIImageView()
@@ -120,7 +120,6 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         let microphoneButton = UIButton(type: .system)
         microphoneButton.tintColor = .systemGray2
         microphoneButton.setImage(UIImage(named: "microphone_icon"), for: .normal)
-        // microphoneButton.addTarget(self, action: #selector(microphoneTapped), for: .touchUpInside)
         
         let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         buttonContainerView.addSubview(microphoneButton)
@@ -138,10 +137,6 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
         self.searchView.addGestureRecognizer(searchViewGesture)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-           view.addGestureRecognizer(tapGesture)
-       
-       
         //tableView
         tableView.layer.cornerRadius = 5
         
@@ -187,10 +182,6 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     @objc func startSearch() {
         self.viewModel.startVoiceSearch()
     }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -199,9 +190,9 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     }
     
     func showDeleteMenu(at indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Bu öğeyi silmek istediğinizden emin misiniz?", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Are you sure you want to delete this item?", message: nil, preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Sil", style: .destructive) { action in
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
             self.viewModel.deleteItemAtIndexPath(indexPath) { success in
                 if success {
                     self.loadData()
@@ -209,7 +200,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             }
         }
         
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)

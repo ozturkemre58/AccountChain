@@ -58,8 +58,9 @@ class HomeViewModel {
                 let email = data["email"] as? String
                 let username = data["username"] as? String
                 let password = data["password"] as? String
+                let selectedIcon = data["icon"] as? String
                 
-                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""), keychainKey: password ?? "")
+                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""), keychainKey: password ?? "", selectedIcon: selectedIcon ?? "")
                 self.cardData.append(model)
             }
             self.cardSearchData = self.cardData

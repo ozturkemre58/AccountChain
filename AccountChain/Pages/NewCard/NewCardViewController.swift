@@ -24,7 +24,9 @@ class NewCardViewController: UIViewController {
     var cardUsername = UITextField()
     var cardPassword =  UITextField()
     var createCardButton = UIButton()
-    
+    var iconField = UITextField()
+    let iconImageView = UIImageView()
+    var selectedIcon = "card"
     let viewModel: NewCardViewModel = NewCardViewModel()
     
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ class NewCardViewController: UIViewController {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.height.equalToSuperview().multipliedBy(0.10)
         }
         
         pageTitleView.addSubview(pageTitleLabel)
@@ -116,15 +118,28 @@ class NewCardViewController: UIViewController {
             make.height.equalTo(50)
         }
         
-        //createCardButton
-        view.addSubview(createCardButton)
-        createCardButton.snp.makeConstraints { make in
+        //IconButton
+        view.addSubview(iconField)
+        iconField.snp.makeConstraints { make in
             make.top.equalTo(cardPassword.snp.bottom).offset(35)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
         
+        //createCardButton
+        view.addSubview(createCardButton)
+        createCardButton.snp.makeConstraints { make in
+            make.top.equalTo(iconField.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(50)
+        }
+        
+        iconImageView.snp.makeConstraints { make in
+            make.width.equalTo(36)
+            make.height.equalTo(36)
+        }
         // Create the 'show password' button
         // Create the 'show password' button
         let showPasswordButton = UIButton(type: .system)
@@ -165,6 +180,44 @@ class NewCardViewController: UIViewController {
 
         cardPassword.rightView = buttonContainerView
         cardPassword.rightViewMode = .always
+        
+        
+        //iconField
+        iconImageView.tintColor = .systemGray4
+        iconImageView.image = UIImage(named: "card")
+
+        let imageViewContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageViewContainerView.addSubview(iconImageView)
+
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            iconImageView.leadingAnchor.constraint(equalTo: imageViewContainerView.leadingAnchor, constant: 8),
+            iconImageView.trailingAnchor.constraint(equalTo: imageViewContainerView.trailingAnchor, constant: -8),
+            iconImageView.topAnchor.constraint(equalTo: imageViewContainerView.topAnchor, constant: 8),
+            iconImageView.bottomAnchor.constraint(equalTo: imageViewContainerView.bottomAnchor, constant: -8)
+        ])
+        iconField.leftView = imageViewContainerView
+
+        let switchIconButton = UIButton(type: .system)
+        switchIconButton.tintColor = .systemGray2
+        switchIconButton.setImage(UIImage(named: "chevron_down"), for: .normal)
+        switchIconButton.addTarget(self, action: #selector(openIconPage), for: .touchUpInside)
+
+        let buttonIconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        buttonIconContainerView.addSubview(switchIconButton)
+
+        switchIconButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            switchIconButton.leadingAnchor.constraint(equalTo: buttonIconContainerView.leadingAnchor, constant: 8),
+            switchIconButton.trailingAnchor.constraint(equalTo: buttonIconContainerView.trailingAnchor, constant: -8),
+            switchIconButton.topAnchor.constraint(equalTo: buttonIconContainerView.topAnchor, constant: 8),
+            switchIconButton.bottomAnchor.constraint(equalTo: buttonIconContainerView.bottomAnchor, constant: -8)
+        ])
+        iconField.rightView = buttonIconContainerView
+        iconImageView.contentMode = .scaleAspectFit
+        iconField.rightViewMode = .always
+        iconField.leftViewMode = .always
+        iconField.placeholder = "Select card icon"
 
     }
     
@@ -178,7 +231,7 @@ class NewCardViewController: UIViewController {
         self.createCardButton.setTitleColor(.white, for: .normal)
         self.createCardButton.backgroundColor = .systemBlue
         self.createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
-        self.createCardButton.isEnabled = false
+        self.createCardButton.isEnabled = true
         
         //cardTitle
         self.cardTitle.delegate = self
@@ -225,6 +278,14 @@ class NewCardViewController: UIViewController {
         cardPassword.textContentType = .password
         cardPassword.textContentType = .oneTimeCode
         
+        
+        //IconButton
+        iconField.addBorder(width: 1, color: .systemGray4)
+        iconField.layer.cornerRadius = 5
+        let iconFieldTapGesture = UITapGestureRecognizer(target: self, action: #selector(openIconPage))
+        iconField.addGestureRecognizer(iconFieldTapGesture)
+        iconField.isUserInteractionEnabled = true
+
     }
     
     func clearTextFields() {
@@ -254,6 +315,16 @@ class NewCardViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func openIconPage() {
+        let vc = IconListViewController { iconModel in
+            if let data = iconModel {
+                self.iconField.text = data.iconName
+                self.iconImageView.image = UIImage(named: data.image)
+                self.selectedIcon = data.image
+            }
+        }
+        present(vc, animated: true, completion: nil)
+    }
     @objc func createPasswordButtonTapped() {
         self.cardPassword.text = viewModel.generateKey()
     }
@@ -273,7 +344,7 @@ class NewCardViewController: UIViewController {
         
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
-        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key,  "date": self.currentDate()] as [String: Any]
+        let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key,  "date": self.currentDate(), "icon": self.selectedIcon] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
@@ -286,7 +357,6 @@ class NewCardViewController: UIViewController {
 
 extension NewCardViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }
