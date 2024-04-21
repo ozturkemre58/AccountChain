@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 import SwiftUI
+import FirebaseAuth
+import AuthenticationServices
+import CryptoKit
 
 class SignInViewController: UIViewController {
     
@@ -22,12 +25,13 @@ class SignInViewController: UIViewController {
     var passwordField = UITextField()
     
     var actionView = UIView()
-    var signInWithAppleButton = UIButton()
+    var signInWithAppleButton = ASAuthorizationAppleIDButton()
     var signInActionButton = UIButton()
     var resetPasswordLabel = UILabel()
     var registerActionLabel = UILabel()
     
     let viewModel: SignInViewModel = SignInViewModel()
+    fileprivate var currentNonce: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +40,7 @@ class SignInViewController: UIViewController {
         prepareView()
     }
     
-   
+    
     func prepareView() {
         view.backgroundColor = .white
         
@@ -48,7 +52,7 @@ class SignInViewController: UIViewController {
             make.right.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.20)
         }
-
+        
         infoView.addSubview(welcomeLabel)
         welcomeLabel.snp.makeConstraints { make in
             make.centerY.equalTo(infoView)
@@ -60,7 +64,7 @@ class SignInViewController: UIViewController {
             make.top.equalTo(welcomeLabel.snp.bottom).offset(5)
             make.centerX.equalTo(infoView)
         }
-       
+        
         
         //inputView
         view.addSubview(customInputView)
@@ -87,7 +91,7 @@ class SignInViewController: UIViewController {
             make.right.equalTo(customInputView).offset(-20)
             make.height.equalTo(customInputView).multipliedBy(0.25)
         }
-       
+        
         
         //passwordLabel
         customInputView.addSubview(passwordLabel)
@@ -105,7 +109,7 @@ class SignInViewController: UIViewController {
             make.right.equalTo(customInputView).offset(-20)
             make.height.equalTo(customInputView).multipliedBy(0.25)
         }
-       
+        
         //actionView
         view.addSubview(actionView)
         actionView.snp.makeConstraints { make in
@@ -123,8 +127,8 @@ class SignInViewController: UIViewController {
             make.right.equalTo(customInputView).offset(-20)
             make.height.equalTo(customInputView).multipliedBy(0.25)
         }
-    
-    
+        
+        
         //signInWithApple
         actionView.addSubview(signInWithAppleButton)
         signInWithAppleButton.snp.makeConstraints { make in
@@ -133,7 +137,7 @@ class SignInViewController: UIViewController {
             make.right.equalTo(customInputView).offset(-20)
             make.height.equalTo(customInputView).multipliedBy(0.25)
         }
-
+        
         
         //register action
         view.addSubview(registerActionLabel)
@@ -176,7 +180,7 @@ class SignInViewController: UIViewController {
         createPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchUpInside)
         let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         buttonContainerView.addSubview(createPasswordButton)
-
+        
         createPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             createPasswordButton.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor, constant: 8),
@@ -193,18 +197,11 @@ class SignInViewController: UIViewController {
         signInActionButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
         
         //signInWithApple
-        signInWithAppleButton.setImage(UIImage(named: "appleLogo"), for: .normal)
-        signInWithAppleButton.setTitle("Continue with Apple", for: .normal)
-        signInWithAppleButton.setTitleColor(.black, for: .normal)
-        signInWithAppleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-
+        signInWithAppleButton.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
         signInWithAppleButton.backgroundColor = .white
         signInWithAppleButton.layer.cornerRadius = 5
         signInWithAppleButton.layer.borderWidth = 1
         signInWithAppleButton.layer.borderColor = UIColor.systemGray4.cgColor
-
-        let imageInset: CGFloat = 30
-        signInWithAppleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -imageInset, bottom: 0, right: 0)
         
         //registerLabel
         registerActionLabel.text = "Don't have an Account? Sign Up"
@@ -217,7 +214,7 @@ class SignInViewController: UIViewController {
         registerActionLabel.isUserInteractionEnabled = true
         let registerGesture = UITapGestureRecognizer(target: self, action: #selector(signUpGesture))
         registerActionLabel.addGestureRecognizer(registerGesture)
-
+        
     }
     
     @objc func signInAction() {
@@ -226,6 +223,53 @@ class SignInViewController: UIViewController {
                 self?.presentHome()
             }
         }
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let nonce = randomBytes.map { byte in
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
+    }
+    
+    private func sha256(_ inputData: Data) -> Data {
+        let hashedData = SHA256.hash(data: inputData)
+        return Data(hashedData)
+    }
+    
+    private func dataToHexString(_ data: Data) -> String {
+        return data.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    
+    @objc func appleSignIn() {
+        let nonce = randomNonceString()
+        self.currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let nonceData = sha256(nonce.data(using: .utf8)!)
+        let nonceString = dataToHexString(nonceData)
+        request.nonce = nonceString
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
     @objc func showPassword() {
@@ -259,4 +303,41 @@ extension SignInViewController: UITextFieldDelegate {
     }
 }
 
+extension SignInViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let token = appleIDCredential.identityToken
+            let nonce = self.currentNonce
+            
+            guard let idTokenData = token,
+                  let idTokenString = String(data: idTokenData, encoding: .utf8),
+                  let rawNonceData = nonce else {
+                return
+            }
+            let firebaseAuthCredential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                                  idToken: idTokenString,
+                                                                  rawNonce: rawNonceData)
+            
+            
+            
+            Auth.auth().signIn(with: firebaseAuthCredential) { (result, error) in
+                if let error = error {
+                    MessageManager.shared.show(message: error.localizedDescription ?? "", type: .error)
+                } else {
+                    ConstantManager.shared.dbKey = result?.user.uid ?? ""
+                    self.presentHome()
+                }
+            }
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        MessageManager.shared.show(message: error.localizedDescription ?? "", type: .error)
+    }
+}
 
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}

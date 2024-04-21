@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 import SwiftUI
+import FirebaseAuth
+import AuthenticationServices
+import CryptoKit
 
 class SignUpViewController: UIViewController {
     
@@ -23,10 +26,10 @@ class SignUpViewController: UIViewController {
     var passwordInfo = UILabel()
     var signInLabel = UILabel()
     var createAccountButton = UIButton()
-    var signInWithAppleButton = UIButton()
-
+    var signInWithAppleButton = ASAuthorizationAppleIDButton()
     
     let viewModel: SignUpViewModel = SignUpViewModel()
+    fileprivate var currentNonce: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +125,6 @@ class SignUpViewController: UIViewController {
             make.right.equalToSuperview().offset(-20)
             make.height.equalToSuperview().multipliedBy(0.075)
         }
-        signInWithAppleButton.backgroundColor = .red
         view.addSubview(signInLabel)
         signInLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -215,19 +217,6 @@ class SignUpViewController: UIViewController {
         createAccountButton.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
         createAccountButton.backgroundColor = .systemBlue
         
-        //signInApple
-        signInWithAppleButton.setImage(UIImage(named: "appleLogo"), for: .normal)
-        signInWithAppleButton.setTitle("Continue with Apple", for: .normal)
-        signInWithAppleButton.setTitleColor(.black, for: .normal)
-        signInWithAppleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-
-        signInWithAppleButton.backgroundColor = .white
-        signInWithAppleButton.layer.cornerRadius = 5
-        signInWithAppleButton.layer.borderWidth = 1
-        signInWithAppleButton.layer.borderColor = UIColor.systemGray4.cgColor
-
-        let imageInset: CGFloat = 30
-        signInWithAppleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -imageInset, bottom: 0, right: 0)
         //signInLabel
         signInLabel.textColor = .gray
         signInLabel.text = "Already Have An Account? Sign In"
@@ -239,6 +228,9 @@ class SignUpViewController: UIViewController {
         signInLabel.isUserInteractionEnabled = true
         let dismissGesture = UITapGestureRecognizer(target: self, action: #selector(closePage))
         signInLabel.addGestureRecognizer(dismissGesture)
+        
+        //signInWithApple
+        signInWithAppleButton.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
     }
     
     @objc func closePage() {
@@ -248,7 +240,7 @@ class SignUpViewController: UIViewController {
     @objc func signUpAction() {
         viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
             if success {
-                self?.presentTabBar()
+                self?.presentHome()
             }
         }
     }
@@ -260,8 +252,54 @@ class SignUpViewController: UIViewController {
         } else { self.passwordField.isSecureTextEntry = true }
     }
     
-    func presentTabBar() {
-        let vc = TabBarController()
+    @objc func appleSignIn() {
+        let nonce = randomNonceString()
+        self.currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let nonceData = sha256(nonce.data(using: .utf8)!)
+        let nonceString = dataToHexString(nonceData)
+        request.nonce = nonceString
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let nonce = randomBytes.map { byte in
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
+    }
+    
+    private func sha256(_ inputData: Data) -> Data {
+        let hashedData = SHA256.hash(data: inputData)
+        return Data(hashedData)
+    }
+    
+    private func dataToHexString(_ data: Data) -> String {
+        return data.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    func presentHome() {
+        let vc = HomeViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
@@ -273,6 +311,45 @@ extension SignUpViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension SignUpViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let token = appleIDCredential.identityToken
+            let nonce = self.currentNonce
+            
+            guard let idTokenData = token,
+                  let idTokenString = String(data: idTokenData, encoding: .utf8),
+                  let rawNonceData = nonce else {
+                return
+            }
+            let firebaseAuthCredential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                                  idToken: idTokenString,
+                                                                  rawNonce: rawNonceData)
+            
+            
+            
+            Auth.auth().signIn(with: firebaseAuthCredential) { (result, error) in
+                if let error = error {
+                    MessageManager.shared.show(message: error.localizedDescription, type: .error)
+                } else {
+                    ConstantManager.shared.dbKey = result?.user.uid ?? ""
+                    self.presentHome()
+                }
+            }
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        MessageManager.shared.show(message: error.localizedDescription, type: .error)
+    }
+}
+
+extension SignUpViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }
 
