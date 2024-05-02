@@ -159,6 +159,7 @@ class CardDetailViewController: UIViewController {
         
         usernameField.borderStyle = .roundedRect
         usernameField.leftViewMode = .always
+        addDismissButtonToKeyboard(textField: usernameField)
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: usernameField.frame.height))
         usernameField.leftView = paddingView
 
@@ -186,6 +187,7 @@ class CardDetailViewController: UIViewController {
         emailField.leftViewMode = .always
         let emailPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: emailField.frame.height))
         emailField.leftView = emailPaddingView
+        addDismissButtonToKeyboard(textField: emailField)
         
         detailTopView.addSubview(passwordLabel)
         passwordLabel.snp.makeConstraints { make in
@@ -213,6 +215,7 @@ class CardDetailViewController: UIViewController {
         passwordField.rightViewMode = .always
         let passwordFieldPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: passwordField.frame.height))
         emailField.leftView = passwordFieldPaddingView
+        addDismissButtonToKeyboard(textField: passwordField)
         
         passwordField.rightViewMode = .always
         let showPasswordButton = UIButton(type: .system)
@@ -247,6 +250,7 @@ class CardDetailViewController: UIViewController {
         confirmPasswordField.text = ""
         confirmPasswordField.isEnabled = true
         confirmPasswordField.isUserInteractionEnabled = true
+        addDismissButtonToKeyboard(textField: confirmPasswordField)
 
         detailTopView.addSubview(updateInfoButton)
         updateInfoButton.snp.makeConstraints { make in
