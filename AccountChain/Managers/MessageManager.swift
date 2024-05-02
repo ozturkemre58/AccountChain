@@ -52,14 +52,14 @@ class MessageManager: UIView {
         addSubview(iconImageView)
         addSubview(messageLabel)
         
-        iconImageView.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview().inset(10)
-            make.width.equalTo(24) // İkon boyutu
-        }
+     //   iconImageView.snp.makeConstraints { make in
+     //       make.top.left.bottom.equalToSuperview().inset(10)
+     //       make.width.equalTo(24) // İkon boyutu
+     //   }
         
         messageLabel.snp.makeConstraints { make in
-            make.left.equalTo(iconImageView.snp.right).offset(8)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
         }
     }
@@ -104,7 +104,7 @@ class MessageManager: UIView {
     }
     
     private func setupUIForInfo() {
-        backgroundColor = UIColor.orange.withAlphaComponent(1)
+        backgroundColor = UIColor.systemBlue.withAlphaComponent(1)
         iconImageView.image = UIImage(named: "")
     }
     

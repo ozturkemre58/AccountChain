@@ -110,7 +110,6 @@ class CardCell: UITableViewCell {
         self.email.text = viewModel?.cardEmail ?? ""
         self.cardId = viewModel?.cardId
         var icon = viewModel?.selectedIcon ?? "card"
-        print("EMREEEE\(icon)")
         self.iconView.image =  UIImage(named: "\(icon)")
     }
 }

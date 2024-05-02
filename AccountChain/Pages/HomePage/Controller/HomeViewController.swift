@@ -10,12 +10,15 @@ import Firebase
 import SwiftUI
 
 class HomeViewController: UIViewController, HomeViewModelDelegate {
-    var headerView = UIView()
-    var headerLabel = UILabel()
-    var searchView = UIView()
-    var searchField = UITextField()
-    var tableView = UITableView()
-    var createCartButton = UIButton()
+    let headerView = UIView()
+    let headerLabel = UILabel()
+    let searchView = UIView()
+    let searchField = UITextField()
+    let tableView = UITableView()
+    let createCartButton = UIButton()
+    let microphonIndicator = UIActivityIndicatorView()
+    let microphoneButton = UIButton(type: .system)
+
     
     let viewModel: HomeViewModel = HomeViewModel()
     
@@ -93,6 +96,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         
         
         //searchField
+        addDismissButtonToKeyboard(textField: searchField)
         self.searchField.delegate = self
         self.searchField.enablesReturnKeyAutomatically = true
         self.searchField.leftViewMode = .always
@@ -117,12 +121,15 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         searchField.leftView = imageViewContainerView
         
         //searchFieldRightView
-        let microphoneButton = UIButton(type: .system)
         microphoneButton.tintColor = .systemGray2
         microphoneButton.setImage(UIImage(named: "microphone_icon"), for: .normal)
-        
+
         let buttonContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         buttonContainerView.addSubview(microphoneButton)
+        microphoneButton.addSubview(microphonIndicator)
+        microphonIndicator.hidesWhenStopped = true
+        
+
         microphoneButton.addTarget(self, action: #selector(startSearch), for: .touchUpInside)
         microphoneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,6 +139,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             microphoneButton.bottomAnchor.constraint(equalTo: buttonContainerView.bottomAnchor, constant: -8)
         ])
         searchField.rightView = buttonContainerView
+
         
         //gestureRecognizer
         let searchViewGesture = UITapGestureRecognizer(target: self, action: #selector(enableSearchField))
@@ -165,11 +173,12 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         
         viewModel.delegate = self
         setupView()
-        loadData()
     }
     
     func searchWithVoice(searchText: String) {
         DispatchQueue.main.async {
+            self.microphoneButton.isEnabled = true
+            self.microphonIndicator.stopAnimating()
             self.searchField.text = searchText
             _ = self.textField(self.searchField, shouldChangeCharactersIn: NSRange(location: 0, length: self.searchField.text?.count ?? 0), replacementString: searchText)
         }
@@ -180,13 +189,9 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     }
     
     @objc func startSearch() {
+        self.microphoneButton.isEnabled = false
+        self.microphonIndicator.startAnimating()
         self.viewModel.startVoiceSearch()
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
     }
     
     func showDeleteMenu(at indexPath: IndexPath) {
@@ -261,4 +266,10 @@ extension HomeViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

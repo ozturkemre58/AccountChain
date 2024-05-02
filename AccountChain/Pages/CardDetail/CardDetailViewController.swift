@@ -63,12 +63,10 @@ class CardDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func prepareView() {
@@ -100,6 +98,7 @@ class CardDetailViewController: UIViewController {
         
         backButton.layer.cornerRadius = 7.5
         backButton.setImage(UIImage(named: "left_arrow"), for: .normal)
+        backButton.isHidden = true
         
         headView.addSubview(removeCartLabel)
         removeCartLabel.snp.makeConstraints { make in

@@ -230,7 +230,7 @@ class NewCardViewController: UIViewController {
         self.createCardButton.setTitle("Create", for: .normal)
         self.createCardButton.setTitleColor(.white, for: .normal)
         self.createCardButton.backgroundColor = .systemBlue
-        self.createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
+        self.createCardButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
         self.createCardButton.isEnabled = true
         
         //cardTitle
@@ -297,9 +297,7 @@ class NewCardViewController: UIViewController {
     
     func isTextFieldValid() -> Bool {
         return !(self.cardTitle.text?.isEmpty ?? true) &&
-        !(self.cardEmail.text?.isEmpty ?? true) &&
-        !(self.cardUsername.text?.isEmpty ?? true) &&
-        !(self.cardPassword.text?.isEmpty ?? true)
+        !(self.cardUsername.text?.isEmpty ?? true)
     }
     
     func currentDate() -> String {
@@ -335,12 +333,21 @@ class NewCardViewController: UIViewController {
         } else { self.cardPassword.isSecureTextEntry = true }
     }
     
-    @objc func createCardAction() {
+    @objc func createCartAction() {
         guard self.isTextFieldValid() else {
-            MessageManager.shared.show(message: "Boş alanları doldurunuz!", type: .info)
+            MessageManager.shared.show(message: "Please fill in all required fields.", type: .info)
             return
         }
         
+        guard let emailText = self.cardEmail.text, emailText.contains("@"), emailText.contains(".") else {
+            MessageManager.shared.show(message: "Invalid Email", type: .info)
+            return
+        }
+        
+        guard let passwordText = self.cardEmail.text, passwordText.count <= 8 else {
+            MessageManager.shared.show(message: "Your password is too short. Please choose a password that is at least 8 characters long.", type: .info)
+            return
+        }
         
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
@@ -349,7 +356,6 @@ class NewCardViewController: UIViewController {
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
                 self?.clearTextFields()
-                self?.tabBarController?.selectedIndex = 0
             }
         }
     }
@@ -362,9 +368,11 @@ extension NewCardViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == self.cardTitle || textField == self.cardEmail || textField == self.cardUsername || textField == self.cardPassword {
-            self.createCardButton.isEnabled =  self.isTextFieldValid()
-        }
+        
         return true
     }
 }
+
+
+//MARK: createPassword button logic 
+
