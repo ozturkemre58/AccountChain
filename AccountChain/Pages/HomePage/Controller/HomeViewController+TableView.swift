@@ -21,10 +21,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadData() {
-        viewModel.cardData.removeAll()
-        
+    
         viewModel.fetchData {
-            self.tableView.reloadData()
+            self.updateUIVisibilityBasedOnCardData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

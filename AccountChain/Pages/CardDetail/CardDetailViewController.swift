@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import LocalAuthentication
 
 class CardDetailViewController: UIViewController {
     
@@ -291,8 +292,28 @@ class CardDetailViewController: UIViewController {
     }
     
     @objc func showPassword() {
+        
         if self.passwordField.isSecureTextEntry {
-            self.passwordField.isSecureTextEntry = false
+            let context = LAContext()
+                var error: NSError?
+
+                if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                    let reason = "Identify yourself!"
+
+                    context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                        [weak self] success, authenticationError in
+
+                        DispatchQueue.main.async {
+                            if success {
+                                self?.passwordField.isSecureTextEntry = false
+                            } else {
+                                print("Fail Face ID")
+                            }
+                        }
+                    }
+                } else {
+                    // no biometry
+                }
         } else { self.passwordField.isSecureTextEntry = true }
     }
     
@@ -314,7 +335,10 @@ class CardDetailViewController: UIViewController {
         viewModel.updateKeychainData(data: self.cartPassword ?? "")
         viewModel.sendUpdateCard(cartId: self.cartId, updatedData: data) { [weak self] success in
             if success {
-                print("Update successful")
+                self?.confirmPasswordField.clearText()
+                self?.updateInfoButton.isEnabled = false
+                self?.updateInfoButton.backgroundColor = .systemGray4
+                self?.passwordField.isSecureTextEntry = true
             } else {
                 print("Update failed")
             }

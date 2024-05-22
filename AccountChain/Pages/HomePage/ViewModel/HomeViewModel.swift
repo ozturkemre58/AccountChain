@@ -36,6 +36,8 @@ class HomeViewModel {
     
     
     func fetchData(completion: @escaping () -> Void) {
+        self.cardData.removeAll()
+        self.cardSearchData.removeAll()
         let firebaseDB = Firestore.firestore()
         
         firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
@@ -88,8 +90,6 @@ class HomeViewModel {
         KeychainManager.shared.removeDataInKeychain(forKey: self.cardData[indexPath.row].cardPassword ?? "")
         self.removeCard(documentID: documentIDToDelete) { success in
             if success {
-                self.cardData.removeAll()
-                self.cardSearchData.removeAll()
                 completion(true)
             } else {
                 MessageManager.shared.show(message: "Kart Silinemedi", type: .error)

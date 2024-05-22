@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     let createCartButton = UIButton()
     let microphonIndicator = UIActivityIndicatorView()
     let microphoneButton = UIButton(type: .system)
+    let createCartButtonForEmpty = UIButton()
 
     
     let viewModel: HomeViewModel = HomeViewModel()
@@ -70,6 +71,20 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             make.bottom.equalTo(searchView.snp.bottom)
         }
         
+        view.addSubview(createCartButtonForEmpty)
+        createCartButtonForEmpty.snp.makeConstraints { make in
+            make.top.equalTo(searchView.snp.bottom).offset(24)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(60)
+        }
+        // MARK: createCartButtonForEmpty
+        createCartButtonForEmpty.setTitle("Create Cart", for: .normal)
+        createCartButtonForEmpty.setTitleColor(.white, for: .normal)
+        createCartButtonForEmpty.backgroundColor = .systemBlue
+        createCartButtonForEmpty.layer.cornerRadius = 10
+        
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchView.snp.bottom).offset(15)
@@ -86,6 +101,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             make.width.equalTo(68)
             make.height.equalTo(68)
         }
+        createCartButton.isHidden = true
     }
     
     func configView() {
@@ -168,6 +184,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             }
         }
         createCartButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
+        createCartButtonForEmpty.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
         createCartButton.clipsToBounds = true
         
         
@@ -175,6 +192,18 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         setupView()
     }
     
+    func updateUIVisibilityBasedOnCardData() {
+        if self.viewModel.cardData.isEmpty {
+            self.tableView.isHidden = true
+            self.createCartButtonForEmpty.isHidden = false
+            self.createCartButton.isHidden = true
+        } else {
+            self.createCartButton.isHidden = false
+            self.tableView.isHidden = false
+            self.createCartButtonForEmpty.isHidden = true
+        }
+    }
+
     func searchWithVoice(searchText: String) {
         DispatchQueue.main.async {
             self.microphoneButton.isEnabled = true

@@ -80,7 +80,7 @@ class IconListViewController: UIViewController {
     }
     
     @objc func closeAction() {
-        self.completion(IconCellModel(image: "card", iconName: "Default"))
+        self.completion(IconCellModel(image: "default", iconName: "Default", domain: ""))
         self.dismiss(animated: true)
     }
 }
@@ -180,4 +180,5 @@ class IconCell: UITableViewCell {
 struct IconCellModel: Codable {
     var image: String
     var iconName: String
+    var domain: String
 }

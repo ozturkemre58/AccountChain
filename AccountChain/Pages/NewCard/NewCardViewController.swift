@@ -323,6 +323,7 @@ class NewCardViewController: UIViewController {
         }
         present(vc, animated: true, completion: nil)
     }
+    
     @objc func createPasswordButtonTapped() {
         self.cardPassword.text = viewModel.generateKey()
     }
@@ -344,13 +345,15 @@ class NewCardViewController: UIViewController {
             return
         }
         
-        guard let passwordText = self.cardEmail.text, passwordText.count <= 8 else {
+        guard let passwordText = self.cardPassword.text, passwordText.count >= 8 else {
             MessageManager.shared.show(message: "Your password is too short. Please choose a password that is at least 8 characters long.", type: .info)
             return
         }
         
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
+        viewModel.savePassword(password: self.cardPassword.text ?? "BenAslındaYokum", account: self.cardEmail.text ?? "yok", service: "facebook.com")
+        
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key,  "date": self.currentDate(), "icon": self.selectedIcon] as [String: Any]
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
