@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Access to the microphone is required to send voice messages.</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>Access to the microphone is required to convert speech to text using the voice recognition feature.</string>
-    <key>NSFaceIDUsageDescription</key>
-    <string>Face ID kullanımı, kullanıcı kimliğini doğrulamak için gereklidir.</string>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-    </array>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>fetch</string>
-        <string>processing</string>
-        <string>remote-notification</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
-    <array>
-        <string>EmreOzturk.AccountChain.backgroundtaskidentifier</string>
-    </array>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.693873789979-31utgb1r9035hhvug9l2mk2tatae3o8q</string>
-            </array>
-        </dict>
-    </array>
-    <key>UIApplicationSceneManifest</key>
     <dict>
-        <key>UIApplicationSupportsMultipleScenes</key>
-        <false/>
-        <key>UISceneConfigurations</key>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>Access to the microphone is required to send voice messages.</string>
+        <key>NSSpeechRecognitionUsageDescription</key>
+        <string>Access to the microphone is required to convert speech to text using the voice recognition feature.</string>
+        <key>NSFaceIDUsageDescription</key>
+        <string>Face ID kullanımı, kullanıcı kimliğini doğrulamak için gereklidir.</string>
+        <key>UISupportedInterfaceOrientations</key>
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+        </array>
+        <key>UIBackgroundModes</key>
+        <array>
+            <string>fetch</string>
+            <string>processing</string>
+            <string>remote-notification</string>
+        </array>
+        <key>UISupportedInterfaceOrientations~ipad</key>
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            <string>UIInterfaceOrientationLandscapeLeft</string>
+            <string>UIInterfaceOrientationLandscapeRight</string>
+        </array>
+        <key>BGTaskSchedulerPermittedIdentifiers</key>
+        <array>
+            <string>EmreOzturk.AccountChain.backgroundtaskidentifier</string>
+        </array>
+        <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeRole</key>
+                <string>Editor</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>com.googleusercontent.apps.693873789979-31utgb1r9035hhvug9l2mk2tatae3o8q</string>
+                </array>
+            </dict>
+        </array>
+        <key>UIApplicationSceneManifest</key>
         <dict>
-            <key>UIWindowSceneSessionRoleApplication</key>
-            <array>
-                <dict>
-                    <key>UISceneConfigurationName</key>
-                    <string>Default Configuration</string>
-                    <key>UISceneDelegateClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-                </dict>
-            </array>
+            <key>UIApplicationSupportsMultipleScenes</key>
+            <false/>
+            <key>UISceneConfigurations</key>
+            <dict>
+                <key>UIWindowSceneSessionRoleApplication</key>
+                <array>
+                    <dict>
+                        <key>UISceneConfigurationName</key>
+                        <string>Default Configuration</string>
+                        <key>UISceneDelegateClassName</key>
+                        <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+                    </dict>
+                </array>
+            </dict>
         </dict>
+        <key>UIUserInterfaceStyle</key>
+        <string>Light</string>
     </dict>
-</dict>
 </plist>
