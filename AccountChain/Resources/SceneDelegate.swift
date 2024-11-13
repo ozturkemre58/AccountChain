@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -58,6 +58,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func switchToSignIn() {
+        guard let windowScene = self.window?.windowScene else { return }
+        
+        let signInViewController = SignInViewController()
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = signInViewController
+        window.makeKeyAndVisible()
+        self.window = window
+    }
 
 }
 

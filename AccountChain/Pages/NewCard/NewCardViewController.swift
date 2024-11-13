@@ -352,7 +352,7 @@ class NewCardViewController: UIViewController {
         
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
-        viewModel.savePassword(password: self.cardPassword.text ?? "BenAslındaYokum", account: self.cardEmail.text ?? "yok", service: "facebook.com")
+      //  viewModel.savePassword(password: self.cardPassword.text ?? "", account: self.cardEmail.text ?? "", service: "")
         
         let data = ["title": self.cardTitle.text ?? "", "email": self.cardEmail.text ?? "", "username": self.cardUsername.text ?? "", "password": key,  "date": self.currentDate(), "icon": self.selectedIcon] as [String: Any]
         

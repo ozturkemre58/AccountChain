@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2532C9FE2CE472610015A1E9 /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532C9FD2CE4725F0015A1E9 /* UIImageExt.swift */; };
+		2532CA042CE473500015A1E9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532CA032CE473500015A1E9 /* ProfileViewController.swift */; };
+		2532CA062CE483670015A1E9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532CA052CE483600015A1E9 /* ProfileViewModel.swift */; };
+		2554A0802CDA84ED00DA0BDE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2554A07F2CDA84ED00DA0BDE /* IQKeyboardManagerSwift */; };
 		256062B02B31835A00E67C9D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062AF2B31835A00E67C9D /* Observable.swift */; };
 		256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256062B12B32D35C00E67C9D /* UITextFieldExt.swift */; };
 		2569049F2B3B1B1300CF44D9 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2569049E2B3B1B1300CF44D9 /* KeychainSwift */; };
@@ -100,6 +104,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2532C9FD2CE4725F0015A1E9 /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
+		2532CA032CE473500015A1E9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2532CA052CE483600015A1E9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		256062AF2B31835A00E67C9D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		256062B12B32D35C00E67C9D /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		258185192B586D58009ABEE1 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +170,7 @@
 				C3C36E4A2B3ED06B0078395F /* FirebaseAnalytics in Frameworks */,
 				C3C36E5A2B3ED06B0078395F /* FirebaseCrashlytics in Frameworks */,
 				C3C36E622B3ED06B0078395F /* FirebaseFirestore in Frameworks */,
+				2554A0802CDA84ED00DA0BDE /* IQKeyboardManagerSwift in Frameworks */,
 				C3C36E602B3ED06B0078395F /* FirebaseDynamicLinks in Frameworks */,
 				C3C36E7E2B3ED06B0078395F /* FirebaseStorageCombine-Community in Frameworks */,
 				C3C36E4C2B3ED06B0078395F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -205,6 +213,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2532C9FF2CE472F20015A1E9 /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				2532CA052CE483600015A1E9 /* ProfileViewModel.swift */,
+				2532CA032CE473500015A1E9 /* ProfileViewController.swift */,
+			);
+			path = MyAccount;
+			sourceTree = "<group>";
+		};
 		256062AE2B31829A00E67C9D /* Observer */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +292,7 @@
 		C3824DDD2B2CF8E00014ADF3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2532C9FD2CE4725F0015A1E9 /* UIImageExt.swift */,
 				C3824DDE2B2CF94E0014ADF3 /* ColorExt.swift */,
 				C3824DE02B2CFA0F0014ADF3 /* UIViewExt.swift */,
 				C3824DE22B2CFA270014ADF3 /* UIButtonExt.swift */,
@@ -402,6 +420,7 @@
 		C3A007F62B2CC179009AD543 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				2532C9FF2CE472F20015A1E9 /* MyAccount */,
 				258185182B586D2D009ABEE1 /* CardDetail */,
 				C317B6A62B2F1DB70059A700 /* NewCard */,
 				C3A007FC2B2CDA52009AD543 /* Auth */,
@@ -514,6 +533,7 @@
 				C3C36E7B2B3ED06B0078395F /* FirebaseStorage */,
 				C3C36E7D2B3ED06B0078395F /* FirebaseStorageCombine-Community */,
 				25C615072BC8CAD10028EE26 /* SnapKit */,
+				2554A07F2CDA84ED00DA0BDE /* IQKeyboardManagerSwift */,
 			);
 			productName = AccountChain;
 			productReference = C3A007BA2B2CB7D7009AD543 /* AccountChain.app */;
@@ -567,6 +587,7 @@
 				TargetAttributes = {
 					C3A007B92B2CB7D7009AD543 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1610;
 					};
 					C3A007CF2B2CB7D8009AD543 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -592,6 +613,7 @@
 				2569049D2B3B1B1300CF44D9 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				C3C36E482B3ED06B0078395F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				25C615062BC8CAD10028EE26 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2554A07E2CDA84ED00DA0BDE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = C3A007BB2B2CB7D7009AD543 /* Products */;
 			projectDirPath = "";
@@ -646,6 +668,7 @@
 				C3824DE32B2CFA270014ADF3 /* UIButtonExt.swift in Sources */,
 				C317B6B22B2F44620059A700 /* HomeViewModel.swift in Sources */,
 				C3C0F3CC2B3A149F004A9527 /* KeychainManager.swift in Sources */,
+				2532CA042CE473500015A1E9 /* ProfileViewController.swift in Sources */,
 				C375C6E32B3EF065007F344B /* DefaultButton.swift in Sources */,
 				C317B6B62B2F48A20059A700 /* CardModel.swift in Sources */,
 				C3A007C22B2CB7D7009AD543 /* TabBarController.swift in Sources */,
@@ -656,6 +679,7 @@
 				C3F021A22B4B1E5100037352 /* SignUpViewModel.swift in Sources */,
 				25C2E7712BB3EFAB005BEE47 /* UIFontExt.swift in Sources */,
 				C3C30C632B2E0C4600F18AA4 /* CardCell.swift in Sources */,
+				2532CA062CE483670015A1E9 /* ProfileViewModel.swift in Sources */,
 				256062B22B32D35C00E67C9D /* UITextFieldExt.swift in Sources */,
 				C3A007FA2B2CC1E9009AD543 /* PasswordGeneratorViewController.swift in Sources */,
 				C3C30C662B2E238900F18AA4 /* NSObjectExt.swift in Sources */,
@@ -667,6 +691,7 @@
 				C3A79D612B4043F200CA0D05 /* MessageManager.swift in Sources */,
 				C32604942B5F3B1000EF54CF /* CardDetailViewModel.swift in Sources */,
 				256062B02B31835A00E67C9D /* Observable.swift in Sources */,
+				2532C9FE2CE472610015A1E9 /* UIImageExt.swift in Sources */,
 				2581851A2B586D58009ABEE1 /* CardDetailViewController.swift in Sources */,
 				C3A008092B2CDB44009AD543 /* SignInViewController.swift in Sources */,
 				C317B6AF2B2F3A630059A700 /* NewCardViewModel.swift in Sources */,
@@ -843,6 +868,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AccountChain/AccountChain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -862,6 +888,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = EmreOzturk.AccountChain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -872,6 +899,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AccountChain/AccountChain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1010,6 +1038,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2554A07E2CDA84ED00DA0BDE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = exactVersion;
+				version = 8.0.0;
+			};
+		};
 		2569049D2B3B1B1300CF44D9 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
@@ -1045,6 +1081,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2554A07F2CDA84ED00DA0BDE /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2554A07E2CDA84ED00DA0BDE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		2569049E2B3B1B1300CF44D9 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2569049D2B3B1B1300CF44D9 /* XCRemoteSwiftPackageReference "keychain-swift" */;

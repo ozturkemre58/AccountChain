@@ -238,7 +238,7 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func signUpAction() {
-        viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "") { [weak self] success in
+        viewModel.signUpAction(email: self.emailField.text ??  "", password: self.passwordField.text ?? "", phone: self.phoneField.text ?? "", username: self.usernameField.text ?? "") { [weak self] success in
             if success {
                 self?.presentHome()
             }
@@ -312,6 +312,18 @@ extension SignUpViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if textField == self.phoneField {
+            let allowedCharacters = CharacterSet.decimalDigits
+           let characterSet = CharacterSet(charactersIn: string)
+           
+           return allowedCharacters.isSuperset(of: characterSet)
+        }
+        
+        return true
+    }
 }
 
 extension SignUpViewController: ASAuthorizationControllerDelegate {
@@ -350,11 +362,5 @@ extension SignUpViewController: ASAuthorizationControllerDelegate {
 extension SignUpViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
-    }
-}
-
-struct ViewController: PreviewProvider {
-    static var previews: some View {
-        VCPreview { SignUpViewController() }
     }
 }

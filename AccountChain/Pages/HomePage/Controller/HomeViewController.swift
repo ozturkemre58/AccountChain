@@ -12,6 +12,7 @@ import SwiftUI
 class HomeViewController: UIViewController, HomeViewModelDelegate {
     let headerView = UIView()
     let headerLabel = UILabel()
+    let myAccountButton = UIButton()
     let searchView = UIView()
     let searchField = UITextField()
     let tableView = UITableView()
@@ -53,6 +54,14 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             make.left.equalTo(headerView.snp.left).offset(20)
         }
         
+        headerView.addSubview(myAccountButton)
+        myAccountButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalToSuperview().multipliedBy(0.6) // Increase height to 60% of headerView's height
+            make.width.equalTo(myAccountButton.snp.height) // Make it a square
+        }
+
         view.addSubview(searchView)
         searchView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
@@ -110,6 +119,8 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         headerLabel.textColor = .systemBlue
         headerLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
         
+        //accountButton
+        myAccountButton.setImage(UIImage(named: "nav_user")?.withTintColor(.systemGray), for: .normal)
         
         //searchField
         addDismissButtonToKeyboard(textField: searchField)
@@ -187,7 +198,8 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         createCartButtonForEmpty.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
         createCartButton.clipsToBounds = true
         
-        
+        myAccountButton.isUserInteractionEnabled = true
+        myAccountButton.addTarget(self, action: #selector(accountButtonTapped), for: .touchUpInside)
         viewModel.delegate = self
         setupView()
     }
@@ -301,4 +313,8 @@ extension HomeViewController: UITextFieldDelegate {
         return true
     }
     
+    @objc func accountButtonTapped() {
+        let vc = ProfileViewController()
+        self.present(vc, animated: true)
+    }
 }

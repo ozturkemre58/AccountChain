@@ -341,3 +341,9 @@ extension SignInViewController: ASAuthorizationControllerPresentationContextProv
         return self.view.window!
     }
 }
+
+struct ViewController: PreviewProvider {
+    static var previews: some View {
+        VCPreview { HomeViewController() }
+    }
+}
