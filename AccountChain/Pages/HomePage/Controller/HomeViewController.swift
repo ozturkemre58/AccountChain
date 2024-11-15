@@ -21,7 +21,6 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     let microphoneButton = UIButton(type: .system)
     let createCartButtonForEmpty = UIButton()
 
-    
     let viewModel: HomeViewModel = HomeViewModel()
     
     override func viewDidLoad() {
@@ -35,7 +34,64 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
+        
+        
+        let hasConsented = UserDefaults.standard.bool(forKey: "UserHasConsented")
+        if !hasConsented {
+            showConsentAlert()
+        }
     }
+    
+    func showConsentAlert() {
+            let alert = UIAlertController(
+                title: "Privacy Policy",
+                message: "We collect and store your data. To continue, please accept our Privacy Policy.",
+                preferredStyle: .alert
+            )
+            
+            let privacyPolicyAction = UIAlertAction(title: "Privacy Policy", style: .default) { _ in
+                if let url = URL(string: "https://www.freeprivacypolicy.com/live/e45b1415-fa4d-499f-96a9-e2b278476584") {
+                    UIApplication.shared.open(url, options: [:]) {_ in
+                        self.showConsentAlert()
+                    }
+                }
+            }
+            
+            let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
+                UserDefaults.standard.set(true, forKey: "UserHasConsented")
+            }
+            
+            let declineAction = UIAlertAction(title: "Decline", style: .destructive) { _ in
+                self.showExitConfirmationAlert()
+            }
+            
+            alert.addAction(privacyPolicyAction)
+            alert.addAction(acceptAction)
+            alert.addAction(declineAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        func showExitConfirmationAlert() {
+            let exitAlert = UIAlertController(
+                title: "Are you sure?",
+                message: "If you decline, the application will close.",
+                preferredStyle: .alert
+            )
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                self.showConsentAlert()
+            }
+            
+            let exitAction = UIAlertAction(title: "Close App", style: .destructive) { _ in
+                exit(0)
+            }
+            
+            exitAlert.addAction(cancelAction)
+            exitAlert.addAction(exitAction)
+            
+            self.present(exitAlert, animated: true, completion: nil)
+        }
     
     func prepareView() {
         view.backgroundColor = .white
@@ -53,13 +109,13 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             make.bottom.equalTo(headerView.snp.bottom).offset(-15)
             make.left.equalTo(headerView.snp.left).offset(20)
         }
-        
+
         headerView.addSubview(myAccountButton)
         myAccountButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(headerLabel)
             make.right.equalToSuperview().offset(-16)
-            make.height.equalToSuperview().multipliedBy(0.6) // Increase height to 60% of headerView's height
-            make.width.equalTo(myAccountButton.snp.height) // Make it a square
+            make.height.equalToSuperview().multipliedBy(0.6)
+            make.width.equalTo(myAccountButton.snp.height) 
         }
 
         view.addSubview(searchView)
