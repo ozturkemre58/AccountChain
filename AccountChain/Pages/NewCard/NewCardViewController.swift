@@ -285,6 +285,10 @@ class NewCardViewController: UIViewController {
         let iconFieldTapGesture = UITapGestureRecognizer(target: self, action: #selector(openIconPage))
         iconField.addGestureRecognizer(iconFieldTapGesture)
         iconField.isUserInteractionEnabled = true
+        
+        if !isConsentGiven() {
+            showDataSharingAlert()
+        }
 
     }
     
@@ -309,6 +313,30 @@ class NewCardViewController: UIViewController {
         return formattedDate
     }
     
+    private func showDataSharingAlert() {
+            let alertController = UIAlertController(
+                title: "Data Sharing Notice",
+                message: "The card information you are about to add will be securely transmitted to our servers to complete the process. Please confirm that you consent to this action before proceeding.",
+                preferredStyle: .alert
+            )
+
+            let agreeAction = UIAlertAction(title: "I Agree", style: .default) { _ in
+                // Save user's consent in UserDefaults
+                UserDefaults.standard.set(true, forKey: "isCardDataSharingConsentGiven")
+                UserDefaults.standard.synchronize()
+                
+            }
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+
+            alertController.addAction(agreeAction)
+            alertController.addAction(cancelAction)
+
+            present(alertController, animated: true, completion: nil)
+        }
+    
     @objc func backAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -332,6 +360,10 @@ class NewCardViewController: UIViewController {
         if self.cardPassword.isSecureTextEntry {
             self.cardPassword.isSecureTextEntry = false
         } else { self.cardPassword.isSecureTextEntry = true }
+    }
+    
+    func isConsentGiven() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isCardDataSharingConsentGiven")
     }
     
     @objc func createCartAction() {
