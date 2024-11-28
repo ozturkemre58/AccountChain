@@ -16,10 +16,10 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     let searchView = UIView()
     let searchField = UITextField()
     let tableView = UITableView()
-    let createCartButton = UIButton()
+    let createCardButton = UIButton()
     let microphonIndicator = UIActivityIndicatorView()
     let microphoneButton = UIButton(type: .system)
-    let createCartButtonForEmpty = UIButton()
+    let createCardButtonForEmpty = UIButton()
 
     let viewModel: HomeViewModel = HomeViewModel()
     
@@ -136,18 +136,18 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             make.bottom.equalTo(searchView.snp.bottom)
         }
         
-        view.addSubview(createCartButtonForEmpty)
-        createCartButtonForEmpty.snp.makeConstraints { make in
+        view.addSubview(createCardButtonForEmpty)
+        createCardButtonForEmpty.snp.makeConstraints { make in
             make.top.equalTo(searchView.snp.bottom).offset(24)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
-        // MARK: createCartButtonForEmpty
-        createCartButtonForEmpty.setTitle("Create Cart", for: .normal)
-        createCartButtonForEmpty.setTitleColor(.white, for: .normal)
-        createCartButtonForEmpty.backgroundColor = .systemBlue
-        createCartButtonForEmpty.layer.cornerRadius = 10
+        // MARK: createCardButtonForEmpty
+        createCardButtonForEmpty.setTitle("Create Card", for: .normal)
+        createCardButtonForEmpty.setTitleColor(.white, for: .normal)
+        createCardButtonForEmpty.backgroundColor = .systemBlue
+        createCardButtonForEmpty.layer.cornerRadius = 10
         
         
         view.addSubview(tableView)
@@ -159,19 +159,19 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         }
         tableView.showsVerticalScrollIndicator = false
         
-        view.addSubview(createCartButton)
-        createCartButton.snp.makeConstraints { make in
+        view.addSubview(createCardButton)
+        createCardButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-40)
             make.right.equalToSuperview().offset(-40)
             make.width.equalTo(68)
             make.height.equalTo(68)
         }
-        createCartButton.isHidden = true
+        createCardButton.isHidden = true
     }
     
     func configView() {
         //headerLabel
-        headerLabel.text = "My Carts"
+        headerLabel.text = "My Cards"
         headerLabel.textColor = .systemBlue
         headerLabel.font = UIFont.customFont(font: .helvetica, type: .bold, size: 20)
         
@@ -184,7 +184,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         self.searchField.enablesReturnKeyAutomatically = true
         self.searchField.leftViewMode = .always
         self.searchField.rightViewMode = .always
-        searchField.placeholder = "Search Cart"
+        searchField.placeholder = "Search Card"
         
         //searchfieldLeftView
         let searchImageView = UIImageView()
@@ -231,10 +231,10 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         //tableView
         tableView.layer.cornerRadius = 5
         
-        //CreateCartButton
-        createCartButton.layer.cornerRadius = 34
-        createCartButton.backgroundColor = .systemBlue
-        createCartButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+        //CreateCardButton
+        createCardButton.layer.cornerRadius = 34
+        createCardButton.backgroundColor = .systemBlue
+        createCardButton.setImage(UIImage(named: "plus-circle"), for: .normal)
         
         
         if let originalImage = UIImage(named: "plus-circle") {
@@ -246,13 +246,13 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
             
             if let resizedImage = resizedImage {
                 let tintedImage = resizedImage.withRenderingMode(.alwaysTemplate)
-                createCartButton.setImage(tintedImage, for: .normal)
-                createCartButton.tintColor = UIColor.white
+                createCardButton.setImage(tintedImage, for: .normal)
+                createCardButton.tintColor = UIColor.white
             }
         }
-        createCartButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
-        createCartButtonForEmpty.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
-        createCartButton.clipsToBounds = true
+        createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
+        createCardButtonForEmpty.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
+        createCardButton.clipsToBounds = true
         
         myAccountButton.isUserInteractionEnabled = true
         myAccountButton.addTarget(self, action: #selector(accountButtonTapped), for: .touchUpInside)
@@ -263,12 +263,12 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     func updateUIVisibilityBasedOnCardData() {
         if self.viewModel.cardData.isEmpty {
             self.tableView.isHidden = true
-            self.createCartButtonForEmpty.isHidden = false
-            self.createCartButton.isHidden = true
+            self.createCardButtonForEmpty.isHidden = false
+            self.createCardButton.isHidden = true
         } else {
-            self.createCartButton.isHidden = false
+            self.createCardButton.isHidden = false
             self.tableView.isHidden = false
-            self.createCartButtonForEmpty.isHidden = true
+            self.createCardButtonForEmpty.isHidden = true
         }
     }
 
@@ -328,11 +328,11 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         }
     }
     
-    @objc func createCartAction() {
-        let createCartVC = NewCardViewController()
+    @objc func createCardAction() {
+        let createCardVC = NewCardViewController()
         
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(createCartVC, animated: true)
+            self.navigationController?.pushViewController(createCardVC, animated: true)
         }
     }
     

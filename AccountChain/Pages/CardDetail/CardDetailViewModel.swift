@@ -19,9 +19,9 @@ class CardDetailViewModel {
         KeychainManager.shared.updateDataInKeychain(data: data, forKey: self.card.keychainKey ?? "")
     }
     
-    func sendUpdateCard(cartId: String, updatedData: [String: Any], completion: @escaping (Bool) -> Void) {
+    func sendUpdateCard(cardId: String, updatedData: [String: Any], completion: @escaping (Bool) -> Void) {
         let fireStoreDB = Firestore.firestore()
-        let documentReference = fireStoreDB.collection(ConstantManager.shared.dbKey).document(cartId)
+        let documentReference = fireStoreDB.collection(ConstantManager.shared.dbKey).document(cardId)
         
         documentReference.updateData(updatedData) { error in
             if let error = error {

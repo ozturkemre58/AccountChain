@@ -14,7 +14,7 @@ class CardDetailViewController: UIViewController {
     var topView = UIView()
     
     var headView = UIView()
-    var removeCartLabel = UILabel()
+    var removeCardLabel = UILabel()
     var backButton = UIButton()
     var titleLabel = UILabel()
     var removeCardImage = UIImageView()
@@ -40,8 +40,8 @@ class CardDetailViewController: UIViewController {
     
     
     var viewModel: CardDetailViewModel
-    var cartId: String = ""
-    var cartPassword: String?
+    var cardId: String = ""
+    var cardPassword: String?
 
     init(viewModel: CardDetailViewModel) {
         self.viewModel = viewModel
@@ -101,16 +101,16 @@ class CardDetailViewController: UIViewController {
         backButton.setImage(UIImage(named: "left_arrow"), for: .normal)
         backButton.isHidden = true
         
-        headView.addSubview(removeCartLabel)
-        removeCartLabel.snp.makeConstraints { make in
+        headView.addSubview(removeCardLabel)
+        removeCardLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
         }
         
-        removeCartLabel.textColor = .red
-        removeCartLabel.text = "Delete"
-        removeCartLabel.font = UIFont.customFont(font: .helvetica, type: .medium, size: 14)
-        removeCartLabel.isUserInteractionEnabled = true
+        removeCardLabel.textColor = .red
+        removeCardLabel.text = "Delete"
+        removeCardLabel.font = UIFont.customFont(font: .helvetica, type: .medium, size: 14)
+        removeCardLabel.isUserInteractionEnabled = true
         
         headView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
@@ -264,7 +264,7 @@ class CardDetailViewController: UIViewController {
         updateInfoButton.layer.cornerRadius = 5
         updateInfoButton.backgroundColor = .systemBlue
         updateInfoButton.setTitle("Update", for: .normal)
-        updateInfoButton.addTarget(self, action: #selector(updateCart), for: .touchUpInside)
+        updateInfoButton.addTarget(self, action: #selector(updateCard), for: .touchUpInside)
     }
     
     func configView() {
@@ -279,7 +279,7 @@ class CardDetailViewController: UIViewController {
         self.emailField.text = item.cardEmail
         self.usernameField.text = item.cardUsername
         self.passwordField.text = item.cardPassword
-        self.cartId = item.cardId ?? ""
+        self.cardId = item.cardId ?? ""
     }
     
     func currentDate() -> String {
@@ -317,7 +317,7 @@ class CardDetailViewController: UIViewController {
         } else { self.passwordField.isSecureTextEntry = true }
     }
     
-    @objc func updateCart() {
+    @objc func updateCard() {
         let emailText = emailField.text ?? ""
         let usernameText = usernameField.text ?? ""
         let passwordText = passwordField.text ?? ""
@@ -332,8 +332,8 @@ class CardDetailViewController: UIViewController {
             return
         }
         let data = ["email": emailText, "username": usernameText, "date": currentDate()]
-        viewModel.updateKeychainData(data: self.cartPassword ?? "")
-        viewModel.sendUpdateCard(cartId: self.cartId, updatedData: data) { [weak self] success in
+        viewModel.updateKeychainData(data: self.cardPassword ?? "")
+        viewModel.sendUpdateCard(cardId: self.cardId, updatedData: data) { [weak self] success in
             if success {
                 self?.confirmPasswordField.clearText()
                 self?.updateInfoButton.isEnabled = false
@@ -346,15 +346,15 @@ class CardDetailViewController: UIViewController {
     }
     
     func addGestures() {
-        let removeGesture = UITapGestureRecognizer(target: self, action: #selector(removeCart))
-        self.removeCartLabel.addGestureRecognizer(removeGesture)
+        let removeGesture = UITapGestureRecognizer(target: self, action: #selector(removeCard))
+        self.removeCardLabel.addGestureRecognizer(removeGesture)
     }
     
     func dismissAction() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func removeCart() {
+    @objc func removeCard() {
         self.viewModel.removeCard() { success in
             if success {
                 self.dismissAction()
@@ -371,7 +371,7 @@ class CardDetailViewController: UIViewController {
 extension CardDetailViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == confirmPasswordField {
-            cartPassword = textField.text
+            cardPassword = textField.text
         }
         
         let textFields: [UITextField] = [emailField, usernameField, passwordField, confirmPasswordField]

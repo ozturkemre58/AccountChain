@@ -14,10 +14,10 @@ class NewCardViewController: UIViewController {
     
     var pageTitleView = UIView()
     var pageTitleLabel = UILabel()
-    var cartTitleLabel = UILabel()
-    var cartEmailLabel = UILabel()
-    var cartUsernameLabel = UILabel()
-    var cartPasswordLabel = UILabel()
+    var cardTitleLabel = UILabel()
+    var cardEmailLabel = UILabel()
+    var cardUsernameLabel = UILabel()
+    var cardPasswordLabel = UILabel()
     
     var cardTitle = UITextField()
     var cardEmail = UITextField()
@@ -57,38 +57,38 @@ class NewCardViewController: UIViewController {
             make.left.equalToSuperview().offset(20)
         }
         
-        //cartTitleLabel
-        view.addSubview(cartTitleLabel)
-        cartTitleLabel.snp.makeConstraints { make in
+        //cardTitleLabel
+        view.addSubview(cardTitleLabel)
+        cardTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(pageTitleView.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
         //cardTitle
         view.addSubview(cardTitle)
         cardTitle.snp.makeConstraints { make in
-            make.top.equalTo(cartTitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(cardTitleLabel.snp.bottom).offset(10)
             make.right.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(50)
         }
         //emailLabel
-        view.addSubview(cartEmailLabel)
-        cartEmailLabel.snp.makeConstraints { make in
+        view.addSubview(cardEmailLabel)
+        cardEmailLabel.snp.makeConstraints { make in
             make.top.equalTo(cardTitle.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
         //cardEmail
         view.addSubview(cardEmail)
         cardEmail.snp.makeConstraints { make in
-            make.top.equalTo(cartEmailLabel.snp.bottom).offset(10)
+            make.top.equalTo(cardEmailLabel.snp.bottom).offset(10)
             make.right.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(50)
         }
         
-        //cartUsernameLabel
-        view.addSubview(cartUsernameLabel)
-        cartUsernameLabel.snp.makeConstraints { make in
+        //cardUsernameLabel
+        view.addSubview(cardUsernameLabel)
+        cardUsernameLabel.snp.makeConstraints { make in
             make.top.equalTo(cardEmail.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
@@ -96,15 +96,15 @@ class NewCardViewController: UIViewController {
         //cardUsername
         view.addSubview(cardUsername)
         cardUsername.snp.makeConstraints { make in
-            make.top.equalTo(cartUsernameLabel.snp.bottom).offset(10)
+            make.top.equalTo(cardUsernameLabel.snp.bottom).offset(10)
             make.right.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(50)
         }
         
-        //cartPasswordLabel
-        view.addSubview(cartPasswordLabel)
-        cartPasswordLabel.snp.makeConstraints { make in
+        //cardPasswordLabel
+        view.addSubview(cardPasswordLabel)
+        cardPasswordLabel.snp.makeConstraints { make in
             make.top.equalTo(cardUsername.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
@@ -112,7 +112,7 @@ class NewCardViewController: UIViewController {
         //cardPassword
         view.addSubview(cardPassword)
         cardPassword.snp.makeConstraints { make in
-            make.top.equalTo(cartPasswordLabel.snp.bottom).offset(10)
+            make.top.equalTo(cardPasswordLabel.snp.bottom).offset(10)
             make.right.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(50)
@@ -222,15 +222,15 @@ class NewCardViewController: UIViewController {
     }
     
     func configView() {
-        //cartTitleLabel
-        self.cartTitleLabel.text = "Platform Name"
+        //cardTitleLabel
+        self.cardTitleLabel.text = "Platform Name"
         
         //cardCreateButton
         self.createCardButton.layer.cornerRadius = 10
         self.createCardButton.setTitle("Create", for: .normal)
         self.createCardButton.setTitleColor(.white, for: .normal)
         self.createCardButton.backgroundColor = .systemBlue
-        self.createCardButton.addTarget(self, action: #selector(createCartAction), for: .touchUpInside)
+        self.createCardButton.addTarget(self, action: #selector(createCardAction), for: .touchUpInside)
         self.createCardButton.isEnabled = true
         
         //cardTitle
@@ -241,8 +241,8 @@ class NewCardViewController: UIViewController {
         cardTitle.leftViewMode = .always
         cardTitle.placeholder = "Instagram"
         
-        //cartEmailLabel
-        self.cartEmailLabel.text = "Email"
+        //cardEmailLabel
+        self.cardEmailLabel.text = "Email"
         
         //cardEmail
         self.cardEmail.delegate = self
@@ -253,8 +253,8 @@ class NewCardViewController: UIViewController {
         cardEmail.placeholder = "Forexample@gmail.com"
         cardEmail.keyboardType = .emailAddress
         
-        //cartUsernameLabel
-        self.cartUsernameLabel.text = "Username"
+        //cardUsernameLabel
+        self.cardUsernameLabel.text = "Username"
         
         //cardUsername
         self.cardUsername.delegate = self
@@ -264,8 +264,8 @@ class NewCardViewController: UIViewController {
         cardUsername.leftViewMode = .always
         cardUsername.placeholder = "JhonDoe"
         
-        //cartpassword
-        self.cartPasswordLabel.text = "Password"
+        //cardpassword
+        self.cardPasswordLabel.text = "Password"
         
         //cardPassword
         self.cardPassword.delegate = self
@@ -366,7 +366,7 @@ class NewCardViewController: UIViewController {
         return UserDefaults.standard.bool(forKey: "isCardDataSharingConsentGiven")
     }
     
-    @objc func createCartAction() {
+    @objc func createCardAction() {
         guard self.isTextFieldValid() else {
             MessageManager.shared.show(message: "Please fill in all required fields.", type: .info)
             return
@@ -390,7 +390,8 @@ class NewCardViewController: UIViewController {
         
         viewModel.sendCreateCard(postParameter: data) { [weak self] success in
             if success {
-                self?.clearTextFields()
+                //self?.clearTextFields()
+                self?.navigationController?.popViewController(animated: true)
             }
         }
     }
