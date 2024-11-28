@@ -42,6 +42,12 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.viewModel.cardData.removeAll()
+        self.viewModel.cardSearchData.removeAll()
+        self.tableView.reloadData()
+    }
+    
     func showConsentAlert() {
             let alert = UIAlertController(
                 title: "Privacy Policy",

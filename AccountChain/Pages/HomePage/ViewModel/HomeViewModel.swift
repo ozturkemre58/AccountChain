@@ -35,40 +35,53 @@ class HomeViewModel {
     
     
     
-    func fetchData(completion: @escaping () -> Void) {
+    func fetchData(completion: @escaping (Result<[CardModel], Error>) -> Void) {
         self.cardData.removeAll()
         self.cardSearchData.removeAll()
+
         let firebaseDB = Firestore.firestore()
-        
-        firebaseDB.collection(ConstantManager.shared.dbKey).addSnapshotListener { (documentSnapshot, error) in
+        let collectionKey = ConstantManager.shared.dbKey
+
+        firebaseDB.collection(collectionKey).getDocuments { snapshot, error in
+
             if let error = error {
-                print("Error fetching document: \(error)")
+                print("Error fetching documents: \(error.localizedDescription)")
+                completion(.failure(error))
                 return
             }
-            
-            guard let documents = documentSnapshot?.documents else {
-                print("Document data was empty.")
+
+            guard let documents = snapshot?.documents, !documents.isEmpty else {
+                print("No documents found in collection: \(collectionKey)")
+                completion(.success([])) // Boş sonuç döndür
                 return
             }
-            
-            for document in documents {
-                
+
+            let models: [CardModel] = documents.compactMap { document in
                 let data = document.data()
-                
                 let id = document.documentID
-                let title = data["title"] as? String
-                let email = data["email"] as? String
-                let username = data["username"] as? String
-                let password = data["password"] as? String
-                let selectedIcon = data["icon"] as? String
-                
-                let model = CardModel(cardId: id,cardTitle: title ?? "", cardEmail: email ?? "", cardUsername: username ?? "", cardPassword: self.fetchPassword(key: password ?? ""), keychainKey: password ?? "", selectedIcon: selectedIcon ?? "")
-                self.cardData.append(model)
+                let title = data["title"] as? String ?? ""
+                let email = data["email"] as? String ?? ""
+                let username = data["username"] as? String ?? ""
+                let passwordKey = data["password"] as? String ?? ""
+                let selectedIcon = data["icon"] as? String ?? ""
+
+                return CardModel(
+                    cardId: id,
+                    cardTitle: title,
+                    cardEmail: email,
+                    cardUsername: username,
+                    cardPassword: self.fetchPassword(key: passwordKey),
+                    keychainKey: passwordKey,
+                    selectedIcon: selectedIcon
+                )
             }
-            self.cardSearchData = self.cardData
-            completion()
+
+            self.cardData = models
+            self.cardSearchData = models
+            completion(.success(models))
         }
     }
+
     
     func removeCard(documentID: String, completion: @escaping (_ success: Bool) -> Void) {
         let firebaseDB = Firestore.firestore()

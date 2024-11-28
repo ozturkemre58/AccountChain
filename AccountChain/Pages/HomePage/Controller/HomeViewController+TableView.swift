@@ -21,11 +21,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadData() {
-    
-        viewModel.fetchData {
-            self.updateUIVisibilityBasedOnCardData()
-            DispatchQueue.main.async {
+        viewModel.fetchData { result in
+            switch result {
+            case .success(let data):
+                self.updateUIVisibilityBasedOnCardData()
+                print("Fetched data: \(data.count) items.")
                 self.tableView.reloadData()
+            case .failure(let error):
+                print("Failed to fetch data: \(error.localizedDescription)")
             }
         }
     }

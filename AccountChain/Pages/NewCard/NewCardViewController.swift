@@ -57,10 +57,19 @@ class NewCardViewController: UIViewController {
             make.left.equalToSuperview().offset(20)
         }
         
+        //IconButton
+        view.addSubview(iconField)
+        iconField.snp.makeConstraints { make in
+            make.top.equalTo(pageTitleLabel.snp.bottom).offset(35)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(50)
+        }
+        
         //cardTitleLabel
         view.addSubview(cardTitleLabel)
         cardTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(pageTitleView.snp.bottom).offset(20)
+            make.top.equalTo(iconField.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
         //cardTitle
@@ -118,19 +127,10 @@ class NewCardViewController: UIViewController {
             make.height.equalTo(50)
         }
         
-        //IconButton
-        view.addSubview(iconField)
-        iconField.snp.makeConstraints { make in
-            make.top.equalTo(cardPassword.snp.bottom).offset(35)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(50)
-        }
-        
         //createCardButton
         view.addSubview(createCardButton)
         createCardButton.snp.makeConstraints { make in
-            make.top.equalTo(iconField.snp.bottom).offset(10)
+            make.top.equalTo(cardPassword.snp.bottom).offset(10)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(50)
@@ -344,6 +344,7 @@ class NewCardViewController: UIViewController {
     @objc func openIconPage() {
         let vc = IconListViewController { iconModel in
             if let data = iconModel {
+                self.cardTitle.text = data.iconName
                 self.iconField.text = data.iconName
                 self.iconImageView.image = UIImage(named: data.image)
                 self.selectedIcon = data.image

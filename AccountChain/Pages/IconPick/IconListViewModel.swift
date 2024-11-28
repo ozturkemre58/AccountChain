@@ -26,7 +26,6 @@ class IconListViewModel {
         IconCellModel(image: "signal", iconName: "Signal", domain: "signal.com"),
         IconCellModel(image: "snapchat", iconName: "Snapchat", domain: "snapchat.com"),
         IconCellModel(image: "spotify", iconName: "Spotify", domain: "spotify.com"),
-        IconCellModel(image: "starbucks", iconName: "Starbucks", domain: "starbucks.com"),
         IconCellModel(image: "steam", iconName: "Steam", domain: "steam.com"),
         IconCellModel(image: "telegram", iconName: "Telegram", domain: "telegram.com"),
         IconCellModel(image: "threads", iconName: "Threads", domain: "threads.com"),
