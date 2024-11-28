@@ -301,7 +301,7 @@ class NewCardViewController: UIViewController {
     
     func isTextFieldValid() -> Bool {
         return !(self.cardTitle.text?.isEmpty ?? true) &&
-        !(self.cardUsername.text?.isEmpty ?? true)
+        !(self.cardPassword.text?.isEmpty ?? true)
     }
     
     func currentDate() -> String {
@@ -368,20 +368,22 @@ class NewCardViewController: UIViewController {
     }
     
     @objc func createCardAction() {
+        self.createCardButton.isEnabled = false
         guard self.isTextFieldValid() else {
+            self.createCardButton.isEnabled = true
             MessageManager.shared.show(message: "Please fill in all required fields.", type: .info)
             return
         }
         
-        guard let emailText = self.cardEmail.text, emailText.contains("@"), emailText.contains(".") else {
-            MessageManager.shared.show(message: "Invalid Email", type: .info)
-            return
-        }
-        
-        guard let passwordText = self.cardPassword.text, passwordText.count >= 8 else {
-            MessageManager.shared.show(message: "Your password is too short. Please choose a password that is at least 8 characters long.", type: .info)
-            return
-        }
+       // guard let emailText = self.cardEmail.text, emailText.contains("@"), emailText.contains(".") else {
+       //     MessageManager.shared.show(message: "Invalid Email", type: .info)
+       //     return
+       // }
+       //
+       // guard let passwordText = self.cardPassword.text, passwordText.count >= 8 else {
+       //     MessageManager.shared.show(message: "Your password is too short. Please choose a password that is at least 8 characters long.", type: .info)
+       //     return
+       // }
         
         let key = viewModel.generateKey()
         KeychainManager.shared.saveDataToKeychain(data: self.cardPassword.text ?? "", forKey: key)
